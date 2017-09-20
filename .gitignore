@@ -4,3 +4,7 @@
 *.tlog
 test.dat
 *.sw*
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/
+Makefile
