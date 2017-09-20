@@ -1,5 +1,5 @@
 project(library)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.7)
 
 include_directories(include ../boost)
 add_definitions(-std=c++0x)
