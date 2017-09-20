@@ -1,0 +1,9 @@
+#!/bin/bash
+# TODO fail if make files
+pwd
+rm libraryTest
+pushd ../library
+make
+popd
+make
+./libraryTest

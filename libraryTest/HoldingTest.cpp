@@ -13,6 +13,8 @@ using namespace ClassificationData;
 using namespace std;
 using namespace testing;
 
+// This test is deliberately a mess.
+
 class HoldingTest : public Test
 {
 public:

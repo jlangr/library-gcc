@@ -37,10 +37,14 @@ void Catalog::Add(Holding& holding)
 
 void Catalog::Update(Holding& holding)
 {
+  std::cout << "updating holding, available:" << holding.IsAvailable() << std::endl;
     vector<Holding>* holdings = Catalog::Holdings();
     HoldingIterator it = find(holdings->begin(), holdings->end(), holding);
     // TODO: throw if not found? need a test!
     *it = holding;
+
+    auto h{FindByBarCode(holding.Barcode())};
+  std::cout << "found holding, available:" << h.IsAvailable() << std::endl;
 }
 
 void Catalog::FindByClassification(
@@ -66,8 +70,10 @@ bool Catalog::Contains(const string& barcode) const {
     return true;
 }
 
-Holding Catalog::FindByBarCode(const Holding& holding) const
+// TODO simplify, can we use lambdas?
+Holding Catalog::FindByBarCode(const string& barcode) const
 {
+    Holding holding(barcode);
     vector<Holding>* holdings = Catalog::Holdings();
     return *find(holdings->begin(), holdings->end(), holding);
 }

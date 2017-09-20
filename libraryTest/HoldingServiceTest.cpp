@@ -63,18 +63,14 @@ public:
         return patron;
     }
 
-    Holding FindHolding(HoldingBarcode& barcode)
+    Holding FindHolding(HoldingBarcode& barcode) // TODO needed?
     {
-        Holding holding(barcode.AsString());
-        holdingService.FindByBarCode(holding);
-        return holding;
+        return holdingService.FindByBarCode(barcode.AsString());
     }
 
-    Holding FindHolding(const string& barcode)
+    Holding FindHolding(const string& barcode) // TODO needed??
     {
-        Holding holding(barcode);
-        holdingService.FindByBarCode(holding);
-        return holding;
+        return holdingService.FindByBarCode(barcode);
     }
 
     void CheckOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000")
@@ -111,19 +107,22 @@ TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero)
 
 TEST_F(HoldingServiceTest, AddInitializesBranch)
 {
-    holdingService.AddAtBranch(branch1->Id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString());
-    Holding holding(THE_TRIAL_CLASSIFICATION, 1);
+    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString()};
+    holdingService.AddAtBranch(branch1->Id(), barcode);
 
-    holdingService.FindByBarCode(holding);
+    auto holding = holdingService.FindByBarCode(barcode);
 
     ASSERT_THAT(holding.CurrentBranch(), Eq(*branch1));
 }
 
-TEST_F(HoldingServiceTest, AddedHoldingCanBeFound)
+TEST_F(HoldingServiceTest, RetrievesAddedHolding)
 {
-    holdingService.AddAtBranch(branch1->Id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString());
+    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString()};
 
-    ASSERT_THAT(holdingService.FindByBarCode(Holding(THE_TRIAL_CLASSIFICATION, 1)), Eq(true));
+    holdingService.AddAtBranch(branch1->Id(), barcode);
+
+    auto holding{holdingService.FindByBarCode(barcode)};
+    ASSERT_THAT(holding.Barcode(), Eq(barcode));
 }
 
 TEST_F(HoldingServiceTest, ExistsReturnsFalseWhenNotFound)
@@ -140,17 +139,17 @@ TEST_F(HoldingServiceTest, ExistsReturnsTrueWhenNotFound)
     holdingService.AddAtBranch(branch1->Id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
     string barcode = Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1);
 
-    bool found = holdingService.ExistsWithBarcode(barcode);
+    auto found{holdingService.ExistsWithBarcode(barcode)};
 
     ASSERT_THAT(found, Eq(true));
 }
 
 TEST_F(HoldingServiceTest, IsAvailableReturnsTrueWhenHoldingAvailable)
 {
-    holdingService.AddAtBranch(branch1->Id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
-    string barcode = Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1);
+    auto barcode{Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1)};
+    holdingService.AddAtBranch(branch1->Id(), barcode);
 
-    bool isAvailable = holdingService.IsAvailable(barcode);
+    auto isAvailable{holdingService.IsAvailable(barcode)};
 
     ASSERT_THAT(isAvailable, Eq(true));
 }
@@ -201,13 +200,13 @@ TEST_F(HoldingServiceTest, Transfer)
 
 TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
 {
-    holdingService.AddAtBranch(branch1->Id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
+    auto barcode{HoldingBarcode{CATCH22_CLASSIFICATION, 1}.AsString()};
+    holdingService.AddAtBranch(branch1->Id(), barcode);
     AddPatronWithId("p1001");
 
-    holdingService.CheckOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString(), *arbitraryDate);
+    holdingService.CheckOut("p1001", barcode, *arbitraryDate);
 
-    Holding retrieved(HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
-    holdingService.FindByBarCode(retrieved);
+    auto retrieved{holdingService.FindByBarCode(barcode)};
     ASSERT_THAT(retrieved.IsAvailable(), Eq(false));
 }
 

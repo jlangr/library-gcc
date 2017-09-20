@@ -4,6 +4,7 @@
 #include "PatronService.h"
 #include "BranchService.h"
 #include "Catalog.h"
+#include "Holding.h"
 #include "HoldingBarcode.h"
 
 #include "boost/date_time/gregorian/gregorian_types.hpp"
@@ -11,7 +12,6 @@
 #include <vector>
 #include <set>
 
-class Book;
 class Branch;
 class Patron;
 
@@ -33,7 +33,7 @@ namespace service {
         unsigned int InventorySize() const;
         virtual bool ExistsWithBarcode(const std::string& barCode) const;
         virtual bool IsAvailable(const std::string& barCode) const;
-        bool FindByBarCode(const Holding&) const;
+        Holding FindByBarCode(const std::string&) const;
         void FindByClassification(const std::string& classification, std::set<Holding>& holdings) const;
 
     private:

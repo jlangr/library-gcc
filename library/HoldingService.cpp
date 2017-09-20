@@ -43,16 +43,12 @@ bool HoldingService::ExistsWithBarcode(const std::string& barcode) const
 
 bool HoldingService::IsAvailable(const std::string& barcode) const
 {
-  // TODO can inline??
-    Holding holding(barcode);
-    return mCatalog.Contains(barcode) && holding.IsAvailable();
+    return mCatalog.Contains(barcode) && FindByBarCode(barcode).IsAvailable();
 }
 
-bool HoldingService::FindByBarCode(const Holding& holding) const
+Holding HoldingService::FindByBarCode(const std::string& barcode) const
 {
-  // TODO!!! return Holding object instead
-    return mCatalog.Contains(holding.Barcode());
-//    return mCatalog.FindByBarCode(holding);
+    return mCatalog.FindByBarCode(barcode);
 }
 
 void HoldingService::AddAtBranch(const string& id, const string& barcode)
@@ -61,8 +57,8 @@ void HoldingService::AddAtBranch(const string& id, const string& barcode)
     mBranchService.Find(branch);
 
     Holding holding(barcode);
-    holding.Transfer(branch);
     mCatalog.Add(holding);
+    Transfer(holding, branch);
 }
 
 void HoldingService::Transfer(Holding& holding, Branch& branch)
@@ -71,21 +67,19 @@ void HoldingService::Transfer(Holding& holding, Branch& branch)
     mCatalog.Update(holding);
 }
 
-void HoldingService::Transfer(const string& barCode, const string& branchId)
+void HoldingService::Transfer(const string& barcode, const string& branchId)
 {
     Branch branch(branchId);
     mBranchService.Find(branch);
 
-    Holding holding(barCode);
-    FindByBarCode(holding);
+    auto holding = FindByBarCode(barcode);
     holding.Transfer(branch);
     mCatalog.Update(holding);
 }
 
-void HoldingService::CheckOut(const string& patronCardNumber, const string& barCode, date date)
+void HoldingService::CheckOut(const string& patronCardNumber, const string& barcode, date date)
 {
-    Holding holding(barCode);
-    FindByBarCode(holding);
+    auto holding = FindByBarCode(barcode);
     holding.CheckOut(date);
     mCatalog.Update(holding);
 
@@ -101,8 +95,7 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
     Branch branch(branchId);
     mBranchService.Find(branch);
 
-    Holding hld(barCode);
-    FindByBarCode(hld);
+    auto hld = FindByBarCode(barCode);
 
     vector<Patron> patrons;
 
