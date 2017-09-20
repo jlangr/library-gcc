@@ -47,7 +47,7 @@ void Catalog::FindByClassification(
     const string& classification, set<Holding>& holdingsCollector) const
 {
     vector<Holding> holdings = *Catalog::Holdings();
-    for (HoldingIterator it = holdings.begin(); it != holdings.end(); it++)
+    for (auto it = holdings.begin(); it != holdings.end(); it++)
     {
         if (classification == it->Classification())
         {
@@ -56,16 +56,20 @@ void Catalog::FindByClassification(
     }
 }
 
-bool Catalog::FindByBarCode(Holding& holding) const
+bool Catalog::Contains(const string& barcode) const {
+    // TODO condense this~
+    Holding holding(barcode);
+    vector<Holding>* holdings = Catalog::Holdings();
+    auto it = find(holdings->begin(), holdings->end(), holding);
+    if (it == Catalog::Holdings()->end())
+        return false;
+    return true;
+}
+
+Holding Catalog::FindByBarCode(const Holding& holding) const
 {
     vector<Holding>* holdings = Catalog::Holdings();
-    HoldingIterator it = find(holdings->begin(), holdings->end(), holding);
-    if (it == Catalog::Holdings()->end())
-    {
-        return false;
-    }
-    holding = *it;
-    return true;
+    return *find(holdings->begin(), holdings->end(), holding);
 }
 
 void Catalog::DeleteAll()

@@ -19,7 +19,7 @@ public:
     virtual ~Persistence(void) {}
 
     virtual unsigned int Size() const=0;
-    virtual void Add(T&)=0;
+    virtual void Add(const T&)=0;
     virtual void Clear()=0;
     virtual std::unique_ptr<T> Get(const std::string& id) const=0;
     virtual bool Matches(MatcherFunction, const std::string&) const=0;

@@ -36,21 +36,23 @@ void HoldingService::FindByClassification(const string& classification, set<Hold
     mCatalog.FindByClassification(classification, holdings);
 }
 
-bool HoldingService::ExistsWithBarcode(const std::string& barCode) const
+bool HoldingService::ExistsWithBarcode(const std::string& barcode) const
 {
-    Holding holding(barCode);
-    return FindByBarCode(holding);
+    return mCatalog.Contains(barcode);
 }
 
-bool HoldingService::IsAvailable(const std::string& barCode) const
+bool HoldingService::IsAvailable(const std::string& barcode) const
 {
-    Holding holding(barCode);
-    return FindByBarCode(holding) && holding.IsAvailable();
+  // TODO can inline??
+    Holding holding(barcode);
+    return mCatalog.Contains(barcode) && holding.IsAvailable();
 }
 
-bool HoldingService::FindByBarCode(Holding& holding) const
+bool HoldingService::FindByBarCode(const Holding& holding) const
 {
-    return mCatalog.FindByBarCode(holding);
+  // TODO!!! return Holding object instead
+    return mCatalog.Contains(holding.Barcode());
+//    return mCatalog.FindByBarCode(holding);
 }
 
 void HoldingService::AddAtBranch(const string& id, const string& barcode)

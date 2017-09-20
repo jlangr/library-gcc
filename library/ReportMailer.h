@@ -20,7 +20,7 @@ public:
 
     virtual ~ReportMailerException() {}
 
-    const char* what() const
+    const char* what() const throw()
     {
         return mMessage.c_str();
     }

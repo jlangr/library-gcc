@@ -31,7 +31,7 @@ public:
         return mData.size(); 
     }
 
-    virtual void Add(T& object) 
+    virtual void Add(const T& object) 
     { 
         mData[object.Id()] = object.Clone();
         // TODO need a Remove (that also does a delete on this object);
@@ -40,9 +40,8 @@ public:
     std::unique_ptr<T> Get(const std::string& id) const
     {
         std::map<std::string,Serializable*>::const_iterator it = mData.find(id);
-        // TODO!!!!
-//        if (it == mData.end())
-//            return std::unique_ptr<T>(NULL);
+        if (it == mData.end())
+            return std::unique_ptr<T>(nullptr);
         T* existing = static_cast<T*>(it->second);
         T* copy = existing->Clone();
         return std::unique_ptr<T>(copy);

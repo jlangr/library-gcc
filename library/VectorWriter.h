@@ -21,7 +21,7 @@ public:
     {
         // TODO: introduce raii-writer to ensure file close
         std::ofstream output(mFilename.c_str());
-        for (std::vector<T>::iterator it = objects.begin(); it != objects.end(); it++)
+        for (auto it = objects.begin(); it != objects.end(); it++)
             it->WriteOn(output);
         output.flush();
         output.close();
@@ -30,3 +30,5 @@ public:
 private:
     std::string mFilename;
 };
+
+#endif

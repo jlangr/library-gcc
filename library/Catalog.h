@@ -19,7 +19,8 @@ public:
     void Add(Holding& holding);
     void Update(Holding& holding);
     void FindByClassification(const std::string&, std::set<Holding>& holdings) const;
-    bool FindByBarCode(Holding&) const;
+    bool Contains(const std::string&) const;
+    Holding FindByBarCode(const Holding&) const;
     static std::vector<Holding>* Holdings();
 
 private:

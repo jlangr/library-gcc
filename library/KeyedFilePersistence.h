@@ -11,8 +11,9 @@ template <class T>
 class KeyedFilePersistence: public Persistence<T>
 {
 public:
+    KeyedFilePersistence() : Persistence<T>("") {}
     KeyedFilePersistence(const std::string& table) 
-        : Persistence(table) 
+        : Persistence<T>(table) 
     {
     }
 
@@ -29,13 +30,13 @@ public:
     {
     }
 
-    void Add(T& object) 
+    void Add(const T& object) 
     { 
     }
 
     std::unique_ptr<T> Get(const std::string& id) const
     {
-        return std::unique_ptr<T>(NULL);
+        return std::unique_ptr<T>(nullptr);
     }
 
     virtual bool Matches(MatcherFunction matches, const std::string& name) const

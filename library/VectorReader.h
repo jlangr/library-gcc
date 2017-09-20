@@ -44,3 +44,5 @@ private:
     std::string mName;
     std::ifstream* mStream;
 };
+
+#endif

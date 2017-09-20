@@ -58,7 +58,7 @@ int BranchAccess::Size() const
     return mPersister->Size();
 }
 
-void BranchAccess::Save(Branch& branch)
+void BranchAccess::Save(const Branch& branch)
 {
     mPersister->Add(branch);
 }

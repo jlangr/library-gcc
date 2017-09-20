@@ -5,6 +5,7 @@ include_directories(include ../boost)
 add_definitions(-std=c++0x)
 
 set(sources 
+   BarcodeUtil.h
    Book.cpp
    Branch.cpp
    BranchAccess.cpp

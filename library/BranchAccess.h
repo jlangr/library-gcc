@@ -22,7 +22,7 @@ public:
     bool Find(Branch&) const;
     int Size() const;
     bool ExistsWithName(const std::string& name) const;
-    void Save(Branch&);
+    void Save(const Branch&);
     void DeleteAll();
 
 private:

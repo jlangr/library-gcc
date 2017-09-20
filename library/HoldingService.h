@@ -33,7 +33,7 @@ namespace service {
         unsigned int InventorySize() const;
         virtual bool ExistsWithBarcode(const std::string& barCode) const;
         virtual bool IsAvailable(const std::string& barCode) const;
-        bool FindByBarCode(Holding&) const;
+        bool FindByBarCode(const Holding&) const;
         void FindByClassification(const std::string& classification, std::set<Holding>& holdings) const;
 
     private:
