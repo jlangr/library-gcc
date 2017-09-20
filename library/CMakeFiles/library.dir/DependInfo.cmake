@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/jlangr/library2012VS/library/BranchService.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/BranchService.cpp.o"
   "/home/jlangr/library2012VS/library/Catalog.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Catalog.cpp.o"
   "/home/jlangr/library2012VS/library/ClassificationService.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ClassificationService.cpp.o"
+  "/home/jlangr/library2012VS/library/Customer.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Customer.cpp.o"
   "/home/jlangr/library2012VS/library/Endpoint.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Endpoint.cpp.o"
   "/home/jlangr/library2012VS/library/EndpointValidator.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/EndpointValidator.cpp.o"
   "/home/jlangr/library2012VS/library/Holding.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Holding.cpp.o"
@@ -17,15 +18,18 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/jlangr/library2012VS/library/InventoryReport.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/InventoryReport.cpp.o"
   "/home/jlangr/library2012VS/library/MailDestination.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/MailDestination.cpp.o"
   "/home/jlangr/library2012VS/library/MailMessage.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/MailMessage.cpp.o"
+  "/home/jlangr/library2012VS/library/Movie.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Movie.cpp.o"
   "/home/jlangr/library2012VS/library/Patron.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Patron.cpp.o"
   "/home/jlangr/library2012VS/library/PatronAccess.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/PatronAccess.cpp.o"
   "/home/jlangr/library2012VS/library/PatronService.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/PatronService.cpp.o"
+  "/home/jlangr/library2012VS/library/Rental.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Rental.cpp.o"
   "/home/jlangr/library2012VS/library/Scanner.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Scanner.cpp.o"
   "/home/jlangr/library2012VS/library/ScannerState.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ScannerState.cpp.o"
   "/home/jlangr/library2012VS/library/ScannerStateCheckin.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ScannerStateCheckin.cpp.o"
   "/home/jlangr/library2012VS/library/ScannerStateCheckout.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ScannerStateCheckout.cpp.o"
   "/home/jlangr/library2012VS/library/ScannerStateInventory.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ScannerStateInventory.cpp.o"
   "/home/jlangr/library2012VS/library/ScannerStateWaiting.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/ScannerStateWaiting.cpp.o"
+  "/home/jlangr/library2012VS/library/Soundex.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Soundex.cpp.o"
   "/home/jlangr/library2012VS/library/StreamLineReader.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/StreamLineReader.cpp.o"
   "/home/jlangr/library2012VS/library/TimestampSource.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/TimestampSource.cpp.o"
   "/home/jlangr/library2012VS/library/Transport.cpp" "/home/jlangr/library2012VS/library/CMakeFiles/library.dir/Transport.cpp.o"
@@ -35,7 +39,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "include"
-  "/home/jlangr/boost_1_51_0"
+  "../boost"
   )
 
 # Targets to which this target links.

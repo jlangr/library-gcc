@@ -8,7 +8,7 @@
 
 class MailDestinationException: public std::exception
 {
-    const char* what() const 
+    const char* what() const throw()
     {
         return "unable to connect to LDAP server";
     }
@@ -21,7 +21,7 @@ public:
     ~MailDestination(void);
 
     static Endpoint CreateEndpoint(const std::string& address);
-    static Endpoint Endpoint(MailDestination& destination);
+    static Endpoint EndpointForDestination(MailDestination& destination);
     static void Send(MailMessage&);
 
     std::string Address() const;

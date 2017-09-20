@@ -26,8 +26,8 @@ private:
     PatronAccess(const PatronAccess&) = delete;
 
     std::vector<Patron>::iterator Locate(const Patron&) const;
-    std::vector<Patron>::iterator PatronAccess::Begin() const;
-    std::vector<Patron>::iterator PatronAccess::End() const;
+    std::vector<Patron>::iterator Begin() const;
+    std::vector<Patron>::iterator End() const;
 
     static std::vector<Patron>* mPatrons;
     static std::vector<Patron>* Patrons();

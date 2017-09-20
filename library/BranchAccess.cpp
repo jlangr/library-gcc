@@ -4,6 +4,7 @@
 #include "Persistence.h"
 #include "KeyedMemoryPersistence.h"
 
+#include <memory>
 #include <vector>
 #include <algorithm>
 #include <functional>
@@ -43,7 +44,7 @@ bool BranchAccess::ExistsWithName(const string& name) const
 
 bool BranchAccess::Find(Branch& branch) const
 {
-    auto_ptr<Branch> retrieved = mPersister->Get(branch.Id());
+    unique_ptr<Branch> retrieved = mPersister->Get(branch.Id());
     if (retrieved.get() == NULL)
     {
         return false;

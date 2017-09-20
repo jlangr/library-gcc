@@ -1,7 +1,7 @@
 project(library)
 cmake_minimum_required(VERSION 2.6)
 
-include_directories(include ~/boost_1_51_0)
+include_directories(include ../boost)
 add_definitions(-std=c++0x)
 
 set(sources 
@@ -11,6 +11,7 @@ set(sources
    BranchService.cpp
    Catalog.cpp
    ClassificationService.cpp
+   Customer.cpp
    Endpoint.cpp
    EndpointValidator.cpp
    Holding.cpp
@@ -18,15 +19,19 @@ set(sources
    InventoryReport.cpp
    MailDestination.cpp
    MailMessage.cpp
+   Movie.cpp
+   NameNormalizer.h
    Patron.cpp
    PatronAccess.cpp
    PatronService.cpp
+   Rental.cpp
    Scanner.cpp
    ScannerState.cpp
    ScannerStateCheckin.cpp
    ScannerStateCheckout.cpp
    ScannerStateInventory.cpp
    ScannerStateWaiting.cpp
+   Soundex.cpp
    StreamLineReader.cpp
    TimestampSource.cpp
    Transport.cpp

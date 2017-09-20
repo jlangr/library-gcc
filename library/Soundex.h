@@ -79,3 +79,5 @@ private:
         consonantIndices['r'] = '6';
     }
 };
+
+#endif

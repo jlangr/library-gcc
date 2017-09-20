@@ -26,3 +26,5 @@ private:
 
     void ShowInvalidOperationMessage();
 };
+
+#endif

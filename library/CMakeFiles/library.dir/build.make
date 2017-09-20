@@ -201,9 +201,33 @@ CMakeFiles/library.dir/ClassificationService.cpp.o.provides: CMakeFiles/library.
 CMakeFiles/library.dir/ClassificationService.cpp.o.provides.build: CMakeFiles/library.dir/ClassificationService.cpp.o
 
 
+CMakeFiles/library.dir/Customer.cpp.o: CMakeFiles/library.dir/flags.make
+CMakeFiles/library.dir/Customer.cpp.o: Customer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/library.dir/Customer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Customer.cpp.o -c /home/jlangr/library2012VS/library/Customer.cpp
+
+CMakeFiles/library.dir/Customer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/library.dir/Customer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlangr/library2012VS/library/Customer.cpp > CMakeFiles/library.dir/Customer.cpp.i
+
+CMakeFiles/library.dir/Customer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/library.dir/Customer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlangr/library2012VS/library/Customer.cpp -o CMakeFiles/library.dir/Customer.cpp.s
+
+CMakeFiles/library.dir/Customer.cpp.o.requires:
+
+.PHONY : CMakeFiles/library.dir/Customer.cpp.o.requires
+
+CMakeFiles/library.dir/Customer.cpp.o.provides: CMakeFiles/library.dir/Customer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Customer.cpp.o.provides.build
+.PHONY : CMakeFiles/library.dir/Customer.cpp.o.provides
+
+CMakeFiles/library.dir/Customer.cpp.o.provides.build: CMakeFiles/library.dir/Customer.cpp.o
+
+
 CMakeFiles/library.dir/Endpoint.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/Endpoint.cpp.o: Endpoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/library.dir/Endpoint.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/library.dir/Endpoint.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Endpoint.cpp.o -c /home/jlangr/library2012VS/library/Endpoint.cpp
 
 CMakeFiles/library.dir/Endpoint.cpp.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/library.dir/Endpoint.cpp.o.provides.build: CMakeFiles/library.dir/End
 
 CMakeFiles/library.dir/EndpointValidator.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/EndpointValidator.cpp.o: EndpointValidator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/library.dir/EndpointValidator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/library.dir/EndpointValidator.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/EndpointValidator.cpp.o -c /home/jlangr/library2012VS/library/EndpointValidator.cpp
 
 CMakeFiles/library.dir/EndpointValidator.cpp.i: cmake_force
@@ -251,7 +275,7 @@ CMakeFiles/library.dir/EndpointValidator.cpp.o.provides.build: CMakeFiles/librar
 
 CMakeFiles/library.dir/Holding.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/Holding.cpp.o: Holding.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/library.dir/Holding.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/library.dir/Holding.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Holding.cpp.o -c /home/jlangr/library2012VS/library/Holding.cpp
 
 CMakeFiles/library.dir/Holding.cpp.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/library.dir/Holding.cpp.o.provides.build: CMakeFiles/library.dir/Hold
 
 CMakeFiles/library.dir/HoldingService.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/HoldingService.cpp.o: HoldingService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/library.dir/HoldingService.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/library.dir/HoldingService.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/HoldingService.cpp.o -c /home/jlangr/library2012VS/library/HoldingService.cpp
 
 CMakeFiles/library.dir/HoldingService.cpp.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/library.dir/HoldingService.cpp.o.provides.build: CMakeFiles/library.d
 
 CMakeFiles/library.dir/InventoryReport.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/InventoryReport.cpp.o: InventoryReport.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/library.dir/InventoryReport.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/library.dir/InventoryReport.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/InventoryReport.cpp.o -c /home/jlangr/library2012VS/library/InventoryReport.cpp
 
 CMakeFiles/library.dir/InventoryReport.cpp.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/library.dir/InventoryReport.cpp.o.provides.build: CMakeFiles/library.
 
 CMakeFiles/library.dir/MailDestination.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/MailDestination.cpp.o: MailDestination.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/library.dir/MailDestination.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/library.dir/MailDestination.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/MailDestination.cpp.o -c /home/jlangr/library2012VS/library/MailDestination.cpp
 
 CMakeFiles/library.dir/MailDestination.cpp.i: cmake_force
@@ -347,7 +371,7 @@ CMakeFiles/library.dir/MailDestination.cpp.o.provides.build: CMakeFiles/library.
 
 CMakeFiles/library.dir/MailMessage.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/MailMessage.cpp.o: MailMessage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/library.dir/MailMessage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/library.dir/MailMessage.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/MailMessage.cpp.o -c /home/jlangr/library2012VS/library/MailMessage.cpp
 
 CMakeFiles/library.dir/MailMessage.cpp.i: cmake_force
@@ -369,9 +393,33 @@ CMakeFiles/library.dir/MailMessage.cpp.o.provides: CMakeFiles/library.dir/MailMe
 CMakeFiles/library.dir/MailMessage.cpp.o.provides.build: CMakeFiles/library.dir/MailMessage.cpp.o
 
 
+CMakeFiles/library.dir/Movie.cpp.o: CMakeFiles/library.dir/flags.make
+CMakeFiles/library.dir/Movie.cpp.o: Movie.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/library.dir/Movie.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Movie.cpp.o -c /home/jlangr/library2012VS/library/Movie.cpp
+
+CMakeFiles/library.dir/Movie.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/library.dir/Movie.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlangr/library2012VS/library/Movie.cpp > CMakeFiles/library.dir/Movie.cpp.i
+
+CMakeFiles/library.dir/Movie.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/library.dir/Movie.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlangr/library2012VS/library/Movie.cpp -o CMakeFiles/library.dir/Movie.cpp.s
+
+CMakeFiles/library.dir/Movie.cpp.o.requires:
+
+.PHONY : CMakeFiles/library.dir/Movie.cpp.o.requires
+
+CMakeFiles/library.dir/Movie.cpp.o.provides: CMakeFiles/library.dir/Movie.cpp.o.requires
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Movie.cpp.o.provides.build
+.PHONY : CMakeFiles/library.dir/Movie.cpp.o.provides
+
+CMakeFiles/library.dir/Movie.cpp.o.provides.build: CMakeFiles/library.dir/Movie.cpp.o
+
+
 CMakeFiles/library.dir/Patron.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/Patron.cpp.o: Patron.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/library.dir/Patron.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/library.dir/Patron.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Patron.cpp.o -c /home/jlangr/library2012VS/library/Patron.cpp
 
 CMakeFiles/library.dir/Patron.cpp.i: cmake_force
@@ -395,7 +443,7 @@ CMakeFiles/library.dir/Patron.cpp.o.provides.build: CMakeFiles/library.dir/Patro
 
 CMakeFiles/library.dir/PatronAccess.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/PatronAccess.cpp.o: PatronAccess.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/library.dir/PatronAccess.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/library.dir/PatronAccess.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/PatronAccess.cpp.o -c /home/jlangr/library2012VS/library/PatronAccess.cpp
 
 CMakeFiles/library.dir/PatronAccess.cpp.i: cmake_force
@@ -419,7 +467,7 @@ CMakeFiles/library.dir/PatronAccess.cpp.o.provides.build: CMakeFiles/library.dir
 
 CMakeFiles/library.dir/PatronService.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/PatronService.cpp.o: PatronService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/library.dir/PatronService.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/library.dir/PatronService.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/PatronService.cpp.o -c /home/jlangr/library2012VS/library/PatronService.cpp
 
 CMakeFiles/library.dir/PatronService.cpp.i: cmake_force
@@ -441,9 +489,33 @@ CMakeFiles/library.dir/PatronService.cpp.o.provides: CMakeFiles/library.dir/Patr
 CMakeFiles/library.dir/PatronService.cpp.o.provides.build: CMakeFiles/library.dir/PatronService.cpp.o
 
 
+CMakeFiles/library.dir/Rental.cpp.o: CMakeFiles/library.dir/flags.make
+CMakeFiles/library.dir/Rental.cpp.o: Rental.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/library.dir/Rental.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Rental.cpp.o -c /home/jlangr/library2012VS/library/Rental.cpp
+
+CMakeFiles/library.dir/Rental.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/library.dir/Rental.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlangr/library2012VS/library/Rental.cpp > CMakeFiles/library.dir/Rental.cpp.i
+
+CMakeFiles/library.dir/Rental.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/library.dir/Rental.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlangr/library2012VS/library/Rental.cpp -o CMakeFiles/library.dir/Rental.cpp.s
+
+CMakeFiles/library.dir/Rental.cpp.o.requires:
+
+.PHONY : CMakeFiles/library.dir/Rental.cpp.o.requires
+
+CMakeFiles/library.dir/Rental.cpp.o.provides: CMakeFiles/library.dir/Rental.cpp.o.requires
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Rental.cpp.o.provides.build
+.PHONY : CMakeFiles/library.dir/Rental.cpp.o.provides
+
+CMakeFiles/library.dir/Rental.cpp.o.provides.build: CMakeFiles/library.dir/Rental.cpp.o
+
+
 CMakeFiles/library.dir/Scanner.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/Scanner.cpp.o: Scanner.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/library.dir/Scanner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/library.dir/Scanner.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Scanner.cpp.o -c /home/jlangr/library2012VS/library/Scanner.cpp
 
 CMakeFiles/library.dir/Scanner.cpp.i: cmake_force
@@ -467,7 +539,7 @@ CMakeFiles/library.dir/Scanner.cpp.o.provides.build: CMakeFiles/library.dir/Scan
 
 CMakeFiles/library.dir/ScannerState.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/ScannerState.cpp.o: ScannerState.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/library.dir/ScannerState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/library.dir/ScannerState.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/ScannerState.cpp.o -c /home/jlangr/library2012VS/library/ScannerState.cpp
 
 CMakeFiles/library.dir/ScannerState.cpp.i: cmake_force
@@ -491,7 +563,7 @@ CMakeFiles/library.dir/ScannerState.cpp.o.provides.build: CMakeFiles/library.dir
 
 CMakeFiles/library.dir/ScannerStateCheckin.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/ScannerStateCheckin.cpp.o: ScannerStateCheckin.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/library.dir/ScannerStateCheckin.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/library.dir/ScannerStateCheckin.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/ScannerStateCheckin.cpp.o -c /home/jlangr/library2012VS/library/ScannerStateCheckin.cpp
 
 CMakeFiles/library.dir/ScannerStateCheckin.cpp.i: cmake_force
@@ -515,7 +587,7 @@ CMakeFiles/library.dir/ScannerStateCheckin.cpp.o.provides.build: CMakeFiles/libr
 
 CMakeFiles/library.dir/ScannerStateCheckout.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/ScannerStateCheckout.cpp.o: ScannerStateCheckout.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/library.dir/ScannerStateCheckout.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/library.dir/ScannerStateCheckout.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/ScannerStateCheckout.cpp.o -c /home/jlangr/library2012VS/library/ScannerStateCheckout.cpp
 
 CMakeFiles/library.dir/ScannerStateCheckout.cpp.i: cmake_force
@@ -539,7 +611,7 @@ CMakeFiles/library.dir/ScannerStateCheckout.cpp.o.provides.build: CMakeFiles/lib
 
 CMakeFiles/library.dir/ScannerStateInventory.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/ScannerStateInventory.cpp.o: ScannerStateInventory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/library.dir/ScannerStateInventory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/library.dir/ScannerStateInventory.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/ScannerStateInventory.cpp.o -c /home/jlangr/library2012VS/library/ScannerStateInventory.cpp
 
 CMakeFiles/library.dir/ScannerStateInventory.cpp.i: cmake_force
@@ -563,7 +635,7 @@ CMakeFiles/library.dir/ScannerStateInventory.cpp.o.provides.build: CMakeFiles/li
 
 CMakeFiles/library.dir/ScannerStateWaiting.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/ScannerStateWaiting.cpp.o: ScannerStateWaiting.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/library.dir/ScannerStateWaiting.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/library.dir/ScannerStateWaiting.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/ScannerStateWaiting.cpp.o -c /home/jlangr/library2012VS/library/ScannerStateWaiting.cpp
 
 CMakeFiles/library.dir/ScannerStateWaiting.cpp.i: cmake_force
@@ -585,9 +657,33 @@ CMakeFiles/library.dir/ScannerStateWaiting.cpp.o.provides: CMakeFiles/library.di
 CMakeFiles/library.dir/ScannerStateWaiting.cpp.o.provides.build: CMakeFiles/library.dir/ScannerStateWaiting.cpp.o
 
 
+CMakeFiles/library.dir/Soundex.cpp.o: CMakeFiles/library.dir/flags.make
+CMakeFiles/library.dir/Soundex.cpp.o: Soundex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/library.dir/Soundex.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Soundex.cpp.o -c /home/jlangr/library2012VS/library/Soundex.cpp
+
+CMakeFiles/library.dir/Soundex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/library.dir/Soundex.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jlangr/library2012VS/library/Soundex.cpp > CMakeFiles/library.dir/Soundex.cpp.i
+
+CMakeFiles/library.dir/Soundex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/library.dir/Soundex.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jlangr/library2012VS/library/Soundex.cpp -o CMakeFiles/library.dir/Soundex.cpp.s
+
+CMakeFiles/library.dir/Soundex.cpp.o.requires:
+
+.PHONY : CMakeFiles/library.dir/Soundex.cpp.o.requires
+
+CMakeFiles/library.dir/Soundex.cpp.o.provides: CMakeFiles/library.dir/Soundex.cpp.o.requires
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Soundex.cpp.o.provides.build
+.PHONY : CMakeFiles/library.dir/Soundex.cpp.o.provides
+
+CMakeFiles/library.dir/Soundex.cpp.o.provides.build: CMakeFiles/library.dir/Soundex.cpp.o
+
+
 CMakeFiles/library.dir/StreamLineReader.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/StreamLineReader.cpp.o: StreamLineReader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/library.dir/StreamLineReader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/library.dir/StreamLineReader.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/StreamLineReader.cpp.o -c /home/jlangr/library2012VS/library/StreamLineReader.cpp
 
 CMakeFiles/library.dir/StreamLineReader.cpp.i: cmake_force
@@ -611,7 +707,7 @@ CMakeFiles/library.dir/StreamLineReader.cpp.o.provides.build: CMakeFiles/library
 
 CMakeFiles/library.dir/TimestampSource.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/TimestampSource.cpp.o: TimestampSource.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/library.dir/TimestampSource.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/library.dir/TimestampSource.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/TimestampSource.cpp.o -c /home/jlangr/library2012VS/library/TimestampSource.cpp
 
 CMakeFiles/library.dir/TimestampSource.cpp.i: cmake_force
@@ -635,7 +731,7 @@ CMakeFiles/library.dir/TimestampSource.cpp.o.provides.build: CMakeFiles/library.
 
 CMakeFiles/library.dir/Transport.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/Transport.cpp.o: Transport.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/library.dir/Transport.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/library.dir/Transport.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/Transport.cpp.o -c /home/jlangr/library2012VS/library/Transport.cpp
 
 CMakeFiles/library.dir/Transport.cpp.i: cmake_force
@@ -665,6 +761,7 @@ library_OBJECTS = \
 "CMakeFiles/library.dir/BranchService.cpp.o" \
 "CMakeFiles/library.dir/Catalog.cpp.o" \
 "CMakeFiles/library.dir/ClassificationService.cpp.o" \
+"CMakeFiles/library.dir/Customer.cpp.o" \
 "CMakeFiles/library.dir/Endpoint.cpp.o" \
 "CMakeFiles/library.dir/EndpointValidator.cpp.o" \
 "CMakeFiles/library.dir/Holding.cpp.o" \
@@ -672,15 +769,18 @@ library_OBJECTS = \
 "CMakeFiles/library.dir/InventoryReport.cpp.o" \
 "CMakeFiles/library.dir/MailDestination.cpp.o" \
 "CMakeFiles/library.dir/MailMessage.cpp.o" \
+"CMakeFiles/library.dir/Movie.cpp.o" \
 "CMakeFiles/library.dir/Patron.cpp.o" \
 "CMakeFiles/library.dir/PatronAccess.cpp.o" \
 "CMakeFiles/library.dir/PatronService.cpp.o" \
+"CMakeFiles/library.dir/Rental.cpp.o" \
 "CMakeFiles/library.dir/Scanner.cpp.o" \
 "CMakeFiles/library.dir/ScannerState.cpp.o" \
 "CMakeFiles/library.dir/ScannerStateCheckin.cpp.o" \
 "CMakeFiles/library.dir/ScannerStateCheckout.cpp.o" \
 "CMakeFiles/library.dir/ScannerStateInventory.cpp.o" \
 "CMakeFiles/library.dir/ScannerStateWaiting.cpp.o" \
+"CMakeFiles/library.dir/Soundex.cpp.o" \
 "CMakeFiles/library.dir/StreamLineReader.cpp.o" \
 "CMakeFiles/library.dir/TimestampSource.cpp.o" \
 "CMakeFiles/library.dir/Transport.cpp.o"
@@ -694,6 +794,7 @@ liblibrary.a: CMakeFiles/library.dir/BranchAccess.cpp.o
 liblibrary.a: CMakeFiles/library.dir/BranchService.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Catalog.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ClassificationService.cpp.o
+liblibrary.a: CMakeFiles/library.dir/Customer.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Endpoint.cpp.o
 liblibrary.a: CMakeFiles/library.dir/EndpointValidator.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Holding.cpp.o
@@ -701,21 +802,24 @@ liblibrary.a: CMakeFiles/library.dir/HoldingService.cpp.o
 liblibrary.a: CMakeFiles/library.dir/InventoryReport.cpp.o
 liblibrary.a: CMakeFiles/library.dir/MailDestination.cpp.o
 liblibrary.a: CMakeFiles/library.dir/MailMessage.cpp.o
+liblibrary.a: CMakeFiles/library.dir/Movie.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Patron.cpp.o
 liblibrary.a: CMakeFiles/library.dir/PatronAccess.cpp.o
 liblibrary.a: CMakeFiles/library.dir/PatronService.cpp.o
+liblibrary.a: CMakeFiles/library.dir/Rental.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Scanner.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ScannerState.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ScannerStateCheckin.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ScannerStateCheckout.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ScannerStateInventory.cpp.o
 liblibrary.a: CMakeFiles/library.dir/ScannerStateWaiting.cpp.o
+liblibrary.a: CMakeFiles/library.dir/Soundex.cpp.o
 liblibrary.a: CMakeFiles/library.dir/StreamLineReader.cpp.o
 liblibrary.a: CMakeFiles/library.dir/TimestampSource.cpp.o
 liblibrary.a: CMakeFiles/library.dir/Transport.cpp.o
 liblibrary.a: CMakeFiles/library.dir/build.make
 liblibrary.a: CMakeFiles/library.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX static library liblibrary.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jlangr/library2012VS/library/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX static library liblibrary.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/library.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/library.dir/link.txt --verbose=$(VERBOSE)
 
@@ -730,6 +834,7 @@ CMakeFiles/library.dir/requires: CMakeFiles/library.dir/BranchAccess.cpp.o.requi
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/BranchService.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Catalog.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ClassificationService.cpp.o.requires
+CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Customer.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Endpoint.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/EndpointValidator.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Holding.cpp.o.requires
@@ -737,15 +842,18 @@ CMakeFiles/library.dir/requires: CMakeFiles/library.dir/HoldingService.cpp.o.req
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/InventoryReport.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/MailDestination.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/MailMessage.cpp.o.requires
+CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Movie.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Patron.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/PatronAccess.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/PatronService.cpp.o.requires
+CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Rental.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Scanner.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ScannerState.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ScannerStateCheckin.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ScannerStateCheckout.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ScannerStateInventory.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/ScannerStateWaiting.cpp.o.requires
+CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Soundex.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/StreamLineReader.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/TimestampSource.cpp.o.requires
 CMakeFiles/library.dir/requires: CMakeFiles/library.dir/Transport.cpp.o.requires

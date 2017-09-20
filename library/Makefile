@@ -285,6 +285,33 @@ ClassificationService.cpp.s:
 	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/ClassificationService.cpp.s
 .PHONY : ClassificationService.cpp.s
 
+Customer.o: Customer.cpp.o
+
+.PHONY : Customer.o
+
+# target to build an object file
+Customer.cpp.o:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Customer.cpp.o
+.PHONY : Customer.cpp.o
+
+Customer.i: Customer.cpp.i
+
+.PHONY : Customer.i
+
+# target to preprocess a source file
+Customer.cpp.i:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Customer.cpp.i
+.PHONY : Customer.cpp.i
+
+Customer.s: Customer.cpp.s
+
+.PHONY : Customer.s
+
+# target to generate assembly for a file
+Customer.cpp.s:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Customer.cpp.s
+.PHONY : Customer.cpp.s
+
 Endpoint.o: Endpoint.cpp.o
 
 .PHONY : Endpoint.o
@@ -474,6 +501,33 @@ MailMessage.cpp.s:
 	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/MailMessage.cpp.s
 .PHONY : MailMessage.cpp.s
 
+Movie.o: Movie.cpp.o
+
+.PHONY : Movie.o
+
+# target to build an object file
+Movie.cpp.o:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Movie.cpp.o
+.PHONY : Movie.cpp.o
+
+Movie.i: Movie.cpp.i
+
+.PHONY : Movie.i
+
+# target to preprocess a source file
+Movie.cpp.i:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Movie.cpp.i
+.PHONY : Movie.cpp.i
+
+Movie.s: Movie.cpp.s
+
+.PHONY : Movie.s
+
+# target to generate assembly for a file
+Movie.cpp.s:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Movie.cpp.s
+.PHONY : Movie.cpp.s
+
 Patron.o: Patron.cpp.o
 
 .PHONY : Patron.o
@@ -554,6 +608,33 @@ PatronService.s: PatronService.cpp.s
 PatronService.cpp.s:
 	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/PatronService.cpp.s
 .PHONY : PatronService.cpp.s
+
+Rental.o: Rental.cpp.o
+
+.PHONY : Rental.o
+
+# target to build an object file
+Rental.cpp.o:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Rental.cpp.o
+.PHONY : Rental.cpp.o
+
+Rental.i: Rental.cpp.i
+
+.PHONY : Rental.i
+
+# target to preprocess a source file
+Rental.cpp.i:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Rental.cpp.i
+.PHONY : Rental.cpp.i
+
+Rental.s: Rental.cpp.s
+
+.PHONY : Rental.s
+
+# target to generate assembly for a file
+Rental.cpp.s:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Rental.cpp.s
+.PHONY : Rental.cpp.s
 
 Scanner.o: Scanner.cpp.o
 
@@ -717,6 +798,33 @@ ScannerStateWaiting.cpp.s:
 	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/ScannerStateWaiting.cpp.s
 .PHONY : ScannerStateWaiting.cpp.s
 
+Soundex.o: Soundex.cpp.o
+
+.PHONY : Soundex.o
+
+# target to build an object file
+Soundex.cpp.o:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Soundex.cpp.o
+.PHONY : Soundex.cpp.o
+
+Soundex.i: Soundex.cpp.i
+
+.PHONY : Soundex.i
+
+# target to preprocess a source file
+Soundex.cpp.i:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Soundex.cpp.i
+.PHONY : Soundex.cpp.i
+
+Soundex.s: Soundex.cpp.s
+
+.PHONY : Soundex.s
+
+# target to generate assembly for a file
+Soundex.cpp.s:
+	$(MAKE) -f CMakeFiles/library.dir/build.make CMakeFiles/library.dir/Soundex.cpp.s
+.PHONY : Soundex.cpp.s
+
 StreamLineReader.o: StreamLineReader.cpp.o
 
 .PHONY : StreamLineReader.o
@@ -825,6 +933,9 @@ help:
 	@echo "... ClassificationService.o"
 	@echo "... ClassificationService.i"
 	@echo "... ClassificationService.s"
+	@echo "... Customer.o"
+	@echo "... Customer.i"
+	@echo "... Customer.s"
 	@echo "... Endpoint.o"
 	@echo "... Endpoint.i"
 	@echo "... Endpoint.s"
@@ -846,6 +957,9 @@ help:
 	@echo "... MailMessage.o"
 	@echo "... MailMessage.i"
 	@echo "... MailMessage.s"
+	@echo "... Movie.o"
+	@echo "... Movie.i"
+	@echo "... Movie.s"
 	@echo "... Patron.o"
 	@echo "... Patron.i"
 	@echo "... Patron.s"
@@ -855,6 +969,9 @@ help:
 	@echo "... PatronService.o"
 	@echo "... PatronService.i"
 	@echo "... PatronService.s"
+	@echo "... Rental.o"
+	@echo "... Rental.i"
+	@echo "... Rental.s"
 	@echo "... Scanner.o"
 	@echo "... Scanner.i"
 	@echo "... Scanner.s"
@@ -873,6 +990,9 @@ help:
 	@echo "... ScannerStateWaiting.o"
 	@echo "... ScannerStateWaiting.i"
 	@echo "... ScannerStateWaiting.s"
+	@echo "... Soundex.o"
+	@echo "... Soundex.i"
+	@echo "... Soundex.s"
 	@echo "... StreamLineReader.o"
 	@echo "... StreamLineReader.i"
 	@echo "... StreamLineReader.s"

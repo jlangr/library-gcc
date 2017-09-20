@@ -23,3 +23,5 @@ public:
     static const std::string MSG_BRANCH_CHANGED;
     static const std::string MSG_HOLDING_ADDED;
 };
+
+#endif

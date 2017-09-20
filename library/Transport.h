@@ -11,3 +11,5 @@ public:
 
     static void Send(const MailMessage&);
 };
+
+#endif

@@ -18,7 +18,7 @@ MailDestination::~MailDestination(void)
     throw MailDestinationException();
 }
 
-/* static */ Endpoint MailDestination::Endpoint(MailDestination& destination)
+/* static */ Endpoint MailDestination::EndpointForDestination(MailDestination& destination)
 {
     return CreateEndpoint(destination.Address());
 }

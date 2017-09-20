@@ -1,4 +1,4 @@
-#ifdef KEYED_MEMORY_PERSISTENCE_H
+#ifndef KEYED_MEMORY_PERSISTENCE_H
 #define KEYED_MEMORY_PERSISTENCE_H
 
 #include <string>
@@ -13,7 +13,7 @@ template <class T>
 class KeyedMemoryPersistence: public Persistence<T>
 {
 public:
-    KeyedMemoryPersistence(const std::string& table) : Persistence(table) {}
+    KeyedMemoryPersistence(const std::string& table) : Persistence<T>(table) {}
     ~KeyedMemoryPersistence(void) {}
 
     static void ClearAll()
@@ -37,14 +37,15 @@ public:
         // TODO need a Remove (that also does a delete on this object);
     }
 
-    std::auto_ptr<T> Get(const std::string& id) const
+    std::unique_ptr<T> Get(const std::string& id) const
     {
         std::map<std::string,Serializable*>::const_iterator it = mData.find(id);
-        if (it == mData.end())
-            return std::auto_ptr<T>(NULL);
+        // TODO!!!!
+//        if (it == mData.end())
+//            return std::unique_ptr<T>(NULL);
         T* existing = static_cast<T*>(it->second);
         T* copy = existing->Clone();
-        return std::auto_ptr<T>(copy);
+        return std::unique_ptr<T>(copy);
     }
 
 

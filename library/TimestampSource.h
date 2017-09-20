@@ -18,3 +18,5 @@ public:
 private:
     static std::list<boost::gregorian::date> mStoredTimes;
 };
+
+#endif

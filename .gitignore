@@ -1,10 +1,6 @@
 *.a
-*.pdb
-*.ilk
+*.o
 *.log
 *.tlog
-**/*.VC.*db
-library/**/Debug/*
-libraryTest/**/Debug/*
-**/Backup/*
 test.dat
+*.sw*

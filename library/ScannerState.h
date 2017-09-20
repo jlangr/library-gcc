@@ -27,12 +27,12 @@ public:
 protected:
     template <typename T> void SetState();
 
-    void ScannerState::ShowMessage(const std::string& message);
-    std::string ScannerState::BranchId() const;
-    void ScannerState::SetBranchId(const std::string& id);
-    std::string ScannerState::PatronId() const;
-    void ScannerState::SetPatronId(const std::string& id);
-    service::HoldingService* ScannerState::HoldingService() const;
+    void ShowMessage(const std::string& message);
+    std::string BranchId() const;
+    void SetBranchId(const std::string& id);
+    std::string PatronId() const;
+    void SetPatronId(const std::string& id);
+    service::HoldingService* HoldingService() const;
 
 private:
     Scanner* mScanner;
@@ -43,3 +43,5 @@ void ScannerState::SetState()
 {
     mScanner->SetCurrentState(new T(mScanner));
 }
+
+#endif

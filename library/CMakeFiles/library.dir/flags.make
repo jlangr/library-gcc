@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++0x
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jlangr/library2012VS/library/include -I/home/jlangr/boost_1_51_0 
+CXX_INCLUDES = -I/home/jlangr/library2012VS/library/include -I/home/jlangr/library2012VS/library/../boost 
 

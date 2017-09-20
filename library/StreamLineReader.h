@@ -15,3 +15,5 @@ public:
 private:
     std::istream* mInput;
 };
+
+#endif
