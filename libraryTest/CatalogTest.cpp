@@ -49,21 +49,21 @@ TEST_F(CatalogTest, AddIncrementsCount)
     ASSERT_THAT(catalog.Size(), Eq(1));
 }
 
-TEST_F(CatalogTest, FindByBarCodeAnswersFalseWhenNotFound)
+TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound)
 {
-    Holding holding(THE_TRIAL_CLASSIFICATION, 1);
-
-    ASSERT_THAT(catalog.FindByBarCode(holding), Eq(false));
+    ASSERT_THAT(catalog.Contains("123:1"), Eq(false));
 }
 
 TEST_F(CatalogTest, AddedHoldingCanBeRetrieved)
 {
     catalog.Add(*theTrialHolding);
-    Holding retrieved(theTrialHolding->Classification(), theTrialHolding->CopyNumber());
+    auto barcode{Holding::ConstructBarcode(
+      theTrialHolding->Classification(), theTrialHolding->CopyNumber())};
 
-    ASSERT_THAT(catalog.FindByBarCode(retrieved), Eq(true));
+    ASSERT_THAT(catalog.Contains(barcode), Eq(true));
 }
 
+/*
 TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
 {
     Branch west("1", "West");
@@ -75,6 +75,7 @@ TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
 
     ASSERT_THAT(holding.CurrentBranch(), Eq(west));
 }
+*/
 
 TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings)
 {

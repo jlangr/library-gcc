@@ -1,5 +1,3 @@
-#pragma once
-
 #include "gmock/gmock.h"
 
 #include "Persistence.h"
@@ -14,7 +12,7 @@ class KeyedFilePersistenceTest: public Test
 public:
     static Persistence<TestSerializable>* CreatePersistence()
     {
-        return new KeyedFilePersistence<TestSerializable>("table");
+        return new KeyedFilePersistence<TestSerializable>{"table"};
     }
 };
 

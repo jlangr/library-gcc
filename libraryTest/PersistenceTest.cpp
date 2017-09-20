@@ -31,7 +31,7 @@ TEST_P(PersistenceTest, SizeIncrementsWithEachAdd)
 
 TEST_P(PersistenceTest, ReturnsNullPointerWhenItemNotFound)
 {
-    auto_ptr<TestSerializable> found = persister->Get("1");
+    auto found{persister->Get("1")};
 
     TestSerializable* serializable = found.get();
 

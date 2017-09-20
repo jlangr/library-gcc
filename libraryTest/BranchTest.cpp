@@ -21,7 +21,7 @@ TEST(BranchTest, CloneCopiesAllMembers)
     Branch branch("17", "north");
     branch.SetAddress("123 B Street");
 
-    auto_ptr<Branch>clone(branch.Clone());
+    unique_ptr<Branch>clone(branch.Clone());
 
     ASSERT_THAT(clone->Id(), Eq(branch.Id()));
     ASSERT_THAT(clone->Name(), Eq(branch.Name()));
@@ -55,9 +55,9 @@ TEST(BranchTest, CanLoadFromSerialized)
 {
     Branch branch("20", "xyz");
     branch.SetAddress("101 Main St, Laurel, MD");
-    auto_ptr<ostringstream> o(new ostringstream(ios::out | ios::binary));
+    unique_ptr<ostringstream> o(new ostringstream(ios::out | ios::binary));
     branch.WriteOn(*o);
-    auto_ptr<istream> i(new istringstream(o->str(), ios::in | ios::binary));
+    unique_ptr<istream> i(new istringstream(o->str(), ios::in | ios::binary));
 
     Branch loaded;
     loaded.Load(*i);

@@ -5,7 +5,7 @@
 #include "ClassificationData.h"
 
 #include <string>
-#include <strstream>
+#include <sstream>
 
 using namespace std;
 using namespace ClassificationData;

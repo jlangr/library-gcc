@@ -22,18 +22,19 @@ public:
     }
 
     template <typename T>
-    auto_ptr<istream> CreateInputStream(T text)
+    unique_ptr<istream> CreateInputStream(T text)
     {
         ostringstream output;
         output << text << endl;
-        auto_ptr<istream> input(new istringstream(output.str()));
+        // TODO condense
+        unique_ptr<istream> input(new istringstream(output.str()));
         return input;
     }
 };
 
 TEST_F(StreamLineReaderTest, CanReadLineOfText)
 {
-    auto_ptr<istream> input = CreateInputStream<const string&>("hello");
+    auto input = CreateInputStream<const string&>("hello");
     StreamLineReader reader(input.get());
     string text;
 
@@ -44,7 +45,7 @@ TEST_F(StreamLineReaderTest, CanReadLineOfText)
 
 TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)
 {
-    auto_ptr<istream> input = CreateInputStream<unsigned int>(42);
+    auto input = CreateInputStream<unsigned int>(42);
     StreamLineReader reader(input.get());
     unsigned int number;
 
@@ -55,7 +56,7 @@ TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)
 
 TEST_F(StreamLineReaderTest, SetsUnsignedIntToZeroOnConvertFail)
 {
-    auto_ptr<istream> input = CreateInputStream<const string&>("dsadf");
+    auto input = CreateInputStream<const string&>("dsadf");
     StreamLineReader reader(input.get());
     unsigned int number;
 

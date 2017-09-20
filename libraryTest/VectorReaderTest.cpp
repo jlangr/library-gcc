@@ -17,8 +17,8 @@ public:
 TEST_F(VectorReaderTest, CanRead)
 {
     vector<TestSerializable> objects =
-    { TestSerializable("a", "10"),
-    TestSerializable("b", "42") };
+      { TestSerializable("a", "10"),
+        TestSerializable("b", "42") };
 
     VectorWriter<TestSerializable> writer("test.dat");
     writer.WriteAll(objects);

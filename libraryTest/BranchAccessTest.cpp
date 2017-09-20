@@ -76,10 +76,10 @@ TEST_F(BranchAccessTest, FindAnswersFalseForNonexistentBranch)
 
 TEST_F(BranchAccessTest, MultipleItemsPersistedCorrectly)
 {
-    access.Save(Branch("66", "EAST"));
-    access.Save(Branch("77", "NORTH"));
-    Branch east("66");
-    Branch north("77");
+    access.Save(Branch{"66", "EAST"});
+    access.Save(Branch{"77", "NORTH"});
+    Branch east{"66"};
+    Branch north{"77"};
 
     access2.Find(east);
     access2.Find(north);

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "gmock/gmock.h"
 
 #include "Persistence.h"
@@ -28,7 +26,7 @@ TEST_F(KeyedMemoryPersistenceTest, IsPersistent) // note TEST_F, not TEST_P
     firstPersister.Add(object);
 
     KeyedMemoryPersistence<TestSerializable> secondPersister("");
-    std::auto_ptr<TestSerializable> retrieved = secondPersister.Get("1");
+    std::unique_ptr<TestSerializable> retrieved = secondPersister.Get("1");
 
     ASSERT_THAT(*retrieved, Eq(object));
 };
