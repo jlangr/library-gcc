@@ -1,7 +1,7 @@
 project(libraryTest)
 cmake_minimum_required(VERSION 3.7)
 
-include_directories(../googletest/googlemock/include ../googletest/googletest/include ../boost ../library)
+include_directories(../googletest/googlemock/include ../googletest/googletest/include ../boost ../library/include)
 link_directories(../googletest/googlemock ../googletest/googlemock/gtest ../library)
 add_definitions(-std=c++0x)
 

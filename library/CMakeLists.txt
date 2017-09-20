@@ -1,11 +1,11 @@
 project(library)
 cmake_minimum_required(VERSION 2.7)
 
-include_directories(include ../boost)
+include_directories(../boost ./include)
 add_definitions(-std=c++0x)
 
 set(sources 
-   BarcodeUtil.h
+   include/BarcodeUtil.h
    Book.cpp
    Branch.cpp
    BranchAccess.cpp
@@ -21,7 +21,7 @@ set(sources
    MailDestination.cpp
    MailMessage.cpp
    Movie.cpp
-   NameNormalizer.h
+   include/NameNormalizer.h
    Patron.cpp
    PatronAccess.cpp
    PatronService.cpp
