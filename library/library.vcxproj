@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DDBA684B-55F2-43A0-84B9-F12E21034627}</ProjectGuid>
+    <RootNamespace>library</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\library;..\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="BranchAccess.cpp" />
+    <ClCompile Include="BranchService.cpp" />
+    <ClCompile Include="Catalog.cpp" />
+    <ClCompile Include="ClassificationService.cpp" />
+    <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="Endpoint.cpp" />
+    <ClCompile Include="EndpointValidator.cpp" />
+    <ClCompile Include="Holding.cpp" />
+    <ClCompile Include="HoldingService.cpp" />
+    <ClCompile Include="InventoryReport.cpp" />
+    <ClCompile Include="MailDestination.cpp" />
+    <ClCompile Include="MailMessage.cpp" />
+    <ClCompile Include="Movie.cpp" />
+    <ClCompile Include="Patron.cpp" />
+    <ClCompile Include="PatronAccess.cpp" />
+    <ClCompile Include="PatronService.cpp" />
+    <ClCompile Include="Rental.cpp" />
+    <ClCompile Include="ReportMailer.h" />
+    <ClCompile Include="Scanner.cpp" />
+    <ClCompile Include="ScannerState.cpp" />
+    <ClCompile Include="ScannerStateCheckin.cpp" />
+    <ClCompile Include="ScannerStateCheckout.cpp" />
+    <ClCompile Include="ScannerStateInventory.cpp" />
+    <ClCompile Include="ScannerStateWaiting.cpp" />
+    <ClCompile Include="Soundex.cpp" />
+    <ClCompile Include="StreamLineReader.cpp" />
+    <ClCompile Include="TimestampSource.cpp" />
+    <ClCompile Include="Transport.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BarcodeUtil.h" />
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="Branch.h" />
+    <ClInclude Include="BranchAccess.h" />
+    <ClInclude Include="BranchService.h" />
+    <ClInclude Include="Catalog.h" />
+    <ClInclude Include="ClassificationData.h" />
+    <ClInclude Include="ClassificationService.h" />
+    <ClInclude Include="CreditVerifier.h" />
+    <ClInclude Include="Customer.h" />
+    <ClInclude Include="DisplayListener.h" />
+    <ClInclude Include="Endpoint.h" />
+    <ClInclude Include="EndpointValidator.h" />
+    <ClInclude Include="Holding.h" />
+    <ClInclude Include="HoldingBarcode.h" />
+    <ClInclude Include="HoldingService.h" />
+    <ClInclude Include="InvalidBarcodeException.h" />
+    <ClInclude Include="InventoryReport.h" />
+    <ClInclude Include="KeyedFilePersistence.h" />
+    <ClInclude Include="KeyedMemoryPersistence.h" />
+    <ClInclude Include="MailDestination.h" />
+    <ClInclude Include="MailMessage.h" />
+    <ClInclude Include="Movie.h" />
+    <ClInclude Include="NameNormalizer.h" />
+    <ClInclude Include="NCC1701ADisplay.h" />
+    <ClInclude Include="Patron.h" />
+    <ClInclude Include="PatronAccess.h" />
+    <ClInclude Include="PatronNotFoundException.h" />
+    <ClInclude Include="PatronService.h" />
+    <ClInclude Include="Persistence.h" />
+    <ClInclude Include="Rental.h" />
+    <ClInclude Include="Report.h" />
+    <ClInclude Include="Scanner.h" />
+    <ClInclude Include="ScannerState.h" />
+    <ClInclude Include="ScannerStateCheckin.h" />
+    <ClInclude Include="ScannerStateCheckout.h" />
+    <ClInclude Include="ScannerStateInventory.h" />
+    <ClInclude Include="ScannerStateWaiting.h" />
+    <ClInclude Include="Serializable.h" />
+    <ClInclude Include="Soundex.h" />
+    <ClInclude Include="StockService.h" />
+    <ClInclude Include="StreamLineReader.h" />
+    <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="TimestampSource.h" />
+    <ClInclude Include="Transport.h" />
+    <ClInclude Include="VectorReader.h" />
+    <ClInclude Include="VectorWriter.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

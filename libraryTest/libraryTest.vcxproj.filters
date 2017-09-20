@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="library.cpp" />
+    <ClCompile Include="BarcodeUtilTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="BookTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchAccessTest.cpp">
+      <Filter>dataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchServiceTest.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="CatalogTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassificationServiceTest.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="HoldingBarcodeTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="HoldingServiceTest.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="HoldingTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyedFilePersistenceTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyedMemoryPersistenceTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="PersistenceTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateCheckinTest.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateCheckoutTest.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateInventoryTest.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateWaitingTest.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerTest.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerTestData.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundexTest.cpp">
+      <Filter>unrelated</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorReaderTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="TimestampSourceTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamLineReaderTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="PatronTest.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="PatronServiceTest.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="PatronAccessTest.cpp">
+      <Filter>dataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtilTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="NameNormalizerTest.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomerTest.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieTest.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+    <ClCompile Include="RentalTest.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ASSERT_CURRENT_STATE.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchTestData.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="PersistenceTest.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerTestData.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundexListener.h">
+      <Filter>unrelated</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSerializable.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScanner.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{803a4f2a-522f-43ca-92e4-f6e71cced8c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="domain">
+      <UniqueIdentifier>{f039d1d2-f1b0-4736-ad74-2d3fe0ff8cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scanner">
+      <UniqueIdentifier>{d034169f-cbb9-4d25-a687-f9d336d1520a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="service">
+      <UniqueIdentifier>{b2b6928f-157d-4676-89e6-12bff813bece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dataAccess">
+      <UniqueIdentifier>{634d2324-e5d2-4bc3-a85d-64836bd78b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unrelated">
+      <UniqueIdentifier>{ba6c4d4a-2257-437f-9052-2473da240e90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="reporting">
+      <UniqueIdentifier>{4f2be910-f405-4669-97dd-43c5710471a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="video">
+      <UniqueIdentifier>{b808365b-c94b-463e-af04-4e7f7b0a6a3b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

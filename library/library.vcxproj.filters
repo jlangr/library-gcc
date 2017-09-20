@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Book.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="Branch.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="Catalog.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="Holding.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchService.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassificationService.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="HoldingService.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchAccess.cpp">
+      <Filter>dataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryReport.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="MailDestination.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="MailMessage.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="PatronAccess.cpp">
+      <Filter>dataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="Endpoint.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="EndpointValidator.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="Patron.cpp">
+      <Filter>domain</Filter>
+    </ClCompile>
+    <ClCompile Include="PatronService.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanner.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerState.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateCheckin.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateCheckout.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateInventory.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="ScannerStateWaiting.cpp">
+      <Filter>scanner</Filter>
+    </ClCompile>
+    <ClCompile Include="Soundex.cpp">
+      <Filter>unrelated</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamLineReader.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="TimestampSource.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="Transport.cpp">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="ReportMailer.h">
+      <Filter>reporting</Filter>
+    </ClCompile>
+    <ClCompile Include="Customer.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+    <ClCompile Include="Rental.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+    <ClCompile Include="Movie.cpp">
+      <Filter>video</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Book.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Branch.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Catalog.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Holding.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchService.h">
+      <Filter>service</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassificationService.h">
+      <Filter>service</Filter>
+    </ClInclude>
+    <ClInclude Include="HoldingService.h">
+      <Filter>service</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchAccess.h">
+      <Filter>dataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryReport.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="MailDestination.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="MailMessage.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="PatronAccess.h">
+      <Filter>dataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="BarcodeUtil.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Endpoint.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="EndpointValidator.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="HoldingBarcode.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidBarcodeException.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="Patron.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="PatronService.h">
+      <Filter>service</Filter>
+    </ClInclude>
+    <ClInclude Include="PatronNotFoundException.h">
+      <Filter>dataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyedMemoryPersistence.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyedFilePersistence.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditVerifier.h">
+      <Filter>service</Filter>
+    </ClInclude>
+    <ClInclude Include="Scanner.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerState.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerStateCheckin.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerStateCheckout.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerStateInventory.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="ScannerStateWaiting.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayListener.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="NCC1701ADisplay.h">
+      <Filter>scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="Persistence.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Report.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamLineReader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="TimestampSource.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Serializable.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="StockService.h">
+      <Filter>unrelated</Filter>
+    </ClInclude>
+    <ClInclude Include="Transport.h">
+      <Filter>reporting</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassificationData.h">
+      <Filter>domain</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorWriter.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorReader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Soundex.h">
+      <Filter>unrelated</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtil.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="NameNormalizer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer.h">
+      <Filter>video</Filter>
+    </ClInclude>
+    <ClInclude Include="Rental.h">
+      <Filter>video</Filter>
+    </ClInclude>
+    <ClInclude Include="Movie.h">
+      <Filter>video</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="domain">
+      <UniqueIdentifier>{7d5f9220-0c15-4853-aded-d0af7b1c74b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="service">
+      <UniqueIdentifier>{e9dde454-fc26-43d8-a244-abc6d777b40b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="reporting">
+      <UniqueIdentifier>{953a56ea-abb7-4911-a4b9-976924300a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{6b87e646-8c02-4d45-9655-7d77c3828126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scanner">
+      <UniqueIdentifier>{a9c790d4-0911-4498-a32d-12be50bc7ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unrelated">
+      <UniqueIdentifier>{feb79723-77a7-4c6d-a16e-1dfbd0b5b71c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dataAccess">
+      <UniqueIdentifier>{a5a3764b-cba3-46d3-92ca-cba10209bdc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="video">
+      <UniqueIdentifier>{78f85bd7-add1-4e16-9814-d2396b51a596}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+*.a
+*.pdb
+*.ilk
+*.log
+*.tlog
+**/*.VC.*db
+library/**/Debug/*
+libraryTest/**/Debug/*
+**/Backup/*
+test.dat
