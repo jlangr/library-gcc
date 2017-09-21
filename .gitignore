@@ -9,3 +9,25 @@ cmake_install.cmake
 CMakeFiles/
 Makefile
 libraryTest
+
+# from googletest
+
+# Ignore CI build directory
+build/
+xcuserdata
+cmake-build-debug/
+.idea/
+bazel-bin
+bazel-genfiles
+bazel-googletest
+bazel-out
+bazel-testlogs
+
+# python
+*.pyc
+
+#googletest extras
+
+googletest/*.pc
+googletest/**/CTestTestfile.cmake
+googletest/googlemock/gtest/
