@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e # exit on any error
+
+if [[ -e "library/LibraryTest" ]]; then 
+  rm library/libraryTest 
+fi
+pushd library
+if [[ ! -e "Makefile" ]]; then
+  cmake .
+fi
+make
+popd
+pushd libraryTest
+if [[ ! -e "Makefile" ]]; then
+  cmake .
+fi
+make
+./libraryTest "$@"
