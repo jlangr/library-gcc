@@ -6,5 +6,7 @@
 class StockService
 {
 public:
-    virtual unsigned int CurrentPrice(const std::string& symbol)=0;
+    virtual unsigned int currentPrice(const std::string& symbol)=0;
 };
+
+#endif
