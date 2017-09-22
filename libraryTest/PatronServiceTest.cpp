@@ -2,19 +2,12 @@
 #include "Patron.h"
 #include "Holding.h"
 #include "ClassificationData.h"
-#include "CreditVerifier.h"
 
 #include "gmock/gmock.h"
 
 using namespace ClassificationData;
 using namespace testing;
 using namespace std;
-
-class StubCreditVerifier : public CreditVerifier
-{
-public:
-    MOCK_METHOD1(Verify, bool(const std::string& cardNumber));
-};
 
 class PatronServiceTest : public Test
 {
@@ -23,7 +16,6 @@ public:
     PatronService service;
     Patron* joe;
     Patron* jane;
-    StubCreditVerifier verifier;
 
     virtual void SetUp()
     {
@@ -39,8 +31,6 @@ public:
         PatronService::DeleteAll();
     }
 };
-
-const string PatronServiceTest::CARD_NUMBER("99998888777776666");
 
 TEST_F(PatronServiceTest, CountInitiallyZero)
 {
