@@ -13,7 +13,20 @@ using namespace ClassificationData;
 using namespace std;
 using namespace testing;
 
-// This test is deliberately a mess.
+/*
+This test class is a mess. Opportunities for cleanup might include:
+
+ - AAA used but no visual separation
+ - seeming use of AAA but it's not really
+ - unnecessary code (null checks? try/catch?)
+ - constant names that obscure relevant information
+ - can data be created in the test?
+ - poor / inconsistent test names
+ - comments in tests (are they even true)?
+ - multiple behaviors/asserts per test
+ - code in the wrong place / opportunities for reuse of existing code
+ - dead code
+ */
 
 class HoldingTest : public Test
 {
