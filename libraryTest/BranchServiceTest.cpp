@@ -95,7 +95,7 @@ TEST_F(BranchServiceTest, FindRetrievesById)
     Branch retrieved(eastBranch->Id(), "");
     service.Find(retrieved);
 
-    ASSERT_THAT(retrieved.Name(), Eq(eastBranch->Name()));
+    ASSERT_THAT(retrieved.name(), Eq(eastBranch->name()));
 }
 
 TEST_F(BranchServiceTest, AddBranchIncrementsCount)

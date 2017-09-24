@@ -26,64 +26,64 @@ public:
     virtual void SetUp()
     {
         branchAccess = new BranchAccess();
-        branchAccess->DeleteAll();
+        branchAccess->deleteAll();
 
         eastBranch = new Branch("1", "east");
 
-        access.DeleteAll();
+        access.deleteAll();
     }
 
     virtual void TearDown()
     {
-        branchAccess->DeleteAll();
+        branchAccess->deleteAll();
         delete branchAccess;
         delete eastBranch;
 
-        access.DeleteAll();
+        access.deleteAll();
     }
 };
 
 TEST_F(BranchAccessTest, SizeInitiallyZero)
 {
-    ASSERT_THAT(branchAccess->Size(), Eq(0));
+    ASSERT_THAT(branchAccess->size(), Eq(0));
 }
 
 TEST_F(BranchAccessTest, SaveIncrementsSize)
 {
-    branchAccess->Save(*eastBranch);
+    branchAccess->save(*eastBranch);
 
-    ASSERT_THAT(branchAccess->Size(), Eq(1));
+    ASSERT_THAT(branchAccess->size(), Eq(1));
 }
 
 TEST_F(BranchAccessTest, PersistsBranch)
 {
     Branch branch("55", "WEST");
-    branch.SetAddress("address");
-    access.Save(branch);
+    branch.setAddress("address");
+    access.save(branch);
     Branch retrieve("55");
 
-    access2.Find(retrieve);
+    access2.find(retrieve);
 
-    ASSERT_THAT(retrieve.Address(), Eq("address"));
+    ASSERT_THAT(retrieve.address(), Eq("address"));
 }
 
 TEST_F(BranchAccessTest, FindAnswersFalseForNonexistentBranch)
 {
     Branch east("66");
 
-    ASSERT_THAT(access.Find(east), Eq(false));
+    ASSERT_THAT(access.find(east), Eq(false));
 }
 
 TEST_F(BranchAccessTest, MultipleItemsPersistedCorrectly)
 {
-    access.Save(Branch{"66", "EAST"});
-    access.Save(Branch{"77", "NORTH"});
+    access.save(Branch{"66", "EAST"});
+    access.save(Branch{"77", "NORTH"});
     Branch east{"66"};
     Branch north{"77"};
 
-    access2.Find(east);
-    access2.Find(north);
+    access2.find(east);
+    access2.find(north);
 
-    ASSERT_THAT(east.Name(), Eq("EAST"));
-    ASSERT_THAT(north.Name(), Eq("NORTH"));
+    ASSERT_THAT(east.name(), Eq("EAST"));
+    ASSERT_THAT(north.name(), Eq("NORTH"));
 }

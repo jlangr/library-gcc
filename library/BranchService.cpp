@@ -17,12 +17,12 @@ BranchService::~BranchService(void)
 
 short BranchService::BranchCount() const
 {
-    return mBranchAccess.Size();
+    return mBranchAccess.size();
 }
 
 void BranchService::Add(Branch& branch)
 {
-    mBranchAccess.Save(branch);
+    mBranchAccess.save(branch);
 }
 
 string BranchService::Add(const string& name, const string& address)
@@ -31,27 +31,27 @@ string BranchService::Add(const string& name, const string& address)
         throw DuplicateBranchNameException();
 
     stringstream out;
-    out << mBranchAccess.Size() + 1;
+    out << mBranchAccess.size() + 1;
     string id(out.str());
 
     Branch branch(id, name);
-    branch.SetAddress(address);
-    mBranchAccess.Save(branch);
+    branch.setAddress(address);
+    mBranchAccess.save(branch);
     return id;
 }
 
 bool BranchService::Find(Branch& branch) const
 {
-    return mBranchAccess.Find(branch);
+    return mBranchAccess.find(branch);
 }
 
 bool BranchService::ExistsWithName(const string& name) const
 {
-    return mBranchAccess.ExistsWithName(name);
+    return mBranchAccess.existsWithName(name);
 }
 
 /* static */ void BranchService::DeleteAll()
 {
     BranchAccess access;
-    access.DeleteAll();
+    access.deleteAll();
 }

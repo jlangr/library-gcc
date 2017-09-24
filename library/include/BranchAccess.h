@@ -17,13 +17,13 @@ public:
     explicit BranchAccess(std::shared_ptr<Persistence<Branch>> persister);
     virtual ~BranchAccess();
 
-    static std::string DataFileName();
+    static std::string dataFileName();
 
-    bool Find(Branch&) const;
-    int Size() const;
-    bool ExistsWithName(const std::string& name) const;
-    void Save(const Branch&);
-    void DeleteAll();
+    bool find(Branch&) const;
+    int size() const;
+    bool existsWithName(const std::string& name) const;
+    void save(const Branch&);
+    void deleteAll();
 
 private:
     std::shared_ptr<Persistence<Branch>> mPersister;

@@ -19,7 +19,7 @@ BranchAccess::BranchAccess(shared_ptr<Persistence<Branch>> persister)
 }
 
 BranchAccess::BranchAccess()
-    : mPersister(new KeyedMemoryPersistence<Branch>(BranchAccess::DataFileName()))
+    : mPersister(new KeyedMemoryPersistence<Branch>(BranchAccess::dataFileName()))
 {
 }
 
@@ -27,22 +27,22 @@ BranchAccess::~BranchAccess()
 {
 }
 
-string BranchAccess::DataFileName()
+string BranchAccess::dataFileName()
 {
     return "BranchAccess.txt";
 }
 
-bool MatchBranchByName(Serializable& each, const string& name)
+bool matchBranchByName(Serializable& each, const string& name)
 {
-    return (dynamic_cast<Branch&>(each)).Name() == name;
+    return (dynamic_cast<Branch&>(each)).name() == name;
 }
 
-bool BranchAccess::ExistsWithName(const string& name) const
+bool BranchAccess::existsWithName(const string& name) const
 {
-    return mPersister->Matches(MatchBranchByName, name);
+    return mPersister->Matches(matchBranchByName, name);
 }
 
-bool BranchAccess::Find(Branch& branch) const
+bool BranchAccess::find(Branch& branch) const
 {
     unique_ptr<Branch> retrieved = mPersister->Get(branch.Id());
     if (retrieved.get() == NULL)
@@ -53,17 +53,17 @@ bool BranchAccess::Find(Branch& branch) const
     return true;
 }
 
-int BranchAccess::Size() const
+int BranchAccess::size() const
 {
     return mPersister->Size();
 }
 
-void BranchAccess::Save(const Branch& branch)
+void BranchAccess::save(const Branch& branch)
 {
     mPersister->Add(branch);
 }
 
-void BranchAccess::DeleteAll()
+void BranchAccess::deleteAll()
 {
     mPersister->Clear();
 }

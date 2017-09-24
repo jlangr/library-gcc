@@ -22,9 +22,10 @@ public:
     virtual void Load(std::istream& input);
     virtual Branch* Clone() const;
     std::string Id() const;
-    std::string Name() const;
-    void SetAddress(const std::string&);
-    std::string Address() const;
+    std::string name() const;
+    // TODO: change to 'changeAddress'
+    void setAddress(const std::string&);
+    std::string address() const;
     bool operator==(const Branch& other) const;
     bool operator!=(const Branch& other) const;
 

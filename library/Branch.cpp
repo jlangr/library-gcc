@@ -29,7 +29,7 @@ Branch::~Branch()
 Branch* Branch::Clone() const
 {
     Branch* branch = new Branch(mId, mName);
-    branch->SetAddress(mAddress);
+    branch->setAddress(mAddress);
     return branch;
 }
 
@@ -54,17 +54,17 @@ std::string Branch::Id() const
     return mId;
 }
 
-std::string Branch::Name() const
+std::string Branch::name() const
 {
     return mName;
 }
 
-std::string Branch::Address() const
+std::string Branch::address() const
 {
     return mAddress;
 }
 
-void Branch::SetAddress(const std::string& address)
+void Branch::setAddress(const std::string& address)
 {
     mAddress = address;
 }
