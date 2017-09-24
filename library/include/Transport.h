@@ -9,7 +9,7 @@ public:
     Transport(void);
     ~Transport(void);
 
-    static void Send(const MailMessage&);
+    static void send(const MailMessage&);
 };
 
 #endif

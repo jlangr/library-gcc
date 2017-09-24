@@ -64,23 +64,23 @@ public:
             it++)
         {
             MailDestination destination = *it;
-            std::string toAddress = destination.Address();
-            MailMessage message = ConstructMailMessage(toAddress, report);
-            MailDestination::Send(message);
+            std::string toAddress = destination.address();
+            MailMessage message = constructMailMessage(toAddress, report);
+            MailDestination::send(message);
         }
     }
 
-    MailMessage ConstructMailMessage(const std::string& toAddress, Report* report) const
+    MailMessage constructMailMessage(const std::string& toAddress, Report* report) const
     {
-        std::string content = report->Text();
-        std::string subject = report->Name();
+        std::string content = report->text();
+        std::string subject = report->name();
 
         MailMessage message(
             subject, 
             content, 
             "Joe@example.com");
 
-        message.AddRecipient(toAddress);
+        message.addRecipient(toAddress);
 
         return message;
     }

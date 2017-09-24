@@ -13,7 +13,7 @@ Transport::~Transport(void)
 {
 }
 
-/* static */ void Transport::Send(const MailMessage& message)
+/* static */ void Transport::send(const MailMessage& message)
 {
     cout << "sending email!" << endl;
     throw 1;

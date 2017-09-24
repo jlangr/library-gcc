@@ -2,6 +2,8 @@
 #include "Transport.h"
 #include "Endpoint.h"
 
+#include <string>
+
 using namespace std;
 
 MailDestination::MailDestination(const string& address)
@@ -13,22 +15,22 @@ MailDestination::~MailDestination(void)
 {
 }
 
-/* static */ Endpoint MailDestination::CreateEndpoint(const string& address)
+/* static */ Endpoint MailDestination::createEndpoint(const string& address)
 {
     throw MailDestinationException();
 }
 
-/* static */ Endpoint MailDestination::EndpointForDestination(MailDestination& destination)
+/* static */ Endpoint MailDestination::endpointForDestination(MailDestination& destination)
 {
-    return CreateEndpoint(destination.Address());
+    return createEndpoint(destination.address());
 }
 
-void MailDestination::Send(MailMessage& message)
+void MailDestination::send(MailMessage& message)
 {
-    Transport::Send(message);
+    Transport::send(message);
 }
 
-string MailDestination::Address() const
+string MailDestination::address() const
 {
     return mAddress;
 }

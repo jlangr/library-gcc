@@ -17,27 +17,27 @@ MailMessage::~MailMessage(void)
 {
 }
 
-void MailMessage::AddRecipient(const std::string& to)
+void MailMessage::addRecipient(const std::string& to)
 {
     mTo.push_back(to);
 }
 
-string MailMessage::Subject() const
+string MailMessage::subject() const
 {
     return mSubject;
 }
 
-string MailMessage::Content() const
+string MailMessage::content() const
 {
     return mContent;
 }
 
-vector<string> MailMessage::To() const
+vector<string> MailMessage::to() const
 {
     return mTo;
 }
 
-string MailMessage::From() const
+string MailMessage::from() const
 {
     return mFrom;
 }

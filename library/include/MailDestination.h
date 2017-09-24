@@ -20,11 +20,11 @@ public:
     MailDestination(const std::string& address);
     ~MailDestination(void);
 
-    static Endpoint CreateEndpoint(const std::string& address);
-    static Endpoint EndpointForDestination(MailDestination& destination);
-    static void Send(MailMessage&);
+    static Endpoint createEndpoint(const std::string& address);
+    static Endpoint endpointForDestination(MailDestination& destination);
+    static void send(MailMessage&);
 
-    std::string Address() const;
+    std::string address() const;
 
 private:
     std::string mAddress;

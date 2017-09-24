@@ -8,8 +8,8 @@ class Report
 public:
     virtual ~Report(void) {}
 
-    virtual std::string Text() const=0;
-    virtual std::string Name() const=0;
+    virtual std::string text() const=0;
+    virtual std::string name() const=0;
 };
 
 #endif
