@@ -26,6 +26,7 @@ set(sources
    PatronAccess.cpp
    PatronService.cpp
    Rental.cpp
+   ReportUtil.cpp
    Scanner.cpp
    ScannerState.cpp
    ScannerStateCheckin.cpp
