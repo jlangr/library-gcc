@@ -23,7 +23,7 @@ ScannerStateInventory::~ScannerStateInventory(void)
 
 void ScannerStateInventory::ScanHolding(const string& barcode)
 {
-    HoldingService()->AddAtBranch(BranchId(), barcode);
+    HoldingService()->addAtBranch(BranchId(), barcode);
 
     ShowMessage(ScannerStateInventory::MSG_HOLDING_ADDED + barcode);
 }

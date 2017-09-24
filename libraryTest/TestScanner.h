@@ -18,11 +18,11 @@ public:
 class MockHoldingService: public service::HoldingService
 {
 public:
-    MOCK_METHOD3(CheckIn, void(const std::string& barCode, boost::gregorian::date, const std::string& branchId));
-    MOCK_METHOD3(CheckOut, void(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date));
-    MOCK_CONST_METHOD1(ExistsWithBarcode, bool(const std::string& barCode));
-    MOCK_CONST_METHOD1(IsAvailable, bool(const std::string& barCode));
-    MOCK_METHOD2(AddAtBranch, void(const std::string& branchId, const std::string& barcode));
+    MOCK_METHOD3(checkIn, void(const std::string& barCode, boost::gregorian::date, const std::string& branchId));
+    MOCK_METHOD3(checkOut, void(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date));
+    MOCK_CONST_METHOD1(existsWithBarcode, bool(const std::string& barCode));
+    MOCK_CONST_METHOD1(isAvailable, bool(const std::string& barCode));
+    MOCK_METHOD2(addAtBranch, void(const std::string& branchId, const std::string& barcode));
 };
 
 // TODO holding service should be an override mock, not required in ctor

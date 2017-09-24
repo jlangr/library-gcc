@@ -29,19 +29,19 @@ void ScannerStateCheckout::PressDone()
 
 void ScannerStateCheckout::ScanHolding(const string& barcode)
 {
-    if (!HoldingService()->ExistsWithBarcode(barcode))
+    if (!HoldingService()->existsWithBarcode(barcode))
     {
         ShowMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID);
         return;
     }
 
-    if (!HoldingService()->IsAvailable(barcode))
+    if (!HoldingService()->isAvailable(barcode))
     {
         ShowMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT);
         return;
     }
 
-    HoldingService()->CheckOut(PatronId(), barcode, TimestampSource::Now());
+    HoldingService()->checkOut(PatronId(), barcode, TimestampSource::Now());
     ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING);
 }
 

@@ -51,7 +51,7 @@ TEST_F(ScannerStateInventoryTest, AddsNewHoldingWhenHoldingScanned)
     scanner->SetBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     EXPECT_CALL(*display, ShowMessage(_));
     EXPECT_CALL(*HoldingService(),
-        AddAtBranch(ScannerTestData::BRANCH_SOUTH_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE));
+        addAtBranch(ScannerTestData::BRANCH_SOUTH_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE));
 
     state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }
@@ -62,7 +62,7 @@ TEST_F(ScannerStateInventoryTest, DisplaysHoldingAddedMessageWhenHoldingScanned)
     
     EXPECT_CALL(*display, 
         ShowMessage(ScannerStateInventory::MSG_HOLDING_ADDED + ScannerTestData::HOLDING_TRIAL_BARCODE));
-    EXPECT_CALL(*HoldingService(), AddAtBranch(_, _));
+    EXPECT_CALL(*HoldingService(), addAtBranch(_, _));
 
     state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }

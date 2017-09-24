@@ -27,10 +27,10 @@ public:
 
     void Checkout(const string& patronCardNumber, const string& holdingBarcode)
     {
-        EXPECT_CALL(*HoldingService(), ExistsWithBarcode(_)).WillOnce(Return(true));
-        EXPECT_CALL(*HoldingService(), IsAvailable(_)).WillOnce(Return(true));
+        EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
+        EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(true));
         EXPECT_CALL(*HoldingService(), 
-            CheckOut(patronCardNumber, holdingBarcode, TimestampSource::Now()));
+            checkOut(patronCardNumber, holdingBarcode, TimestampSource::Now()));
         EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
         state->ScanHolding(holdingBarcode);
     }
@@ -56,10 +56,10 @@ TEST_F(ScannerStateCheckoutTest, DisplaysWarningWhenInventoryCardScanned)
 TEST_F(ScannerStateCheckoutTest, ChecksOutHoldingWhenHoldingBarcodeScanned)
 {
     scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
-    EXPECT_CALL(*HoldingService(), ExistsWithBarcode(_)).WillOnce(Return(true));
-    EXPECT_CALL(*HoldingService(), IsAvailable(_)).WillOnce(Return(true));
+    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
+    EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(true));
     EXPECT_CALL(*HoldingService(), 
-        CheckOut(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_CATCH22_BARCODE, TimestampSource::Now()));
+        checkOut(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_CATCH22_BARCODE, TimestampSource::Now()));
     EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
 
     state->ScanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
@@ -68,7 +68,7 @@ TEST_F(ScannerStateCheckoutTest, ChecksOutHoldingWhenHoldingBarcodeScanned)
 TEST_F(ScannerStateCheckoutTest, DisplayMessageWhenHoldingDoesNotExist)
 {
     scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
-    EXPECT_CALL(*HoldingService(), ExistsWithBarcode(_)).WillOnce(Return(false));
+    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(false));
     EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID));
 
     state->ScanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
@@ -94,8 +94,8 @@ TEST_F(ScannerStateCheckoutTest, DisplaysMessageWhenSameHoldingScannedTwice)
     scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
     Checkout(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE);
 
-    EXPECT_CALL(*HoldingService(), ExistsWithBarcode(_)).WillOnce(Return(true));
-    EXPECT_CALL(*HoldingService(), IsAvailable(_)).WillOnce(Return(false));
+    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
+    EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(false));
     EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT));
 
     state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);

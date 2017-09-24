@@ -21,65 +21,65 @@ HoldingService::~HoldingService()
 {
 }
 
-void HoldingService::DeleteAll()
+void HoldingService::deleteAll()
 {
     Catalog::deleteAll();
 }
 
-unsigned int HoldingService::InventorySize() const
+unsigned int HoldingService::inventorySize() const
 {
     return mCatalog.size();
 }
 
-void HoldingService::FindByClassification(const string& classification, set<Holding>& holdings) const
+void HoldingService::findByClassification(const string& classification, set<Holding>& holdings) const
 {
     mCatalog.findByClassification(classification, holdings);
 }
 
-bool HoldingService::ExistsWithBarcode(const std::string& barcode) const
+bool HoldingService::existsWithBarcode(const std::string& barcode) const
 {
     return mCatalog.contains(barcode);
 }
 
-bool HoldingService::IsAvailable(const std::string& barcode) const
+bool HoldingService::isAvailable(const std::string& barcode) const
 {
-    return mCatalog.contains(barcode) && FindByBarCode(barcode).isAvailable();
+    return mCatalog.contains(barcode) && findByBarCode(barcode).isAvailable();
 }
 
-Holding HoldingService::FindByBarCode(const std::string& barcode) const
+Holding HoldingService::findByBarCode(const std::string& barcode) const
 {
     return mCatalog.findByBarCode(barcode);
 }
 
-void HoldingService::AddAtBranch(const string& id, const string& barcode)
+void HoldingService::addAtBranch(const string& id, const string& barcode)
 {
     Branch branch(id);
     mBranchService.find(branch);
 
     Holding holding(barcode);
     mCatalog.add(holding);
-    Transfer(holding, branch);
+    transfer(holding, branch);
 }
 
-void HoldingService::Transfer(Holding& holding, Branch& branch)
+void HoldingService::transfer(Holding& holding, Branch& branch)
 {
     holding.transfer(branch);
     mCatalog.update(holding);
 }
 
-void HoldingService::Transfer(const string& barcode, const string& branchId)
+void HoldingService::transfer(const string& barcode, const string& branchId)
 {
     Branch branch(branchId);
     mBranchService.find(branch);
 
-    auto holding = FindByBarCode(barcode);
+    auto holding = findByBarCode(barcode);
     holding.transfer(branch);
     mCatalog.update(holding);
 }
 
-void HoldingService::CheckOut(const string& patronCardNumber, const string& barcode, date date)
+void HoldingService::checkOut(const string& patronCardNumber, const string& barcode, date date)
 {
-    auto holding = FindByBarCode(barcode);
+    auto holding = findByBarCode(barcode);
     holding.checkOut(date);
     mCatalog.update(holding);
 
@@ -90,12 +90,12 @@ void HoldingService::CheckOut(const string& patronCardNumber, const string& barc
     mPatronService.Update(patron);
 }
 
-void HoldingService::CheckIn(const string& barCode, date date, const string& branchId)
+void HoldingService::checkIn(const string& barCode, date date, const string& branchId)
 {
     Branch branch(branchId);
     mBranchService.find(branch);
 
-    auto hld = FindByBarCode(barCode);
+    auto hld = findByBarCode(barCode);
 
     vector<Patron> patrons;
 

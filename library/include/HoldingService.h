@@ -22,19 +22,19 @@ namespace service {
         HoldingService();
         virtual ~HoldingService();
 
-        static void DeleteAll();
+        static void deleteAll();
 
-        virtual void AddAtBranch(const std::string& branchId, const std::string& barcode);
-        virtual void CheckIn(const std::string& barCode, boost::gregorian::date, const std::string& branchId);
-        virtual void CheckOut(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date);
-        void Transfer(Holding&, Branch&);
-        void Transfer(const std::string& barCode, const std::string& branchId);
+        virtual void addAtBranch(const std::string& branchId, const std::string& barcode);
+        virtual void checkIn(const std::string& barCode, boost::gregorian::date, const std::string& branchId);
+        virtual void checkOut(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date);
+        void transfer(Holding&, Branch&);
+        void transfer(const std::string& barCode, const std::string& branchId);
 
-        unsigned int InventorySize() const;
-        virtual bool ExistsWithBarcode(const std::string& barCode) const;
-        virtual bool IsAvailable(const std::string& barCode) const;
-        Holding FindByBarCode(const std::string&) const;
-        void FindByClassification(const std::string& classification, std::set<Holding>& holdings) const;
+        unsigned int inventorySize() const;
+        virtual bool existsWithBarcode(const std::string& barCode) const;
+        virtual bool isAvailable(const std::string& barCode) const;
+        Holding findByBarCode(const std::string&) const;
+        void findByClassification(const std::string& classification, std::set<Holding>& holdings) const;
 
     private:
         HoldingService(const HoldingService&) = delete;
