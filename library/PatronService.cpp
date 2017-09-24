@@ -14,38 +14,38 @@ PatronService::~PatronService(void)
 {
 }
 
-/* static */ void PatronService::DeleteAll()
+/* static */ void PatronService::deleteAll()
 {
     PatronAccess::deleteAll();
 }
 
-vector<Patron> PatronService::GetAll() const
+vector<Patron> PatronService::getAll() const
 {
     return mPatronAccess.getAll();
 }
 
-void PatronService::Add(const string& name, int id)
+void PatronService::add(const string& name, int id)
 {
     Patron patron(name, id);
-    Add(patron);
+    add(patron);
 }
 
-void PatronService::Add(const Patron& patron)
+void PatronService::add(const Patron& patron)
 {
     mPatronAccess.save(patron);
 }
 
-void PatronService::Update(const Patron& patron)
+void PatronService::update(const Patron& patron)
 {
     mPatronAccess.update(patron);
 }
 
-bool PatronService::Find(Patron& patron) const
+bool PatronService::find(Patron& patron) const
 {
     return mPatronAccess.find(patron);
 }
 
-short PatronService::PatronCount() const
+short PatronService::patronCount() const
 {
     return mPatronAccess.size();
 }

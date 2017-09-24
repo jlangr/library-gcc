@@ -29,7 +29,7 @@ public:
     virtual void SetUp()
     {
         HoldingService::deleteAll();
-        PatronService::DeleteAll();
+        PatronService::deleteAll();
         BranchService::deleteAll();
 
         arbitraryDate = new date(2013, Jan, 1);
@@ -46,7 +46,7 @@ public:
         delete branch2;
 
         HoldingService::deleteAll();
-        PatronService::DeleteAll();
+        PatronService::deleteAll();
         BranchService::deleteAll();
     }
 
@@ -54,13 +54,13 @@ public:
     Patron FindPatronWithId(string id)
     {
         Patron patron("", id);
-        patronService.Find(patron);
+        patronService.find(patron);
         return patron;
     }
 
     void CheckOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000")
     {
-        patronService.Add(Patron{"", patronCardNumber});
+        patronService.add(Patron{"", patronCardNumber});
         holdingService.addAtBranch(branch->Id(), barcode.AsString());
         holdingService.checkOut(patronCardNumber, barcode.AsString(), *arbitraryDate);
     }
@@ -183,7 +183,7 @@ TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
 {
     auto barcode{HoldingBarcode{CATCH22_CLASSIFICATION, 1}.AsString()};
     holdingService.addAtBranch(branch1->Id(), barcode);
-    patronService.Add(Patron{"", "p1001"});
+    patronService.add(Patron{"", "p1001"});
 
     holdingService.checkOut("p1001", barcode, *arbitraryDate);
 
@@ -195,7 +195,7 @@ TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron)
 {
     holdingService.addAtBranch(branch1->Id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
     auto barcode{HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString()};
-    patronService.Add(Patron{"", "p1001"});
+    patronService.add(Patron{"", "p1001"});
 
     holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString(), *arbitraryDate);
 

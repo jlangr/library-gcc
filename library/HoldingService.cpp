@@ -84,10 +84,10 @@ void HoldingService::checkOut(const string& patronCardNumber, const string& barc
     mCatalog.update(holding);
 
     Patron patron("", patronCardNumber);
-    mPatronService.Find(patron);
+    mPatronService.find(patron);
 
     patron.Borrow(holding);
-    mPatronService.Update(patron);
+    mPatronService.update(patron);
 }
 
 void HoldingService::checkIn(const string& barCode, date date, const string& branchId)
@@ -104,7 +104,7 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
     hld.checkIn(date, branch);
     mCatalog.update(hld);
 
-    patrons = mPatronService.GetAll();
+    patrons = mPatronService.getAll();
 
     Holding patHld;
 
@@ -161,5 +161,5 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
                 break;
         }
     }
-    mPatronService.Update(f);
+    mPatronService.update(f);
 }

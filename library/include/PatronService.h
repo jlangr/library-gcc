@@ -13,13 +13,13 @@ public:
     PatronService();
     virtual ~PatronService(void);
 
-    void Add(const std::string& name, int id);
-    void Add(const Patron& patron);
-    bool Find(Patron& patron) const;
-    short PatronCount() const;
-    void Update(const Patron& patron);
-    std::vector<Patron> GetAll() const; // bad!
-    static void DeleteAll();
+    void add(const std::string& name, int id);
+    void add(const Patron&);
+    bool find(Patron&) const;
+    short patronCount() const;
+    void update(const Patron&);
+    std::vector<Patron> getAll() const; // bad!
+    static void deleteAll();
 
 private:
     PatronAccess mPatronAccess;
