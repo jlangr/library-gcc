@@ -42,7 +42,7 @@ std::string InventoryReport::Generate() {
     {
         Holding holding = *it;
         Book book = classificationService.RetrieveDetails(holding.Classification());
-        if (book.Type() == Book::TYPE_BOOK)
+        if (book.type() == Book::TYPE_BOOK)
         {
             Record record(book, holding.CurrentBranch().Name(), mIsbnApi);
             records.push_back(record);
@@ -81,17 +81,17 @@ void InventoryReport::AppendColumnHeaders(stringstream& buffer) {
 }
 
 void InventoryReport::Append(stringstream& buffer, Record& record) {
-    buffer << Pad(TITLE_LENGTH, record.Title);
+    buffer << Pad(TITLE_LENGTH, record.title);
     buffer << Pad(SPACING);
-    buffer << Pad(BRANCH_LENGTH, record.Branch);
+    buffer << Pad(BRANCH_LENGTH, record.branch);
     buffer << Pad(SPACING);
-    buffer << Pad(AUTHOR_LENGTH, record.Author);
+    buffer << Pad(AUTHOR_LENGTH, record.author);
     buffer << Pad(SPACING);
     stringstream year;
-    year << record.Year;
+    year << record.year;
     buffer << Pad(YEAR_LENGTH, year.str());
     buffer << Pad(SPACING);
-    buffer << Pad(ISBN_LENGTH, record.Isbn);
+    buffer << Pad(ISBN_LENGTH, record.isbn);
     buffer << endl;
 }
 

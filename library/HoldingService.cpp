@@ -144,21 +144,21 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
         ClassificationService service;
         Book book = service.RetrieveDetails(hld.Classification());
 
-        switch (book.Type()) {
-        case Book::TYPE_BOOK:
-            f.AddFine(Book::BOOK_DAILY_FINE * daysLate);
+        switch (book.type()) {
+            case Book::TYPE_BOOK:
+                f.AddFine(Book::BOOK_DAILY_FINE * daysLate);
+                break;
+            case Book::TYPE_MOVIE:
+            {
+                int fine = 100 + Book::MOVIE_DAILY_FINE * daysLate;
+                if (fine > 1000)
+                    fine = 1000;
+                f.AddFine(fine);
+            }
             break;
-        case Book::TYPE_MOVIE:
-        {
-            int fine = 100 + Book::MOVIE_DAILY_FINE * daysLate;
-            if (fine > 1000)
-                fine = 1000;
-            f.AddFine(fine);
-        }
-        break;
-        case Book::TYPE_NEW_RELEASE:
-            f.AddFine(Book::NEW_RELEASE_DAILY_FINE * daysLate);
-            break;
+            case Book::TYPE_NEW_RELEASE:
+                f.AddFine(Book::NEW_RELEASE_DAILY_FINE * daysLate);
+                break;
         }
     }
     mPatronService.Update(f);

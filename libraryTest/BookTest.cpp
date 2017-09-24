@@ -13,28 +13,28 @@ TEST(BookTest, PopulatesAllFieldsOnConstruction)
 {
     Book book("title", "author", 1999, "classification");
 
-    ASSERT_THAT(book.Title(), Eq("title"));
-    ASSERT_THAT(book.Author(), Eq("author"));
-    ASSERT_THAT(book.Year(), Eq(1999));
-    ASSERT_THAT(book.Classification(), Eq("classification"));
-    ASSERT_THAT(book.Type(), Eq(Book::TYPE_BOOK));
+    ASSERT_THAT(book.title(), Eq("title"));
+    ASSERT_THAT(book.author(), Eq("author"));
+    ASSERT_THAT(book.year(), Eq(1999));
+    ASSERT_THAT(book.classification(), Eq("classification"));
+    ASSERT_THAT(book.type(), Eq(Book::TYPE_BOOK));
 }
 
 TEST(BookTest, NoArgConstructorInitializesFieldsToDefault)
 {
     Book book;
 
-    ASSERT_THAT(book.Title(), Eq(""));
-    ASSERT_THAT(book.Author(), Eq(""));
-    ASSERT_THAT(book.Year(), Eq(0));
-    ASSERT_THAT("", Eq(book.Classification()));
+    ASSERT_THAT(book.title(), Eq(""));
+    ASSERT_THAT(book.author(), Eq(""));
+    ASSERT_THAT(book.year(), Eq(0));
+    ASSERT_THAT("", Eq(book.classification()));
 }
 
 TEST(BookTest, AllowsSpecificationOfTypeOnConstruction)
 {
     Book book("", "", 0, "", Book::TYPE_MOVIE);
 
-    ASSERT_THAT(book.Type(), Eq(Book::TYPE_MOVIE));
+    ASSERT_THAT(book.type(), Eq(Book::TYPE_MOVIE));
 }
 
 TEST(BookTest, IsEqualToCopyConstructedInstance)

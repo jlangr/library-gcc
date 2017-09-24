@@ -23,28 +23,28 @@ public:
 struct Record
 {
     Record(Book book, const std::string& branchName, LibraryOfCongressAPI* isbnApi)
-        : Title(book.Title())
-        , Branch(branchName)
-        , Author(book.Author())
-        , Year(book.Year())
+        : title(book.title())
+        , branch(branchName)
+        , author(book.author())
+        , year(book.year())
     {
-        Isbn = isbnApi->GetISBN(book.Classification());
+        isbn = isbnApi->GetISBN(book.classification());
     }
 
     bool operator<(const Record& rhs) const
     {
-        if (Author != rhs.Author) 
-            return Author < rhs.Author;
-        if (Year != rhs.Year) 
-            return Year < rhs.Year;
-        return Title < rhs.Title;
+        if (author != rhs.author) 
+            return author < rhs.author;
+        if (year != rhs.year) 
+            return year < rhs.year;
+        return title < rhs.title;
     }
 
-    std::string Title;
-    std::string Branch;
-    std::string Author;
-    unsigned short Year;
-    std::string Isbn;
+    std::string title;
+    std::string branch;
+    std::string author;
+    unsigned short year;
+    std::string isbn;
 };
 
 class InventoryReport

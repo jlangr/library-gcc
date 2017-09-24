@@ -58,22 +58,22 @@ bool Book::operator<(const Book& rhs) const {
     return mClassification < rhs.mClassification;
 }
 
-unsigned short Book::Year() const {
+unsigned short Book::year() const {
     return mYear;
 }
 
-string Book::Classification() const {
+string Book::classification() const {
     return mClassification;
 }
 
-string Book::Title() const {
+string Book::title() const {
     return mTitle;
 }
 
-string Book::Author() const {
+string Book::author() const {
     return mAuthor;
 }
 
-unsigned short Book::Type() const {
+unsigned short Book::type() const {
     return mType;
 }

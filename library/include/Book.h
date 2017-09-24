@@ -26,11 +26,11 @@ public:
     static const short MOVIE_DAILY_FINE = 100;
     static const short NEW_RELEASE_DAILY_FINE = 20;
 
-    std::string Title() const;
-    std::string Author() const;
-    unsigned short Year() const;
-    std::string Classification() const;
-    unsigned short Type() const;
+    std::string title() const;
+    std::string author() const;
+    unsigned short year() const;
+    std::string classification() const;
+    unsigned short type() const;
 
     static const int BOOK_CHECKOUT_PERIOD;
     static const int MOVIE_CHECKOUT_PERIOD;

@@ -121,19 +121,19 @@ date Holding::DueDate() const
 
     ClassificationService svc;
     Book book = svc.RetrieveDetails(mClassification);
-    switch (book.Type()) {
-    case Book::TYPE_BOOK:
-        period = Book::BOOK_CHECKOUT_PERIOD;
-        break;
-    case Book::TYPE_MOVIE:
-        period = Book::MOVIE_CHECKOUT_PERIOD;
-        break;
-    case Book::TYPE_NEW_RELEASE:
-        period = Book::NEW_RELEASE_CHECKOUT_PERIOD;
-        break;
-    default:
-        period = Book::BOOK_CHECKOUT_PERIOD;
-        break;
+    switch (book.type()) {
+        case Book::TYPE_BOOK:
+            period = Book::BOOK_CHECKOUT_PERIOD;
+            break;
+        case Book::TYPE_MOVIE:
+            period = Book::MOVIE_CHECKOUT_PERIOD;
+            break;
+        case Book::TYPE_NEW_RELEASE:
+            period = Book::NEW_RELEASE_CHECKOUT_PERIOD;
+            break;
+        default:
+            period = Book::BOOK_CHECKOUT_PERIOD;
+            break;
     }
     return mLastCheckedOutOn + date_duration(period);
 }
