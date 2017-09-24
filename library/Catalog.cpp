@@ -42,7 +42,7 @@ void Catalog::findByClassification(
 {
     vector<Holding> holdings = *Catalog::holdings();
     for (auto it = holdings.begin(); it != holdings.end(); it++)
-        if (classification == it->Classification())
+        if (classification == it->classification())
             holdingsCollector.insert(*it);
 }
 
@@ -55,7 +55,7 @@ bool Catalog::contains(const string& barcode) const {
 Holding Catalog::findByBarCode(const string& barcode) const
 {
     return *find_if(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
-        [&](const Holding& h) { return barcode == h.Barcode(); });
+        [&](const Holding& h) { return barcode == h.barcode(); });
 
 }
 

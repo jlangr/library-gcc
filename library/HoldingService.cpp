@@ -43,7 +43,7 @@ bool HoldingService::ExistsWithBarcode(const std::string& barcode) const
 
 bool HoldingService::IsAvailable(const std::string& barcode) const
 {
-    return mCatalog.contains(barcode) && FindByBarCode(barcode).IsAvailable();
+    return mCatalog.contains(barcode) && FindByBarCode(barcode).isAvailable();
 }
 
 Holding HoldingService::FindByBarCode(const std::string& barcode) const
@@ -63,7 +63,7 @@ void HoldingService::AddAtBranch(const string& id, const string& barcode)
 
 void HoldingService::Transfer(Holding& holding, Branch& branch)
 {
-    holding.Transfer(branch);
+    holding.transfer(branch);
     mCatalog.update(holding);
 }
 
@@ -73,14 +73,14 @@ void HoldingService::Transfer(const string& barcode, const string& branchId)
     mBranchService.find(branch);
 
     auto holding = FindByBarCode(barcode);
-    holding.Transfer(branch);
+    holding.transfer(branch);
     mCatalog.update(holding);
 }
 
 void HoldingService::CheckOut(const string& patronCardNumber, const string& barcode, date date)
 {
     auto holding = FindByBarCode(barcode);
-    holding.CheckOut(date);
+    holding.checkOut(date);
     mCatalog.update(holding);
 
     Patron patron("", patronCardNumber);
@@ -101,7 +101,7 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
 
     // set the holding to returned status
     set<Holding> holdings;
-    hld.CheckIn(date, branch);
+    hld.checkIn(date, branch);
     mCatalog.update(hld);
 
     patrons = mPatronService.GetAll();
@@ -123,7 +123,7 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
         for (it1 = holdings.begin(); it1 != holdings.end(); it1++)
         {
             patHld = *it1;
-            if (hld.Classification() == patHld.Classification())
+            if (hld.classification() == patHld.classification())
 
                 f = p;
         }
@@ -135,14 +135,14 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
     // check for late returns
     bool isLate = false;
 
-    if (date > hld.DueDate()) // is it late?
+    if (date > hld.dueDate()) // is it late?
         isLate = true;
 
     if (isLate) {
         int daysLate = 1; // calculate # of days past due
 
         ClassificationService service;
-        Book book = service.retrieveDetails(hld.Classification());
+        Book book = service.retrieveDetails(hld.classification());
 
         switch (book.type()) {
             case Book::TYPE_BOOK:

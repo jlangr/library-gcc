@@ -16,24 +16,24 @@ public:
     Holding(const std::string& classification, unsigned short copyNumber);
     virtual ~Holding();
 
-    static std::string ConstructBarcode(
+    static std::string constructBarcode(
         const std::string& classification, const int& copyNumber);
 
     bool operator==(const Holding& rhs) const;
     bool operator!=(const Holding& rhs) const;
     bool operator<(const Holding& rhs) const;
 
-    Branch CurrentBranch() const;
-    unsigned short CopyNumber() const;
-    std::string Barcode() const;
-    boost::gregorian::date LastCheckedOutOn() const;
-    boost::gregorian::date DueDate() const;
-    bool IsAvailable() const;
-    std::string Classification() const;
+    Branch currentBranch() const;
+    unsigned short copyNumber() const;
+    std::string barcode() const;
+    boost::gregorian::date lastCheckedOutOn() const;
+    boost::gregorian::date dueDate() const;
+    bool isAvailable() const;
+    std::string classification() const;
 
-    void Transfer(Branch&);
-    void CheckOut(boost::gregorian::date);
-    void CheckIn(boost::gregorian::date, const Branch&);
+    void transfer(Branch&);
+    void checkOut(boost::gregorian::date);
+    void checkIn(boost::gregorian::date, const Branch&);
 
 private:
     std::string mClassification;

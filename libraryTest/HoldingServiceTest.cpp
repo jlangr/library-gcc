@@ -97,7 +97,7 @@ TEST_F(HoldingServiceTest, AddInitializesBranch)
 
     auto holding = holdingService.FindByBarCode(barcode);
 
-    ASSERT_THAT(holding.CurrentBranch(), Eq(*branch1));
+    ASSERT_THAT(holding.currentBranch(), Eq(*branch1));
 }
 
 TEST_F(HoldingServiceTest, RetrievesAddedHolding)
@@ -107,7 +107,7 @@ TEST_F(HoldingServiceTest, RetrievesAddedHolding)
     holdingService.AddAtBranch(branch1->Id(), barcode);
 
     auto holding{holdingService.FindByBarCode(barcode)};
-    ASSERT_THAT(holding.Barcode(), Eq(barcode));
+    ASSERT_THAT(holding.barcode(), Eq(barcode));
 }
 
 TEST_F(HoldingServiceTest, ExistsReturnsFalseWhenNotFound)
@@ -117,7 +117,7 @@ TEST_F(HoldingServiceTest, ExistsReturnsFalseWhenNotFound)
 
 TEST_F(HoldingServiceTest, ExistsReturnsTrueWhenNotFound)
 {
-    auto barcode{Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
     holdingService.AddAtBranch(branch1->Id(), barcode);
 
     auto found{holdingService.ExistsWithBarcode(barcode)};
@@ -127,7 +127,7 @@ TEST_F(HoldingServiceTest, ExistsReturnsTrueWhenNotFound)
 
 TEST_F(HoldingServiceTest, IsAvailableReturnsTrueWhenHoldingAvailable)
 {
-    auto barcode{Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
     holdingService.AddAtBranch(branch1->Id(), barcode);
 
     auto isAvailable{holdingService.IsAvailable(barcode)};
@@ -171,12 +171,12 @@ TEST_F(HoldingServiceTest, FindByClassificationReturnsMultipleMatches)
 
 TEST_F(HoldingServiceTest, Transfer)
 {
-    auto barcode{Holding::ConstructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
     holdingService.AddAtBranch(branch1->Id(), barcode);
 
     holdingService.Transfer(barcode, branch1->Id());
 
-    ASSERT_THAT(holdingService.FindByBarCode(barcode).CurrentBranch(), Eq(*branch1));
+    ASSERT_THAT(holdingService.FindByBarCode(barcode).currentBranch(), Eq(*branch1));
 }
 
 TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
@@ -188,7 +188,7 @@ TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
     holdingService.CheckOut("p1001", barcode, *arbitraryDate);
 
     auto retrieved{holdingService.FindByBarCode(barcode)};
-    ASSERT_THAT(retrieved.IsAvailable(), Eq(false));
+    ASSERT_THAT(retrieved.isAvailable(), Eq(false));
 }
 
 TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron)
@@ -211,7 +211,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch)
 
     holdingService.CheckIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->Id());
 
-    ASSERT_THAT(holdingService.FindByBarCode(barcode.AsString()).CurrentBranch(), Eq(*branch2));
+    ASSERT_THAT(holdingService.FindByBarCode(barcode.AsString()).currentBranch(), Eq(*branch2));
 }
 
 TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings)

@@ -50,12 +50,12 @@ Holding::~Holding()
 
 bool Holding::operator==(const Holding& rhs) const
 {
-    return Barcode() == rhs.Barcode();
+    return barcode() == rhs.barcode();
 }
 
 bool Holding::operator<(const Holding& rhs) const
 {
-    return Barcode() < rhs.Barcode();
+    return barcode() < rhs.barcode();
 }
 
 bool Holding::operator!=(const Holding& rhs) const
@@ -63,32 +63,32 @@ bool Holding::operator!=(const Holding& rhs) const
     return !(*this == rhs);
 }
 
-string Holding::Classification() const
+string Holding::classification() const
 {
     return mClassification;
 }
 
-unsigned short Holding::CopyNumber() const
+unsigned short Holding::copyNumber() const
 {
     return mCopyNumber;
 }
 
-Branch Holding::CurrentBranch() const
+Branch Holding::currentBranch() const
 {
     return mBranch;
 }
 
-void Holding::Transfer(Branch& branch)
+void Holding::transfer(Branch& branch)
 {
     mBranch = branch;
 }
 
-string Holding::Barcode() const
+string Holding::barcode() const
 {
-    return Holding::ConstructBarcode(mClassification, mCopyNumber);
+    return Holding::constructBarcode(mClassification, mCopyNumber);
 }
 
-/* static */ string Holding::ConstructBarcode(
+/* static */ string Holding::constructBarcode(
     const string& classification, const int& copyNumber)
 {
     stringstream buffer;
@@ -96,23 +96,23 @@ string Holding::Barcode() const
     return buffer.str();
 }
 
-void Holding::CheckOut(date checkOutDate)
+void Holding::checkOut(date checkOutDate)
 {
     mLastCheckedOutOn = checkOutDate;
     mBranch = Branch::CHECKED_OUT;
 }
 
-void Holding::CheckIn(date checkInDate, const Branch& branch)
+void Holding::checkIn(date checkInDate, const Branch& branch)
 {
     mBranch = branch;
 }
 
-date Holding::LastCheckedOutOn() const
+date Holding::lastCheckedOutOn() const
 {
     return mLastCheckedOutOn;
 }
 
-date Holding::DueDate() const
+date Holding::dueDate() const
 {
     // should this go into HoldingService?
 
@@ -138,7 +138,7 @@ date Holding::DueDate() const
     return mLastCheckedOutOn + date_duration(period);
 }
 
-bool Holding::IsAvailable() const
+bool Holding::isAvailable() const
 {
     return Branch::CHECKED_OUT != mBranch;
 }

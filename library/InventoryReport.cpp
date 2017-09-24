@@ -41,10 +41,10 @@ std::string InventoryReport::Generate() {
         it++)
     {
         Holding holding = *it;
-        Book book = classificationService.retrieveDetails(holding.Classification());
+        Book book = classificationService.retrieveDetails(holding.classification());
         if (book.type() == Book::TYPE_BOOK)
         {
-            Record record(book, holding.CurrentBranch().name(), mIsbnApi);
+            Record record(book, holding.currentBranch().name(), mIsbnApi);
             records.push_back(record);
         }
     }

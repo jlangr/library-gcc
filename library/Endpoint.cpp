@@ -8,7 +8,7 @@ Endpoint::~Endpoint(void)
 {
 }
 
-bool Endpoint::Valid() const
+bool Endpoint::valid() const
 {
     return true;
 }

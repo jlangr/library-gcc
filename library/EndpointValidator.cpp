@@ -9,7 +9,7 @@ EndpointValidator::~EndpointValidator(void)
 {
 }
 
-bool EndpointValidator::IsValid(MailDestination*) const
+bool EndpointValidator::isValid(MailDestination*) const
 {
     return false;
 }

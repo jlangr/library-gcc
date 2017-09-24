@@ -9,7 +9,7 @@ public:
     EndpointValidator(void);
     virtual ~EndpointValidator(void);
 
-    virtual bool IsValid(MailDestination*) const;
+    virtual bool isValid(MailDestination*) const;
 };
 
 #endif

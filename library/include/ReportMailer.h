@@ -46,7 +46,7 @@ public:
         {
             MailDestination destination = *it;
             // verify all endpoints
-            if (!validator.IsValid(&destination))
+            if (!validator.isValid(&destination))
             {
                 throw ReportMailerException("invalid endpoint");
             }
