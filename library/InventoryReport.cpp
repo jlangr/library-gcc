@@ -30,7 +30,7 @@ InventoryReport::~InventoryReport(void)
     delete mIsbnApi;
 }
 
-std::string InventoryReport::Generate() {
+std::string InventoryReport::generate() {
     ClassificationService classificationService;
 
     vector<Record> records;
@@ -52,55 +52,55 @@ std::string InventoryReport::Generate() {
     sort(records.begin(), records.end());
 
     stringstream buffer;
-    AppendHeader(buffer);
-    AppendColumnHeaders(buffer);
+    appendHeader(buffer);
+    appendColumnHeaders(buffer);
     for (vector<Record>::iterator it = records.begin(); it != records.end();it++)
-         Append(buffer, *it);
+         append(buffer, *it);
     return buffer.str();
 }
 
-void InventoryReport::AppendHeader(stringstream& buffer) {
+void InventoryReport::appendHeader(stringstream& buffer) {
     buffer << "Inventory" << endl;
     buffer << endl;
 }
 
-void InventoryReport::AppendColumnHeaders(stringstream& buffer) {
-    buffer << Pad(TITLE_LENGTH + SPACING, "Title")
-        << Pad(BRANCH_LENGTH + SPACING, "Branch")
-        << Pad(AUTHOR_LENGTH + SPACING, "Author")
-        << Pad(YEAR_LENGTH + SPACING, "Year")
-        << Pad(ISBN_LENGTH + SPACING, "ISBN");
+void InventoryReport::appendColumnHeaders(stringstream& buffer) {
+    buffer << pad(TITLE_LENGTH + SPACING, "Title")
+        << pad(BRANCH_LENGTH + SPACING, "Branch")
+        << pad(AUTHOR_LENGTH + SPACING, "Author")
+        << pad(YEAR_LENGTH + SPACING, "Year")
+        << pad(ISBN_LENGTH + SPACING, "ISBN");
     buffer << endl;
 
-    buffer << Underlines(TITLE_LENGTH, SPACING);
-    buffer << Underlines(BRANCH_LENGTH, SPACING);
-    buffer << Underlines(AUTHOR_LENGTH, SPACING);
-    buffer << Underlines(YEAR_LENGTH, SPACING);
-    buffer << Underlines(ISBN_LENGTH, SPACING);
+    buffer << underlines(TITLE_LENGTH, SPACING);
+    buffer << underlines(BRANCH_LENGTH, SPACING);
+    buffer << underlines(AUTHOR_LENGTH, SPACING);
+    buffer << underlines(YEAR_LENGTH, SPACING);
+    buffer << underlines(ISBN_LENGTH, SPACING);
     buffer << endl;
 }
 
-void InventoryReport::Append(stringstream& buffer, Record& record) {
-    buffer << Pad(TITLE_LENGTH, record.title);
-    buffer << Pad(SPACING);
-    buffer << Pad(BRANCH_LENGTH, record.branch);
-    buffer << Pad(SPACING);
-    buffer << Pad(AUTHOR_LENGTH, record.author);
-    buffer << Pad(SPACING);
+void InventoryReport::append(stringstream& buffer, Record& record) {
+    buffer << pad(TITLE_LENGTH, record.title);
+    buffer << pad(SPACING);
+    buffer << pad(BRANCH_LENGTH, record.branch);
+    buffer << pad(SPACING);
+    buffer << pad(AUTHOR_LENGTH, record.author);
+    buffer << pad(SPACING);
     stringstream year;
     year << record.year;
-    buffer << Pad(YEAR_LENGTH, year.str());
-    buffer << Pad(SPACING);
-    buffer << Pad(ISBN_LENGTH, record.isbn);
+    buffer << pad(YEAR_LENGTH, year.str());
+    buffer << pad(SPACING);
+    buffer << pad(ISBN_LENGTH, record.isbn);
     buffer << endl;
 }
 
 // TODO: copy over these better implementations to template project!
-string InventoryReport::Pad(unsigned int totalLength, const string& text) {
+string InventoryReport::pad(unsigned int totalLength, const string& text) {
     //stringstream buffer(text, ios::out | ios::ate);
     return text + string(totalLength - text.length(), ' ');
 }
 
-string InventoryReport::Underlines(unsigned int count, unsigned int spacing) {
-    return Pad(count + spacing, string(count, '-'));
+string InventoryReport::underlines(unsigned int count, unsigned int spacing) {
+    return pad(count + spacing, string(count, '-'));
 }

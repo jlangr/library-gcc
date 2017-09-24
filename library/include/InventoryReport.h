@@ -60,12 +60,12 @@ public:
     
     InventoryReport(Catalog*);
     ~InventoryReport(void);
-    std::string Generate();
-    void AppendHeader(std::stringstream& buffer);
-    void AppendColumnHeaders(std::stringstream& buffer);
-    void Append(std::stringstream& buffer, Record& record);
-    std::string Underlines(unsigned int count, unsigned int spacing);
-    std::string Pad(unsigned int totalLength, const std::string& text="");
+    std::string generate();
+    void appendHeader(std::stringstream&);
+    void appendColumnHeaders(std::stringstream&);
+    void append(std::stringstream&, Record&);
+    std::string underlines(unsigned int count, unsigned int spacing);
+    std::string pad(unsigned int totalLength, const std::string& text="");
 private:
     Catalog* mCatalog;
     LibraryOfCongressAPI* mIsbnApi;
