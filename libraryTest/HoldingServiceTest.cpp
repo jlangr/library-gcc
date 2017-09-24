@@ -30,14 +30,14 @@ public:
     {
         HoldingService::DeleteAll();
         PatronService::DeleteAll();
-        BranchService::DeleteAll();
+        BranchService::deleteAll();
 
         arbitraryDate = new date(2013, Jan, 1);
 
         branch1 = new Branch("1", "branch1");
         branch2 = new Branch("2", "branch2");
-        branchService.Add(*branch1);
-        branchService.Add(*branch2);
+        branchService.add(*branch1);
+        branchService.add(*branch2);
     }
 
     virtual void TearDown()
@@ -47,7 +47,7 @@ public:
 
         HoldingService::DeleteAll();
         PatronService::DeleteAll();
-        BranchService::DeleteAll();
+        BranchService::deleteAll();
     }
 
     // TODO change to have patron service return object

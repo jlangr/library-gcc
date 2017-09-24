@@ -15,19 +15,19 @@ BranchService::~BranchService(void)
 {
 }
 
-short BranchService::BranchCount() const
+short BranchService::branchCount() const
 {
     return mBranchAccess.size();
 }
 
-void BranchService::Add(Branch& branch)
+void BranchService::add(Branch& branch)
 {
     mBranchAccess.save(branch);
 }
 
-string BranchService::Add(const string& name, const string& address)
+string BranchService::add(const string& name, const string& address)
 {
-    if (ExistsWithName(name))
+    if (existsWithName(name))
         throw DuplicateBranchNameException();
 
     stringstream out;
@@ -40,17 +40,17 @@ string BranchService::Add(const string& name, const string& address)
     return id;
 }
 
-bool BranchService::Find(Branch& branch) const
+bool BranchService::find(Branch& branch) const
 {
     return mBranchAccess.find(branch);
 }
 
-bool BranchService::ExistsWithName(const string& name) const
+bool BranchService::existsWithName(const string& name) const
 {
     return mBranchAccess.existsWithName(name);
 }
 
-/* static */ void BranchService::DeleteAll()
+/* static */ void BranchService::deleteAll()
 {
     BranchAccess access;
     access.deleteAll();

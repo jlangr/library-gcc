@@ -54,7 +54,7 @@ Holding HoldingService::FindByBarCode(const std::string& barcode) const
 void HoldingService::AddAtBranch(const string& id, const string& barcode)
 {
     Branch branch(id);
-    mBranchService.Find(branch);
+    mBranchService.find(branch);
 
     Holding holding(barcode);
     mCatalog.Add(holding);
@@ -70,7 +70,7 @@ void HoldingService::Transfer(Holding& holding, Branch& branch)
 void HoldingService::Transfer(const string& barcode, const string& branchId)
 {
     Branch branch(branchId);
-    mBranchService.Find(branch);
+    mBranchService.find(branch);
 
     auto holding = FindByBarCode(barcode);
     holding.Transfer(branch);
@@ -93,7 +93,7 @@ void HoldingService::CheckOut(const string& patronCardNumber, const string& barc
 void HoldingService::CheckIn(const string& barCode, date date, const string& branchId)
 {
     Branch branch(branchId);
-    mBranchService.Find(branch);
+    mBranchService.find(branch);
 
     auto hld = FindByBarCode(barCode);
 

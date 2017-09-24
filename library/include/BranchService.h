@@ -17,13 +17,13 @@ public:
     BranchService(void);
     virtual ~BranchService(void);
 
-    static void DeleteAll();
+    static void deleteAll();
 
-    void Add(Branch& branch);
-    std::string Add(const std::string& name, const std::string& address);
-    short BranchCount() const;
-    bool Find(Branch& branch) const;
-    bool ExistsWithName(const std::string& name) const;
+    void add(Branch& branch);
+    std::string add(const std::string& name, const std::string& address);
+    short branchCount() const;
+    bool find(Branch& branch) const;
+    bool existsWithName(const std::string& name) const;
 
 private:
     BranchAccess mBranchAccess;

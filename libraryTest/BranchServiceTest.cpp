@@ -15,7 +15,7 @@ public:
 
     virtual void SetUp()
     {
-        BranchService::DeleteAll();
+        BranchService::deleteAll();
         eastBranch = new Branch("1", "east");
         westBranch = new Branch("2", "west");
     }
@@ -24,94 +24,94 @@ public:
     {
         delete eastBranch;
         delete westBranch;
-        BranchService::DeleteAll();
+        BranchService::deleteAll();
     }
 };
 
 TEST_F(BranchServiceTest, AddReturnsGeneratedId)
 {
-    string id = service.Add("newname", "address");
+    string id = service.add("newname", "address");
 
     ASSERT_THAT(id, Gt("0"));
 }
 
 TEST_F(BranchServiceTest, AddGeneratesUniqueId)
 {
-    string id1 = service.Add("newname1", "address");
-    string id2 = service.Add("newname2", "address");
+    string id1 = service.add("newname1", "address");
+    string id2 = service.add("newname2", "address");
 
     ASSERT_THAT(id1, Ne(id2));
 }
 
 TEST_F(BranchServiceTest, AddThrowsWhenNameNotUnique)
 {
-    service.Add("samename", "address1");
+    service.add("samename", "address1");
 
-    ASSERT_THROW(service.Add("samename", "address2"), DuplicateBranchNameException);
+    ASSERT_THROW(service.add("samename", "address2"), DuplicateBranchNameException);
 }
 
 TEST_F(BranchServiceTest, CountInitiallyZero)
 {
-    ASSERT_THAT(service.BranchCount(), Eq(0));
+    ASSERT_THAT(service.branchCount(), Eq(0));
 }
 
 TEST_F(BranchServiceTest, DeleteAllRemovesAnyAddedBranches)
 {
-    service.Add(*eastBranch);
-    service.Add(*westBranch);
+    service.add(*eastBranch);
+    service.add(*westBranch);
 
-    BranchService::DeleteAll();
+    BranchService::deleteAll();
 
-    ASSERT_THAT(service.Find(*eastBranch), Eq(false));
-    ASSERT_THAT(service.Find(*westBranch), Eq(false));
+    ASSERT_THAT(service.find(*eastBranch), Eq(false));
+    ASSERT_THAT(service.find(*westBranch), Eq(false));
 }
 
 TEST_F(BranchServiceTest, DeleteAllSetsCountToZero)
 {
-    service.Add(*eastBranch);
-    service.Add(*westBranch);
+    service.add(*eastBranch);
+    service.add(*westBranch);
 
-    BranchService::DeleteAll();
+    BranchService::deleteAll();
     
-    ASSERT_THAT(service.BranchCount(), Eq(0));
+    ASSERT_THAT(service.branchCount(), Eq(0));
 }
 
 TEST_F(BranchServiceTest, FindAnswersFalseForNonexistentBranch)
 {
-    ASSERT_THAT(service.Find(*eastBranch), Eq(false));
+    ASSERT_THAT(service.find(*eastBranch), Eq(false));
 }
 
 TEST_F(BranchServiceTest, FindAnswersTrueForAddedBranch)
 {
-    service.Add(*eastBranch);
+    service.add(*eastBranch);
     
-    ASSERT_THAT(service.Find(*eastBranch), Eq(true));
+    ASSERT_THAT(service.find(*eastBranch), Eq(true));
 }
 
 TEST_F(BranchServiceTest, FindRetrievesById)
 {
-    service.Add(*eastBranch);
+    service.add(*eastBranch);
 
     Branch retrieved(eastBranch->Id(), "");
-    service.Find(retrieved);
+    service.find(retrieved);
 
     ASSERT_THAT(retrieved.name(), Eq(eastBranch->name()));
 }
 
 TEST_F(BranchServiceTest, AddBranchIncrementsCount)
 {
-    service.Add(*eastBranch);
-    ASSERT_THAT(service.BranchCount(), Eq(1));
+    service.add(*eastBranch);
+    ASSERT_THAT(service.branchCount(), Eq(1));
 
-    service.Add(*westBranch);
-    ASSERT_THAT(service.BranchCount(), Eq(2));
+    service.add(*westBranch);
+    ASSERT_THAT(service.branchCount(), Eq(2));
 }
 
 TEST_F(BranchServiceTest, PersistsAcrossServiceInstances)
 {
-    service.Add(*eastBranch);
+    service.add(*eastBranch);
 
     BranchService anotherServiceInstance;
-    ASSERT_THAT(anotherServiceInstance.Find(*eastBranch), Eq(true));
-    ASSERT_THAT(anotherServiceInstance.BranchCount(), Eq(1));
+    ASSERT_THAT(anotherServiceInstance.find(*eastBranch), Eq(true));
+    ASSERT_THAT(anotherServiceInstance.branchCount(), Eq(1));
 }
