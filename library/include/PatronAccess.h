@@ -12,25 +12,25 @@ public:
     PatronAccess();
     virtual ~PatronAccess();
 
-    void Save(const Patron&);
-    bool Find(Patron&) const;
-    Patron& FindByName(const std::string&) const;
-    int Size() const;
-    void Update(const Patron&);
-    std::vector<Patron> GetAll() const;
+    void save(const Patron&);
+    bool find(Patron&) const;
+    Patron& findByName(const std::string&) const;
+    int size() const;
+    void update(const Patron&);
+    std::vector<Patron> getAll() const;
 
-    static void DeleteAll();
+    static void deleteAll();
 
 private:
     PatronAccess& operator=(const PatronAccess&) = delete;
     PatronAccess(const PatronAccess&) = delete;
 
-    std::vector<Patron>::iterator Locate(const Patron&) const;
-    std::vector<Patron>::iterator Begin() const;
-    std::vector<Patron>::iterator End() const;
+    std::vector<Patron>::iterator locate(const Patron&) const;
+    std::vector<Patron>::iterator begin() const;
+    std::vector<Patron>::iterator end() const;
 
     static std::vector<Patron>* mPatrons;
-    static std::vector<Patron>* Patrons();
+    static std::vector<Patron>* patrons();
 };
 
 #endif

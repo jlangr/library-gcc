@@ -18,27 +18,27 @@ PatronAccess::~PatronAccess()
 {
 }
 
-void PatronAccess::Save(const Patron& patron)
+void PatronAccess::save(const Patron& patron)
 {
-    PatronAccess::Patrons()->push_back(patron);
+    PatronAccess::patrons()->push_back(patron);
 }
 
-void PatronAccess::Update(const Patron& patron)
+void PatronAccess::update(const Patron& patron)
 {
-    *Locate(patron) = patron;
+    *locate(patron) = patron;
 }
 
-std::vector<Patron>::iterator PatronAccess::Locate(const Patron& patron) const
+std::vector<Patron>::iterator PatronAccess::locate(const Patron& patron) const
 {
-    return find(PatronAccess::Patrons()->begin(),
-        PatronAccess::Patrons()->end(),
+    return std::find(PatronAccess::patrons()->begin(),
+        PatronAccess::patrons()->end(),
         patron);
 }
 
-bool PatronAccess::Find(Patron& patron) const
+bool PatronAccess::find(Patron& patron) const
 {
-    vector<Patron>::iterator it = Locate(patron);
-    if (it == End())
+    vector<Patron>::iterator it = locate(patron);
+    if (it == end())
     {
         return false;
     }
@@ -54,38 +54,38 @@ struct PatronAccessFindByName : public binary_function<Patron, std::string, bool
     }
 };
 
-Patron& PatronAccess::FindByName(const string& name) const
+Patron& PatronAccess::findByName(const string& name) const
 {
     vector<Patron>::iterator it =
-        find_if(Begin(), End(), bind2nd(PatronAccessFindByName(), name));
-    if (it == End())
+        find_if(begin(), end(), bind2nd(PatronAccessFindByName(), name));
+    if (it == end())
     {
         throw PatronNotFoundException();
     }
     return *it;
 }
 
-vector<Patron>::iterator PatronAccess::Begin() const
+vector<Patron>::iterator PatronAccess::begin() const
 {
-    return PatronAccess::Patrons()->begin();
+    return PatronAccess::patrons()->begin();
 }
 
-vector<Patron>::iterator PatronAccess::End() const
+vector<Patron>::iterator PatronAccess::end() const
 {
-    return PatronAccess::Patrons()->end();
+    return PatronAccess::patrons()->end();
 }
 
-int PatronAccess::Size() const
+int PatronAccess::size() const
 {
-    return PatronAccess::Patrons()->size();
+    return PatronAccess::patrons()->size();
 }
 
-vector<Patron> PatronAccess::GetAll() const
+vector<Patron> PatronAccess::getAll() const
 {
-    return *Patrons();
+    return *patrons();
 }
 
-/* static */ vector<Patron>* PatronAccess::Patrons()
+/* static */ vector<Patron>* PatronAccess::patrons()
 {
     if (!mPatrons)
     {
@@ -94,7 +94,7 @@ vector<Patron> PatronAccess::GetAll() const
     return mPatrons;
 }
 
-/* static */ void PatronAccess::DeleteAll()
+/* static */ void PatronAccess::deleteAll()
 {
     if (mPatrons)
     {

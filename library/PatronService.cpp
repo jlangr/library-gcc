@@ -16,12 +16,12 @@ PatronService::~PatronService(void)
 
 /* static */ void PatronService::DeleteAll()
 {
-    PatronAccess::DeleteAll();
+    PatronAccess::deleteAll();
 }
 
 vector<Patron> PatronService::GetAll() const
 {
-    return mPatronAccess.GetAll();
+    return mPatronAccess.getAll();
 }
 
 void PatronService::Add(const string& name, int id)
@@ -32,20 +32,20 @@ void PatronService::Add(const string& name, int id)
 
 void PatronService::Add(const Patron& patron)
 {
-    mPatronAccess.Save(patron);
+    mPatronAccess.save(patron);
 }
 
 void PatronService::Update(const Patron& patron)
 {
-    mPatronAccess.Update(patron);
+    mPatronAccess.update(patron);
 }
 
 bool PatronService::Find(Patron& patron) const
 {
-    return mPatronAccess.Find(patron);
+    return mPatronAccess.find(patron);
 }
 
 short PatronService::PatronCount() const
 {
-    return mPatronAccess.Size();
+    return mPatronAccess.size();
 }
