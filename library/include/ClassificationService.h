@@ -12,7 +12,7 @@ public:
     ClassificationService(void);
     ~ClassificationService(void);
 
-    Book RetrieveDetails(const std::string& classification) const;
+    Book retrieveDetails(const std::string& classification) const;
 };
 
 class ClassificationNotFoundException: public std::exception

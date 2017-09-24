@@ -5,5 +5,5 @@
 TEST(ClassificationServiceTest, ThrowsWhenNotFound)
 {
     ClassificationService service;
-    ASSERT_THROW(service.RetrieveDetails("nonexistent"), ClassificationNotFoundException);
+    ASSERT_THROW(service.retrieveDetails("nonexistent"), ClassificationNotFoundException);
 }

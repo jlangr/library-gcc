@@ -13,7 +13,7 @@ ClassificationService::~ClassificationService(void)
 {
 }
 
-Book ClassificationService::RetrieveDetails(const string& classification) const
+Book ClassificationService::retrieveDetails(const string& classification) const
 {
     if (classification == ClassificationData::CATCH22_CLASSIFICATION)
         return ClassificationData::CATCH22;

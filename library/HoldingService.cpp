@@ -142,7 +142,7 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
         int daysLate = 1; // calculate # of days past due
 
         ClassificationService service;
-        Book book = service.RetrieveDetails(hld.Classification());
+        Book book = service.retrieveDetails(hld.Classification());
 
         switch (book.type()) {
             case Book::TYPE_BOOK:

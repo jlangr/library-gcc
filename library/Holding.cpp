@@ -120,7 +120,7 @@ date Holding::DueDate() const
     int period = 0;
 
     ClassificationService svc;
-    Book book = svc.RetrieveDetails(mClassification);
+    Book book = svc.retrieveDetails(mClassification);
     switch (book.type()) {
         case Book::TYPE_BOOK:
             period = Book::BOOK_CHECKOUT_PERIOD;
