@@ -12,54 +12,54 @@ Catalog::Catalog() {}
 
 Catalog::~Catalog() {}
 
-vector<Holding>* Catalog::Holdings()
+vector<Holding>* Catalog::holdings()
 {
     if (!mHoldings)
         mHoldings = new vector<Holding>();
     return mHoldings;
 }
 
-unsigned int Catalog::Size() const
+unsigned int Catalog::size() const
 {
-    return Catalog::Holdings()->size();
+    return Catalog::holdings()->size();
 }
 
-void Catalog::Add(Holding& holding)
+void Catalog::add(Holding& holding)
 {
-    Catalog::Holdings()->push_back(holding);
+    Catalog::holdings()->push_back(holding);
 }
 
-void Catalog::Update(Holding& holding)
+void Catalog::update(Holding& holding)
 {
-    vector<Holding>* holdings = Catalog::Holdings();
+    vector<Holding>* holdings = Catalog::holdings();
     HoldingIterator it = find(holdings->begin(), holdings->end(), holding);
     // TODO: throw if not found? need a test!
     *it = holding;
 }
 
-void Catalog::FindByClassification(
+void Catalog::findByClassification(
     const string& classification, set<Holding>& holdingsCollector) const
 {
-    vector<Holding> holdings = *Catalog::Holdings();
+    vector<Holding> holdings = *Catalog::holdings();
     for (auto it = holdings.begin(); it != holdings.end(); it++)
         if (classification == it->Classification())
             holdingsCollector.insert(*it);
 }
 
-bool Catalog::Contains(const string& barcode) const {
-    return find(Catalog::Holdings()->begin(), Catalog::Holdings()->end(), 
-        Holding{barcode}) != Catalog::Holdings()->end();
+bool Catalog::contains(const string& barcode) const {
+    return find(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
+        Holding{barcode}) != Catalog::holdings()->end();
 
 }
 
-Holding Catalog::FindByBarCode(const string& barcode) const
+Holding Catalog::findByBarCode(const string& barcode) const
 {
-    return *find_if(Catalog::Holdings()->begin(), Catalog::Holdings()->end(), 
+    return *find_if(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
         [&](const Holding& h) { return barcode == h.Barcode(); });
 
 }
 
-void Catalog::DeleteAll()
+void Catalog::deleteAll()
 {
     if (mHoldings)
     {

@@ -13,15 +13,15 @@ public:
     Catalog();
     virtual ~Catalog();
 
-    static void DeleteAll();
+    static void deleteAll();
 
-    unsigned int Size() const;
-    void Add(Holding& holding);
-    void Update(Holding& holding);
-    void FindByClassification(const std::string&, std::set<Holding>& holdings) const;
-    bool Contains(const std::string&) const;
-    Holding FindByBarCode(const std::string&) const;
-    static std::vector<Holding>* Holdings();
+    unsigned int size() const;
+    void add(Holding& holding);
+    void update(Holding& holding);
+    void findByClassification(const std::string&, std::set<Holding>& holdings) const;
+    bool contains(const std::string&) const;
+    Holding findByBarCode(const std::string&) const;
+    static std::vector<Holding>* holdings();
 
 private:
     Catalog(const Catalog&) = delete;

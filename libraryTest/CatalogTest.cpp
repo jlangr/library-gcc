@@ -22,7 +22,7 @@ public:
 
     virtual void SetUp()
     {
-        Catalog::DeleteAll();
+        Catalog::deleteAll();
         theTrialHolding = new Holding(THE_TRIAL_CLASSIFICATION, 1);
         catch22Holding = new Holding(CATCH22_CLASSIFICATION, 1);
         catch22HoldingCopy2 = new Holding(CATCH22_CLASSIFICATION, 2);
@@ -33,34 +33,34 @@ public:
         delete theTrialHolding;
         delete catch22Holding;
         delete catch22HoldingCopy2;
-        Catalog::DeleteAll();
+        Catalog::deleteAll();
     }
 };
 
 TEST_F(CatalogTest, IsEmptyOnCreation)
 {
-    ASSERT_THAT(catalog.Size(), Eq(0));
+    ASSERT_THAT(catalog.size(), Eq(0));
 }
 
 TEST_F(CatalogTest, AddIncrementsCount)
 {
-    catalog.Add(*theTrialHolding);
+    catalog.add(*theTrialHolding);
 
-    ASSERT_THAT(catalog.Size(), Eq(1));
+    ASSERT_THAT(catalog.size(), Eq(1));
 }
 
 TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound)
 {
-    ASSERT_THAT(catalog.Contains("123:1"), Eq(false));
+    ASSERT_THAT(catalog.contains("123:1"), Eq(false));
 }
 
 TEST_F(CatalogTest, AddedHoldingCanBeRetrieved)
 {
-    catalog.Add(*theTrialHolding);
+    catalog.add(*theTrialHolding);
     auto barcode{Holding::ConstructBarcode(
       theTrialHolding->Classification(), theTrialHolding->CopyNumber())};
 
-    ASSERT_THAT(catalog.Contains(barcode), Eq(true));
+    ASSERT_THAT(catalog.contains(barcode), Eq(true));
 }
 
 /*
@@ -68,10 +68,10 @@ TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
 {
     Branch west("1", "West");
     theTrialHolding->Transfer(west);
-    catalog.Add(*theTrialHolding);
+    catalog.add(*theTrialHolding);
     Holding holding(THE_TRIAL_CLASSIFICATION, 1);
 
-    catalog.FindByBarCode(holding);
+    catalog.findByBarCode(holding);
 
     ASSERT_THAT(holding.CurrentBranch(), Eq(west));
 }
@@ -79,12 +79,12 @@ TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
 
 TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings)
 {
-    catalog.Add(*theTrialHolding);
-    catalog.Add(*catch22Holding);
-    catalog.Add(*catch22HoldingCopy2);
+    catalog.add(*theTrialHolding);
+    catalog.add(*catch22Holding);
+    catalog.add(*catch22HoldingCopy2);
 
     set<Holding> holdings;
-    catalog.FindByClassification(CATCH22_CLASSIFICATION, holdings);
+    catalog.findByClassification(CATCH22_CLASSIFICATION, holdings);
 
     ASSERT_THAT(holdings, Eq(set<Holding>{ *catch22Holding, *catch22HoldingCopy2 }));
 }

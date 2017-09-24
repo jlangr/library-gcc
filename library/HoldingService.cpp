@@ -23,32 +23,32 @@ HoldingService::~HoldingService()
 
 void HoldingService::DeleteAll()
 {
-    Catalog::DeleteAll();
+    Catalog::deleteAll();
 }
 
 unsigned int HoldingService::InventorySize() const
 {
-    return mCatalog.Size();
+    return mCatalog.size();
 }
 
 void HoldingService::FindByClassification(const string& classification, set<Holding>& holdings) const
 {
-    mCatalog.FindByClassification(classification, holdings);
+    mCatalog.findByClassification(classification, holdings);
 }
 
 bool HoldingService::ExistsWithBarcode(const std::string& barcode) const
 {
-    return mCatalog.Contains(barcode);
+    return mCatalog.contains(barcode);
 }
 
 bool HoldingService::IsAvailable(const std::string& barcode) const
 {
-    return mCatalog.Contains(barcode) && FindByBarCode(barcode).IsAvailable();
+    return mCatalog.contains(barcode) && FindByBarCode(barcode).IsAvailable();
 }
 
 Holding HoldingService::FindByBarCode(const std::string& barcode) const
 {
-    return mCatalog.FindByBarCode(barcode);
+    return mCatalog.findByBarCode(barcode);
 }
 
 void HoldingService::AddAtBranch(const string& id, const string& barcode)
@@ -57,14 +57,14 @@ void HoldingService::AddAtBranch(const string& id, const string& barcode)
     mBranchService.find(branch);
 
     Holding holding(barcode);
-    mCatalog.Add(holding);
+    mCatalog.add(holding);
     Transfer(holding, branch);
 }
 
 void HoldingService::Transfer(Holding& holding, Branch& branch)
 {
     holding.Transfer(branch);
-    mCatalog.Update(holding);
+    mCatalog.update(holding);
 }
 
 void HoldingService::Transfer(const string& barcode, const string& branchId)
@@ -74,14 +74,14 @@ void HoldingService::Transfer(const string& barcode, const string& branchId)
 
     auto holding = FindByBarCode(barcode);
     holding.Transfer(branch);
-    mCatalog.Update(holding);
+    mCatalog.update(holding);
 }
 
 void HoldingService::CheckOut(const string& patronCardNumber, const string& barcode, date date)
 {
     auto holding = FindByBarCode(barcode);
     holding.CheckOut(date);
-    mCatalog.Update(holding);
+    mCatalog.update(holding);
 
     Patron patron("", patronCardNumber);
     mPatronService.Find(patron);
@@ -102,7 +102,7 @@ void HoldingService::CheckIn(const string& barCode, date date, const string& bra
     // set the holding to returned status
     set<Holding> holdings;
     hld.CheckIn(date, branch);
-    mCatalog.Update(hld);
+    mCatalog.update(hld);
 
     patrons = mPatronService.GetAll();
 

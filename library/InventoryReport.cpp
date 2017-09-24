@@ -35,7 +35,7 @@ std::string InventoryReport::Generate() {
 
     vector<Record> records;
 
-    vector<Holding>* holdings = Catalog::Holdings();
+    vector<Holding>* holdings = Catalog::holdings();
     for (vector<Holding>::iterator it = holdings->begin();
         it != holdings->end();
         it++)
