@@ -200,7 +200,7 @@ TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron)
     holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString(), *arbitraryDate);
 
     Holding holding(HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
-    ASSERT_THAT(FindPatronWithId("p1001").Holdings(),
+    ASSERT_THAT(FindPatronWithId("p1001").holdings(),
         Eq(set<Holding>{holding}));
 }
 
@@ -222,7 +222,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings)
 
     holdingService.checkIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->Id());
 
-    ASSERT_THAT(FindPatronWithId(patronId).Holdings().size(), Eq(0));
+    ASSERT_THAT(FindPatronWithId(patronId).holdings().size(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance)
@@ -233,7 +233,7 @@ TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance)
 
     holdingService.checkIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->Id());
 
-    ASSERT_THAT(FindPatronWithId(patronCardNumber).FineBalance(), Eq(0));
+    ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance)
@@ -245,5 +245,5 @@ TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance)
 
     holdingService.checkIn(barcode.AsString(), *arbitraryDate + oneDayLate, branch2->Id());
 
-    ASSERT_THAT(FindPatronWithId(patronCardNumber).FineBalance(), Eq(Book::BOOK_DAILY_FINE));
+    ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
 }

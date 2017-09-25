@@ -22,7 +22,7 @@ Patron::Patron(const string& name, const string& cardNumber)
     istringstream(idPortion) >> mId;
 }
 
-string Patron::CardNumber() const
+string Patron::cardNumber() const
 {
     ostringstream text;
     text << "p" << mId;
@@ -31,10 +31,10 @@ string Patron::CardNumber() const
 
 std::ostream& operator<<(std::ostream& stream, Patron& patron)
 {
-    return stream << patron.Name() << " (" << patron.CardNumber() << ")";
+    return stream << patron.name() << " (" << patron.cardNumber() << ")";
 }
 
-string Patron::Name() const
+string Patron::name() const
 {
     return mName;
 }
@@ -44,32 +44,32 @@ int Patron::Id() const
     return mId;
 }
 
-int Patron::FineBalance() const
+int Patron::fineBalance() const
 {
     return mBalance;
 }
 
-void Patron::AddFine(int amount)
+void Patron::addFine(int amount)
 {
     mBalance += amount;
 }
 
-void Patron::Remit(int amount)
+void Patron::remit(int amount)
 {
     mBalance -= amount;
 }
 
-set<Holding> Patron::Holdings() const
+set<Holding> Patron::holdings() const
 {
     return mHoldings;
 }
 
-void Patron::Borrow(const Holding& holding)
+void Patron::borrow(const Holding& holding)
 {
     mHoldings.insert(holding);
 }
 
-void Patron::ReturnHolding(const Holding& holding)
+void Patron::returnHolding(const Holding& holding)
 {
     mHoldings.erase(holding);
 }

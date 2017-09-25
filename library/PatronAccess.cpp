@@ -50,7 +50,7 @@ struct PatronAccessFindByName : public binary_function<Patron, std::string, bool
 {
     bool operator ()(Patron& patron, const string& name) const
     {
-        return (patron.Name() == name);
+        return (patron.name() == name);
     }
 };
 

@@ -86,7 +86,7 @@ void HoldingService::checkOut(const string& patronCardNumber, const string& barc
     Patron patron("", patronCardNumber);
     mPatronService.find(patron);
 
-    patron.Borrow(holding);
+    patron.borrow(holding);
     mPatronService.update(patron);
 }
 
@@ -118,7 +118,7 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
         it++)
     {
         p = *it;
-        holdings = p.Holdings();
+        holdings = p.holdings();
         set<Holding>::const_iterator it1;
         for (it1 = holdings.begin(); it1 != holdings.end(); it1++)
         {
@@ -130,7 +130,7 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
     }
 
     // remove the book from the patron
-    f.ReturnHolding(hld);
+    f.returnHolding(hld);
 
     // check for late returns
     bool isLate = false;
@@ -146,18 +146,18 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
 
         switch (book.type()) {
             case Book::TYPE_BOOK:
-                f.AddFine(Book::BOOK_DAILY_FINE * daysLate);
+                f.addFine(Book::BOOK_DAILY_FINE * daysLate);
                 break;
             case Book::TYPE_MOVIE:
             {
                 int fine = 100 + Book::MOVIE_DAILY_FINE * daysLate;
                 if (fine > 1000)
                     fine = 1000;
-                f.AddFine(fine);
+                f.addFine(fine);
             }
             break;
             case Book::TYPE_NEW_RELEASE:
-                f.AddFine(Book::NEW_RELEASE_DAILY_FINE * daysLate);
+                f.addFine(Book::NEW_RELEASE_DAILY_FINE * daysLate);
                 break;
         }
     }

@@ -43,7 +43,7 @@ TEST_F(PatronServiceTest, AddUsingAttributes)
 
     Patron retrieved("", 20);
     service.find(retrieved);
-    ASSERT_THAT(retrieved.Name(), Eq("Suresh"));
+    ASSERT_THAT(retrieved.name(), Eq("Suresh"));
 }
 
 TEST_F(PatronServiceTest, AddIncrementsCount)
@@ -96,19 +96,19 @@ TEST_F(PatronServiceTest, FindRetrieves)
 
     service.find(retrieved);
 
-    ASSERT_THAT(retrieved.Name(), Eq(joe->Name()));
+    ASSERT_THAT(retrieved.name(), Eq(joe->name()));
 }
 
 TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron)
 {
-    joe->AddFine(20);
+    joe->addFine(20);
     Holding theTrial(THE_TRIAL_CLASSIFICATION, 1);
-    joe->Borrow(theTrial);
+    joe->borrow(theTrial);
     service.add(*joe);
     Patron retrieved("", joe->Id());
 
     service.find(retrieved);
 
-    ASSERT_THAT(retrieved.FineBalance(), Eq(20));
-    ASSERT_THAT(retrieved.Holdings(), Eq(set<Holding>{ theTrial }));
+    ASSERT_THAT(retrieved.fineBalance(), Eq(20));
+    ASSERT_THAT(retrieved.holdings(), Eq(set<Holding>{ theTrial }));
 }

@@ -71,8 +71,8 @@ TEST_F(PatronAccessTest, SavePersistsAllAttributes)
     PatronAccess newAccess;
     Patron& retrieved = newAccess.findByName("patron1");
 
-    ASSERT_THAT(retrieved.Name(), Eq(patron->Name()));
-    ASSERT_THAT(retrieved.FineBalance(), Eq(patron->FineBalance()));
+    ASSERT_THAT(retrieved.name(), Eq(patron->name()));
+    ASSERT_THAT(retrieved.fineBalance(), Eq(patron->fineBalance()));
 }
 
 TEST_F(PatronAccessTest, FindByNameThrowsWhenNoNameMatches)
@@ -100,13 +100,13 @@ TEST_F(PatronAccessTest, UpdatePersistsChanges)
     Patron patron1("x", id);
     access.save(patron1);
     int fine = 100;
-    patron1.AddFine(fine);
+    patron1.addFine(fine);
 
     access.update(patron1);
 
     Patron retrieved("", id);
     access.find(retrieved);
-    ASSERT_THAT(retrieved.FineBalance(), Eq(fine));
+    ASSERT_THAT(retrieved.fineBalance(), Eq(fine));
 }
 
 TEST_F(PatronAccessTest, GetAllAnswersAllSavedPatrons)

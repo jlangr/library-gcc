@@ -12,18 +12,18 @@ public:
     Patron(const std::string& name = "", int id = 0);
     Patron(const std::string& name, const std::string& cardNumber);
 
-    std::set<Holding> Holdings() const;
-    std::string Name() const;
+    std::set<Holding> holdings() const;
+    std::string name() const;
     int Id() const;
-    std::string CardNumber() const;
-    int FineBalance() const;
-    void AddFine(int amount);
-    void Remit(int amount);
-    void Borrow(const Holding& holding);
-    void ReturnHolding(const Holding& holding);
+    std::string cardNumber() const;
+    int fineBalance() const;
+    void addFine(int amount);
+    void remit(int amount);
+    void borrow(const Holding&);
+    void returnHolding(const Holding&);
 
-    bool operator==(const Patron& rhs) const;
-    bool operator!=(const Patron& rhs) const;
+    bool operator==(const Patron&) const;
+    bool operator!=(const Patron&) const;
 
 private:
     std::set<Holding> mHoldings;

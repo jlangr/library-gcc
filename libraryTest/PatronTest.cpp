@@ -54,75 +54,75 @@ TEST_F(PatronTest, CardNumberIsIdPreprendedWithPrefix)
 {
     Patron mary("", 5);
 
-    ASSERT_THAT(mary.CardNumber(), Eq("p5"));
+    ASSERT_THAT(mary.cardNumber(), Eq("p5"));
 }
 
 TEST_F(PatronTest, CreateInitializesFields)
 {
     Patron mary("Mary", 5);
 
-    ASSERT_THAT(mary.Name(), Eq("Mary"));
+    ASSERT_THAT(mary.name(), Eq("Mary"));
     ASSERT_THAT(mary.Id(), Eq(5));
-    ASSERT_THAT(mary.FineBalance(), Eq(0));
+    ASSERT_THAT(mary.fineBalance(), Eq(0));
 }
 
 TEST_F(PatronTest, CreateDefaultsCardNumber)
 {
     Patron john("john");
 
-    ASSERT_THAT(john.Name(), Eq("john"));
+    ASSERT_THAT(john.name(), Eq("john"));
     ASSERT_THAT(john.Id(), Eq(0));
-    ASSERT_THAT(john.FineBalance(), Eq(0));
+    ASSERT_THAT(john.fineBalance(), Eq(0));
 }
 
 TEST_F(PatronTest, CreateDefaultsAllFields)
 {
     Patron nobody;
 
-    ASSERT_THAT(nobody.Name(), Eq(""));
+    ASSERT_THAT(nobody.name(), Eq(""));
     ASSERT_THAT(nobody.Id(), Eq(0));
-    ASSERT_THAT(nobody.FineBalance(), Eq(0));
+    ASSERT_THAT(nobody.fineBalance(), Eq(0));
 }
 
 TEST_F(PatronTest, AddFineUpdatesFineBalance)
 {
-    jane->AddFine(10);
-    ASSERT_THAT(jane->FineBalance(), Eq(10));
+    jane->addFine(10);
+    ASSERT_THAT(jane->fineBalance(), Eq(10));
 }
 
 TEST_F(PatronTest, AddFineAccumulatesIntoBalance)
 {
-    jane->AddFine(10);
-    jane->AddFine(30);
+    jane->addFine(10);
+    jane->addFine(30);
 
-    ASSERT_THAT(jane->FineBalance(), Eq(40));
+    ASSERT_THAT(jane->fineBalance(), Eq(40));
 }
 
 TEST_F(PatronTest, RemitFineSubtractsFromBalance)
 {
-    jane->AddFine(40);
+    jane->addFine(40);
 
-    jane->Remit(15);
+    jane->remit(15);
 
-    ASSERT_THAT(jane->FineBalance(), Eq(25));
+    ASSERT_THAT(jane->fineBalance(), Eq(25));
 }
 
 TEST_F(PatronTest, HoldingsContainsBorrowedBooks)
 {
-    jane->Borrow(*theTrialHolding);
-    jane->Borrow(*catch22Holding);
+    jane->borrow(*theTrialHolding);
+    jane->borrow(*catch22Holding);
 
-    ASSERT_THAT(jane->Holdings(), Eq(set<Holding>{ *theTrialHolding, *catch22Holding }));
+    ASSERT_THAT(jane->holdings(), Eq(set<Holding>{ *theTrialHolding, *catch22Holding }));
 }
 
 TEST_F(PatronTest, HoldingsDoesNotContainReturnedBooks)
 {
-    jane->Borrow(*theTrialHolding);
-    jane->Borrow(*catch22Holding);
+    jane->borrow(*theTrialHolding);
+    jane->borrow(*catch22Holding);
 
-    jane->ReturnHolding(*theTrialHolding);
+    jane->returnHolding(*theTrialHolding);
 
-    ASSERT_THAT(jane->Holdings(), Eq(set<Holding>{ *catch22Holding }));
+    ASSERT_THAT(jane->holdings(), Eq(set<Holding>{ *catch22Holding }));
 }
 
 TEST_F(PatronTest, Equality)
