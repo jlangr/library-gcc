@@ -30,44 +30,44 @@ public:
 
 TEST_F(SoundexTest, DISABLED_PadsSingleLetterWithZeros)
 {
-    ASSERT_THAT(soundex.Convert("A"), Eq("A000"));
+    ASSERT_THAT(soundex.convert("A"), Eq("A000"));
 }
 
 TEST_F(SoundexTest, DISABLED_RetainsFirstLetter)
 {
-    ASSERT_THAT(soundex.Convert("B"), Eq("B000"));
+    ASSERT_THAT(soundex.convert("B"), Eq("B000"));
 }
 
 TEST_F(SoundexTest, DISABLED_ConvertsHardSoundsUsingLookupTable)
 {
     // should we really have more than one case per test?
-    ASSERT_THAT(soundex.Convert("Ab"), Eq("A100"));
-    //ASSERT_THAT(soundex.Convert("Am"), Eq("A500"));
+    ASSERT_THAT(soundex.convert("Ab"), Eq("A100"));
+    //ASSERT_THAT(soundex.convert("Am"), Eq("A500"));
 }
 
 TEST_F(SoundexTest, DISABLED_PadsWithZerosToEnsureThreeDigits)
 {
-    ASSERT_THAT(soundex.Convert("Af"), Eq("A100"));
+    ASSERT_THAT(soundex.convert("Af"), Eq("A100"));
 }
 
 TEST_F(SoundexTest, DISABLED_DoesNotAppendZerosIfAlreadyFourCharacters)
 {
-    // See note in ConvertsHardSoundsUsingLookupTable,
+    // See note in convertsHardSoundsUsingLookupTable,
     // and change that test accordingly.
-    ASSERT_THAT(soundex.Convert("Arml"), Eq("A654"));
+    ASSERT_THAT(soundex.convert("Arml"), Eq("A654"));
 }
 
 TEST_F(SoundexTest, DISABLED_LimitsLengthToFourCharacters)
 {
-    ASSERT_THAT(soundex.Convert("Armlrml"), Eq("A654"));
+    ASSERT_THAT(soundex.convert("Armlrml"), Eq("A654"));
 }
 
 TEST_F(SoundexTest, DISABLED_IgnoresSoftSounds)
 {
     // should we really have more than one assert per test?
-    ASSERT_THAT(soundex.Convert("Aaei"), Eq("A000"));
-    //ASSERT_THAT(soundex.Convert("Aouy"), Eq("A000"));
-    //ASSERT_THAT(soundex.Convert("Ahwe"), Eq("A000"));
+    ASSERT_THAT(soundex.convert("Aaei"), Eq("A000"));
+    //ASSERT_THAT(soundex.convert("Aouy"), Eq("A000"));
+    //ASSERT_THAT(soundex.convert("Ahwe"), Eq("A000"));
 }
 
 TEST_F(SoundexTest, DISABLED_IgnoresDuplicateHardSounds)
@@ -76,7 +76,7 @@ TEST_F(SoundexTest, DISABLED_IgnoresDuplicateHardSounds)
     // What is the value of including it (or not)?
     ASSERT_THAT(soundex.Digit('c'), Eq(soundex.Digit('g')));
 
-    ASSERT_THAT(soundex.Convert("Acgbm"), Eq("A215"));
+    ASSERT_THAT(soundex.convert("Acgbm"), Eq("A215"));
 }
 
 TEST_F(SoundexTest, DISABLED_HardSoundNotIgnoredIfVowelPrecedesIt)
@@ -84,7 +84,7 @@ TEST_F(SoundexTest, DISABLED_HardSoundNotIgnoredIfVowelPrecedesIt)
     ASSERT_THAT(soundex.Digit('c'), Eq(soundex.Digit('g')));
     ASSERT_THAT(soundex.IsVowel('o'), Eq(true));
 
-    ASSERT_THAT(soundex.Convert("Acogbm"), Eq("A221"));
+    ASSERT_THAT(soundex.convert("Acogbm"), Eq("A221"));
     // If you receive an error that the following test is passing:
     // Had enough? Enable the following test, stop here, and see the notes at the bottom of the tests.
     // Or, for extra credit: Find a way to simplify your solution to pass only this penultimate test.
@@ -95,7 +95,7 @@ TEST_F(SoundexTest, DISABLED_HardSoundIgnoredIfSoftConsonantPrecedesIt)
     // Note that alternate specifications allow this to convert to A221
     ASSERT_THAT(soundex.IsSoftConsonant('w'), Eq(true));
 
-    ASSERT_THAT(soundex.Convert("Acwgbm"), Eq("A215"));
+    ASSERT_THAT(soundex.convert("Acwgbm"), Eq("A215"));
 }
 
 // Finished--congratulations!

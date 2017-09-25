@@ -19,17 +19,17 @@ public:
 
     Soundex(void)
     {
-        InitializeConsonantToDigitTable();
+        initializeConsonantToDigitTable();
     }
     virtual ~Soundex(void) {}
 
-    string Convert(const string& name)
+    string convert(const string& name)
     {
         return "";
     }
 
     // +++ do not change any of these helper methods +++
-    char Digit(char consonant) const
+    char digit(char consonant) const
     {
         map<char, char>::const_iterator it = consonantIndices.find(consonant);
         if (it == consonantIndices.end())
@@ -37,17 +37,17 @@ public:
         return it->second;
     }
 
-    bool IsSoftSound(char letter) const
+    bool isSoftSound(char letter) const
     {
         return SOFT_SOUNDS.find(letter) != string::npos;
     }
 
-    bool IsSoftConsonant(char letter) const
+    bool isSoftConsonant(char letter) const
     {
         return SOFT_CONSONANTS.find(letter) != string::npos;
     }
 
-    bool IsVowel(char letter) const
+    bool isVowel(char letter) const
     {
         return VOWELS.find(letter) != string::npos;
     }
@@ -57,7 +57,7 @@ public:
 private:
     map<char, char> consonantIndices;
 
-    void InitializeConsonantToDigitTable()
+    void initializeConsonantToDigitTable()
     {
         consonantIndices['b'] = '1';
         consonantIndices['f'] = '1';
