@@ -15,6 +15,7 @@ set(sources
    Customer.cpp
    Endpoint.cpp
    EndpointValidator.cpp
+   FileReport.cpp
    Holding.cpp
    HoldingService.cpp
    InventoryReport.cpp

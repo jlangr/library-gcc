@@ -16,6 +16,7 @@ set(sources
    ClassificationServiceTest.cpp
    CustomerTest.cpp
    ExamplesTest.cpp
+   FileReportTest.cpp
    HoldingBarcodeTest.cpp
    HoldingServiceTest.cpp
    HoldingTest.cpp
