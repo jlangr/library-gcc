@@ -18,30 +18,30 @@ public:
     {
     }
 
-    virtual void ScanHolding(const std::string& barcode)=0;
-    virtual void ScanBranchCard(const std::string& barcode)=0;
-    virtual void ScanInventoryCard(const std::string& barcode)=0;
-    virtual void ScanPatronCard(const std::string& barcode)=0;
-    virtual void PressDone()=0;
+    virtual void scanHolding(const std::string& barcode)=0;
+    virtual void scanBranchCard(const std::string& barcode)=0;
+    virtual void scanInventoryCard(const std::string& barcode)=0;
+    virtual void scanPatronCard(const std::string& barcode)=0;
+    virtual void pressDone()=0;
 
 protected:
-    template <typename T> void SetState();
+    template <typename T> void setState();
 
-    void ShowMessage(const std::string& message);
-    std::string BranchId() const;
-    void SetBranchId(const std::string& id);
-    std::string PatronId() const;
-    void SetPatronId(const std::string& id);
-    service::HoldingService* HoldingService() const;
+    void showMessage(const std::string& message);
+    std::string branchId() const;
+    void setBranchId(const std::string& id);
+    std::string patronId() const;
+    void setPatronId(const std::string& id);
+    service::HoldingService* holdingService() const;
 
 private:
     Scanner* mScanner;
 };
 
 template <typename T>
-void ScannerState::SetState()
+void ScannerState::setState()
 {
-    mScanner->SetCurrentState(new T(mScanner));
+    mScanner->setCurrentState(new T(mScanner));
 }
 
 #endif

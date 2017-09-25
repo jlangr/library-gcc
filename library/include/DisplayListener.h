@@ -6,7 +6,7 @@
 class DisplayListener
 {
 public:
-    virtual void ShowMessage(const std::string& text)=0;
+    virtual void showMessage(const std::string& text)=0;
 };
 
 #endif

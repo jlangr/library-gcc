@@ -22,17 +22,17 @@ public:
 
     virtual void SetUp() {
         state = new ScannerStateCheckout(scanner);
-        scanner->SetCurrentState(state);
+        scanner->setCurrentState(state);
     }
 
-    void Checkout(const string& patronCardNumber, const string& holdingBarcode)
+    void checkout(const string& patronCardNumber, const string& holdingBarcode)
     {
-        EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
-        EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(true));
-        EXPECT_CALL(*HoldingService(), 
+        EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(true));
+        EXPECT_CALL(*holdingService(), isAvailable(_)).WillOnce(Return(true));
+        EXPECT_CALL(*holdingService(), 
             checkOut(patronCardNumber, holdingBarcode, TimestampSource::Now()));
-        EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
-        state->ScanHolding(holdingBarcode);
+        EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
+        state->scanHolding(holdingBarcode);
     }
 
     virtual void TearDown() {
@@ -41,62 +41,62 @@ public:
 
 TEST_F(ScannerStateCheckoutTest, DisplaysWarningWhenPatronCardScanned)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
 
-    state->ScanPatronCard(ScannerTestData::PATRON_JOE_CARD);
+    state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 }
 
 TEST_F(ScannerStateCheckoutTest, DisplaysWarningWhenInventoryCardScanned)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
 
-    state->ScanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
+    state->scanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
 }
 
 TEST_F(ScannerStateCheckoutTest, ChecksOutHoldingWhenHoldingBarcodeScanned)
 {
-    scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
-    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
-    EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(true));
-    EXPECT_CALL(*HoldingService(), 
+    scanner->setPatronId(ScannerTestData::PATRON_JANE_CARD);
+    EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(true));
+    EXPECT_CALL(*holdingService(), isAvailable(_)).WillOnce(Return(true));
+    EXPECT_CALL(*holdingService(), 
         checkOut(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_CATCH22_BARCODE, TimestampSource::Now()));
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
 
-    state->ScanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
 }
 
 TEST_F(ScannerStateCheckoutTest, DisplayMessageWhenHoldingDoesNotExist)
 {
-    scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
-    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(false));
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID));
+    scanner->setPatronId(ScannerTestData::PATRON_JANE_CARD);
+    EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(false));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID));
 
-    state->ScanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
 }
 
 TEST_F(ScannerStateCheckoutTest, ChangesStateToCheckinWhenDonePressed)
 {
-    state->PressDone();
+    state->pressDone();
     
     ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
 }
 
 TEST_F(ScannerStateCheckoutTest, DisplaysMessageWhenBranchIdScanned)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST));
 
-    state->ScanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
+    state->scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
 }
 
 TEST_F(ScannerStateCheckoutTest, DisplaysMessageWhenSameHoldingScannedTwice)
 {
     InSequence forcesExpectationOrder;
-    scanner->SetPatronId(ScannerTestData::PATRON_JANE_CARD);
-    Checkout(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE);
+    scanner->setPatronId(ScannerTestData::PATRON_JANE_CARD);
+    checkout(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE);
 
-    EXPECT_CALL(*HoldingService(), existsWithBarcode(_)).WillOnce(Return(true));
-    EXPECT_CALL(*HoldingService(), isAvailable(_)).WillOnce(Return(false));
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT));
+    EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(true));
+    EXPECT_CALL(*holdingService(), isAvailable(_)).WillOnce(Return(false));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT));
 
-    state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }

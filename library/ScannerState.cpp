@@ -4,32 +4,32 @@
 
 using namespace std;
 
-void ScannerState::ShowMessage(const string& message)
+void ScannerState::showMessage(const string& message)
 {
-    mScanner->ShowMessage(message);
+    mScanner->showMessage(message);
 }
 
-string ScannerState::BranchId() const
+string ScannerState::branchId() const
 {
-    return mScanner->BranchId();
+    return mScanner->branchId();
 }
 
-void ScannerState::SetBranchId(const string& id)
+void ScannerState::setBranchId(const string& id)
 {
-    mScanner->SetBranchId(id);
+    mScanner->setBranchId(id);
 }
 
-string ScannerState::PatronId() const
+string ScannerState::patronId() const
 {
-    return mScanner->PatronId();
+    return mScanner->patronId();
 }
 
-void ScannerState::SetPatronId(const string& id)
+void ScannerState::setPatronId(const string& id)
 {
-    mScanner->SetPatronId(id);
+    mScanner->setPatronId(id);
 }
 
-service::HoldingService* ScannerState::HoldingService() const
+service::HoldingService* ScannerState::holdingService() const
 {
-    return mScanner->HoldingService();
+    return mScanner->holdingService();
 }

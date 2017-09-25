@@ -13,11 +13,11 @@ public:
     ScannerStateCheckout(Scanner*);
     ~ScannerStateCheckout(void);
 
-    virtual void ScanHolding(const std::string& barcode);
-    virtual void ScanBranchCard(const std::string& barcode);
-    virtual void ScanInventoryCard(const std::string& barcode);
-    virtual void ScanPatronCard(const std::string& barcode);
-    virtual void PressDone();
+    virtual void scanHolding(const std::string& barcode);
+    virtual void scanBranchCard(const std::string& barcode);
+    virtual void scanInventoryCard(const std::string& barcode);
+    virtual void scanPatronCard(const std::string& barcode);
+    virtual void pressDone();
     
     static const std::string MSG_COMPLETE_CHECKOUT_FIRST;
     static const std::string MSG_SCANNED_HOLDING;

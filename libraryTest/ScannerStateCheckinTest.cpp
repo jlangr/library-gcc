@@ -24,7 +24,7 @@ public:
 
     virtual void SetUp() {
         state = new ScannerStateCheckin(scanner);
-        scanner->SetCurrentState(state);
+        scanner->setCurrentState(state);
     }
 
     virtual void TearDown() {
@@ -33,46 +33,46 @@ public:
 
 TEST_F(ScannerStateCheckinTest, DisplaysWarningMessageWhenCompletePressed)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateCheckin::MSG_WAITING_FOR_RETURNS));
+    EXPECT_CALL(*display, showMessage(ScannerStateCheckin::MSG_WAITING_FOR_RETURNS));
 
-    state->PressDone();
+    state->pressDone();
 }
 
 TEST_F(ScannerStateCheckinTest, ChangesStateToInventoryWhenInventoryCardScanned)
 {
-    state->ScanInventoryCard("");
+    state->scanInventoryCard("");
 
     ASSERT_CURRENT_STATE<ScannerStateInventory>(scanner);
 }
 
 TEST_F(ScannerStateCheckinTest, ChangesStateToCheckoutWhenPatronCardScanned)
 {
-    state->ScanPatronCard(ScannerTestData::PATRON_JOE_CARD);
+    state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 
     ASSERT_CURRENT_STATE<ScannerStateCheckout>(scanner);
 }
 
 TEST_F(ScannerStateCheckinTest, StoresPatronIdWhenScanned)
 {
-    state->ScanPatronCard(ScannerTestData::PATRON_JOE_CARD);
+    state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 
-    ASSERT_THAT(scanner->PatronId(), Eq(ScannerTestData::PATRON_JOE_CARD));
+    ASSERT_THAT(scanner->patronId(), Eq(ScannerTestData::PATRON_JOE_CARD));
 }
 
 TEST_F(ScannerStateCheckinTest, ChangesBranchWhenBranchIdScanned)
 {
-    scanner->SetBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
+    scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
 
-    state->ScanBranchCard(ScannerTestData::BRANCH_WEST_CARD);
+    state->scanBranchCard(ScannerTestData::BRANCH_WEST_CARD);
 
-    ASSERT_THAT(scanner->BranchId(), Eq(ScannerTestData::BRANCH_WEST_CARD));
+    ASSERT_THAT(scanner->branchId(), Eq(ScannerTestData::BRANCH_WEST_CARD));
 }
 
 TEST_F(ScannerStateCheckinTest, ChecksInBookWhenBarcodeScanned)
 {
-    scanner->SetBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
-    EXPECT_CALL(*HoldingService(), 
+    scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
+    EXPECT_CALL(*holdingService(), 
         checkIn(Eq(ScannerTestData::HOLDING_CATCH22_BARCODE), TimestampSource::Now(), ScannerTestData::BRANCH_SOUTH_CARD));
 
-    state->ScanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
 }

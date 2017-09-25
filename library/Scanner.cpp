@@ -20,7 +20,7 @@ Scanner::Scanner(DisplayListener* display, service::HoldingService* holdingServi
     , mPatronId("")
     , mHoldingService(holdingService)
 {
-    SetCurrentState(new ScannerStateWaiting(this));
+    setCurrentState(new ScannerStateWaiting(this));
 }
 
 Scanner::~Scanner()
@@ -31,7 +31,7 @@ Scanner::~Scanner()
     }
 }
 
-void Scanner::SetCurrentState(ScannerState* state)
+void Scanner::setCurrentState(ScannerState* state)
 {
     if (mCurrentState)
     {
@@ -40,56 +40,56 @@ void Scanner::SetCurrentState(ScannerState* state)
     mCurrentState = state;
 }
 
-ScannerState* Scanner::CurrentState()
+ScannerState* Scanner::currentState()
 {
     return mCurrentState;
 }
 
-void Scanner::Scan(const std::string& barcode) 
+void Scanner::scan(const std::string& barcode) 
 {
     if (barcode == INVENTORY_CARD_NUMBER)
-        CurrentState()->ScanInventoryCard(INVENTORY_CARD_NUMBER);
+        currentState()->scanInventoryCard(INVENTORY_CARD_NUMBER);
     else if (BarcodeUtil::IsBranchId(barcode))
-        CurrentState()->ScanBranchCard(barcode);
+        currentState()->scanBranchCard(barcode);
     else if (BarcodeUtil::IsPatronId(barcode))
-        CurrentState()->ScanPatronCard(barcode);
+        currentState()->scanPatronCard(barcode);
     else if (BarcodeUtil::IsHoldingBarcode(barcode))
-        CurrentState()->ScanHolding(barcode);
+        currentState()->scanHolding(barcode);
     else
-        ShowMessage(MSG_INVALID_BARCODE);
+        showMessage(MSG_INVALID_BARCODE);
 }
 
-void Scanner::SetBranchId(const string& branchId)
+void Scanner::setBranchId(const string& branchId)
 {
     mBranchId = branchId;
 }
 
-string Scanner::BranchId()
+string Scanner::branchId()
 {
     return mBranchId;
 }
 
-void Scanner::SetPatronId(const string& patronId)
+void Scanner::setPatronId(const string& patronId)
 {
     mPatronId = patronId;
 }
 
-string Scanner::PatronId()
+string Scanner::patronId()
 {
     return mPatronId;
 }
 
-void Scanner::ShowMessage(const std::string& message)
+void Scanner::showMessage(const std::string& message)
 {
-    mDisplay->ShowMessage(message);
+    mDisplay->showMessage(message);
 }
 
-void Scanner::PressDone() 
+void Scanner::pressDone() 
 {
-    CurrentState()->PressDone();
+    currentState()->pressDone();
 }
 
-service::HoldingService* Scanner::HoldingService()
+service::HoldingService* Scanner::holdingService()
 {
     return mHoldingService;
 }

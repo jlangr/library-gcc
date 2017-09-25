@@ -17,33 +17,33 @@ ScannerStateWaiting::~ScannerStateWaiting(void)
 {
 }
 
-void ScannerStateWaiting::ScanBranchCard(const string& branchId) 
+void ScannerStateWaiting::scanBranchCard(const string& branchId) 
 {
-    SetState<ScannerStateCheckin>();
-    SetBranchId(branchId);
+    setState<ScannerStateCheckin>();
+    setBranchId(branchId);
 }
 
-void ScannerStateWaiting::ScanHolding(const string&)
+void ScannerStateWaiting::scanHolding(const string&)
 {
-    ShowInvalidOperationMessage();
+    showInvalidOperationMessage();
 }
 
-void ScannerStateWaiting::ScanPatronCard(const string&)
+void ScannerStateWaiting::scanPatronCard(const string&)
 {
-    ShowInvalidOperationMessage();
+    showInvalidOperationMessage();
 }
 
-void ScannerStateWaiting::ScanInventoryCard(const string&)
+void ScannerStateWaiting::scanInventoryCard(const string&)
 {
-    ShowInvalidOperationMessage();
+    showInvalidOperationMessage();
 }
 
-void ScannerStateWaiting::PressDone() 
+void ScannerStateWaiting::pressDone() 
 {
-    ShowInvalidOperationMessage();
+    showInvalidOperationMessage();
 }
 
-void ScannerStateWaiting::ShowInvalidOperationMessage()
+void ScannerStateWaiting::showInvalidOperationMessage()
 {
-    ShowMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST);
+    showMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST);
 }

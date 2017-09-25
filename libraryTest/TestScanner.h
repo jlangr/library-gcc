@@ -6,13 +6,14 @@
 #include "ScannerState.h"
 #include "DisplayListener.h"
 #include "Holding.h"
+#include "HoldingService.h"
 
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 #include <string>
 
 class MockDisplayListener: public DisplayListener {
 public:
-    MOCK_METHOD1(ShowMessage, void(const std::string& text));
+    MOCK_METHOD1(showMessage, void(const std::string& text));
 };
 
 class MockHoldingService: public service::HoldingService
@@ -33,22 +34,22 @@ class TestScanner
 public:
     Scanner* scanner;
     MockDisplayListener* display;
-    MockHoldingService* holdingService;
+    MockHoldingService* _holdingService;
 
     TestScanner() {
         display = new MockDisplayListener;
-        holdingService = new MockHoldingService;
-        scanner = new Scanner(display, holdingService);
+        _holdingService = new MockHoldingService;
+        scanner = new Scanner(display, _holdingService);
     }
 
     virtual ~TestScanner() {
         delete scanner;
-        delete holdingService;
+        delete _holdingService;
         delete display;
     }
 
-    MockHoldingService* HoldingService()
+    MockHoldingService* holdingService()
     {
-         return dynamic_cast<MockHoldingService*>(scanner->HoldingService());
+         return dynamic_cast<MockHoldingService*>(scanner->holdingService());
     }
 };

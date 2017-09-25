@@ -17,19 +17,19 @@ public:
     Scanner(DisplayListener*, service::HoldingService*);
     virtual ~Scanner();
 
-	void Scan(const std::string& barcode);
-	void PressDone();
+	void scan(const std::string& barcode);
+	void pressDone();
 
-    void ShowMessage(const std::string& message);
-    ScannerState* CurrentState();
-    void SetCurrentState(ScannerState* state);
+    void showMessage(const std::string& message);
+    ScannerState* currentState();
+    void setCurrentState(ScannerState* state);
 
-    std::string BranchId();
-    void SetBranchId(const std::string&);
-    std::string PatronId();
-    void SetPatronId(const std::string&);
+    std::string branchId();
+    void setBranchId(const std::string&);
+    std::string patronId();
+    void setPatronId(const std::string&);
 
-    service::HoldingService* HoldingService();
+    service::HoldingService* holdingService();
 
 private:
     DisplayListener* mDisplay;

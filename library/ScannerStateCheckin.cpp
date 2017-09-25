@@ -23,28 +23,28 @@ ScannerStateCheckin::~ScannerStateCheckin(void)
 {
 }
 
-void ScannerStateCheckin::PressDone()
+void ScannerStateCheckin::pressDone()
 {
-    ShowMessage(ScannerStateCheckin::MSG_WAITING_FOR_RETURNS);
+    showMessage(ScannerStateCheckin::MSG_WAITING_FOR_RETURNS);
 }
 
-void ScannerStateCheckin::ScanHolding(const string& barcode)
+void ScannerStateCheckin::scanHolding(const string& barcode)
 {
-    HoldingService()->checkIn(barcode, TimestampSource::Now(), BranchId());
+    holdingService()->checkIn(barcode, TimestampSource::Now(), branchId());
 }
 
-void ScannerStateCheckin::ScanBranchCard(const string& branchId)
+void ScannerStateCheckin::scanBranchCard(const string& branchId)
 {
-    SetBranchId(branchId);
+    setBranchId(branchId);
 }
 
-void ScannerStateCheckin::ScanPatronCard(const string& patronId)
+void ScannerStateCheckin::scanPatronCard(const string& patronId)
 {
-    SetPatronId(patronId);
-    SetState<ScannerStateCheckout>();
+    setPatronId(patronId);
+    setState<ScannerStateCheckout>();
 }
 
-void ScannerStateCheckin::ScanInventoryCard(const string&)
+void ScannerStateCheckin::scanInventoryCard(const string&)
 {
-    SetState<ScannerStateInventory>();
+    setState<ScannerStateInventory>();
 }

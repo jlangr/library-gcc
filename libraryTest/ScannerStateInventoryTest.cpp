@@ -20,7 +20,7 @@ public:
 
     virtual void SetUp() {
         state = new ScannerStateInventory(scanner);
-        scanner->SetCurrentState(state);
+        scanner->setCurrentState(state);
     }
 
     virtual void TearDown() {
@@ -29,42 +29,42 @@ public:
 
 TEST_F(ScannerStateInventoryTest, DisplaysWarningMessageWhenInventoryCardScanned)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
+    EXPECT_CALL(*display, showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
 
-    state->ScanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
+    state->scanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
 }
 
 TEST_F(ScannerStateInventoryTest, ChangesBranchWhenBranchIdScanned)
 {
     stringstream expected;
     expected << ScannerStateInventory::MSG_BRANCH_CHANGED << ScannerTestData::BRANCH_SOUTH_CARD;
-    EXPECT_CALL(*display, ShowMessage(expected.str()));
-    ASSERT_THAT(scanner->BranchId(), Ne(ScannerTestData::BRANCH_SOUTH_CARD));
+    EXPECT_CALL(*display, showMessage(expected.str()));
+    ASSERT_THAT(scanner->branchId(), Ne(ScannerTestData::BRANCH_SOUTH_CARD));
 
-    state->ScanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
+    state->scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
 
-    ASSERT_THAT(scanner->BranchId(), Eq(ScannerTestData::BRANCH_SOUTH_CARD));
+    ASSERT_THAT(scanner->branchId(), Eq(ScannerTestData::BRANCH_SOUTH_CARD));
 }
 
 TEST_F(ScannerStateInventoryTest, AddsNewHoldingWhenHoldingScanned) 
 {
-    scanner->SetBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
-    EXPECT_CALL(*display, ShowMessage(_));
-    EXPECT_CALL(*HoldingService(),
+    scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
+    EXPECT_CALL(*display, showMessage(_));
+    EXPECT_CALL(*holdingService(),
         addAtBranch(ScannerTestData::BRANCH_SOUTH_CARD, ScannerTestData::HOLDING_TRIAL_BARCODE));
 
-    state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }
 
 TEST_F(ScannerStateInventoryTest, DisplaysHoldingAddedMessageWhenHoldingScanned) 
 {
-    scanner->SetBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
+    scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     
     EXPECT_CALL(*display, 
-        ShowMessage(ScannerStateInventory::MSG_HOLDING_ADDED + ScannerTestData::HOLDING_TRIAL_BARCODE));
-    EXPECT_CALL(*HoldingService(), addAtBranch(_, _));
+        showMessage(ScannerStateInventory::MSG_HOLDING_ADDED + ScannerTestData::HOLDING_TRIAL_BARCODE));
+    EXPECT_CALL(*holdingService(), addAtBranch(_, _));
 
-    state->ScanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
+    state->scanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }
 
 TEST_F(ScannerStateInventoryTest, DisplaysErrorWhenDuplicateHoldingScanned)
@@ -75,14 +75,14 @@ TEST_F(ScannerStateInventoryTest, DisplaysErrorWhenDuplicateHoldingScanned)
 
 TEST_F(ScannerStateInventoryTest, DisplayMessageWhenPatronScanned)
 {
-    EXPECT_CALL(*display, ShowMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
+    EXPECT_CALL(*display, showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
 
-    state->ScanPatronCard(ScannerTestData::PATRON_JANE_CARD);
+    state->scanPatronCard(ScannerTestData::PATRON_JANE_CARD);
 }
 
 TEST_F(ScannerStateInventoryTest, ChangesStateToCheckinWhenDonePressed)
 {
-    state->PressDone();
+    state->pressDone();
     
     ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
 }

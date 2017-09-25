@@ -13,7 +13,7 @@ public:
     NCC1701ADisplay() {}
     virtual ~NCC1701ADisplay() {}
 
-    virtual void ShowMessage(const std::string& text)
+    virtual void showMessage(const std::string& text)
     {
     }
 };

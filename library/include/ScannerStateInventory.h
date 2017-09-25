@@ -13,11 +13,11 @@ public:
     ScannerStateInventory(Scanner*);
     ~ScannerStateInventory(void);
 
-    void ScanHolding(const std::string&);
-    void ScanPatronCard(const std::string&);
-    void ScanInventoryCard(const std::string&);
-    void ScanBranchCard(const std::string&);
-    void PressDone();
+    void scanHolding(const std::string&);
+    void scanPatronCard(const std::string&);
+    void scanInventoryCard(const std::string&);
+    void scanBranchCard(const std::string&);
+    void pressDone();
 
     static const std::string MSG_COMPLETE_INVENTORY;
     static const std::string MSG_BRANCH_CHANGED;

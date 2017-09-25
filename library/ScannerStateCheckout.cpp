@@ -22,40 +22,40 @@ ScannerStateCheckout::~ScannerStateCheckout(void)
 {
 }
 
-void ScannerStateCheckout::PressDone()
+void ScannerStateCheckout::pressDone()
 {
-    SetState<ScannerStateCheckin>();
+    setState<ScannerStateCheckin>();
 }
 
-void ScannerStateCheckout::ScanHolding(const string& barcode)
+void ScannerStateCheckout::scanHolding(const string& barcode)
 {
-    if (!HoldingService()->existsWithBarcode(barcode))
+    if (!holdingService()->existsWithBarcode(barcode))
     {
-        ShowMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID);
+        showMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID);
         return;
     }
 
-    if (!HoldingService()->isAvailable(barcode))
+    if (!holdingService()->isAvailable(barcode))
     {
-        ShowMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT);
+        showMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT);
         return;
     }
 
-    HoldingService()->checkOut(PatronId(), barcode, TimestampSource::Now());
-    ShowMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING);
+    holdingService()->checkOut(patronId(), barcode, TimestampSource::Now());
+    showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING);
 }
 
-void ScannerStateCheckout::ScanBranchCard(const string& barcode)
+void ScannerStateCheckout::scanBranchCard(const string& barcode)
 {    
-    ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
+    showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }
 
-void ScannerStateCheckout::ScanPatronCard(const string& patronId)
+void ScannerStateCheckout::scanPatronCard(const string& patronId)
 {
-    ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
+    showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }
 
-void ScannerStateCheckout::ScanInventoryCard(const string&)
+void ScannerStateCheckout::scanInventoryCard(const string&)
 {
-    ShowMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
+    showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }
