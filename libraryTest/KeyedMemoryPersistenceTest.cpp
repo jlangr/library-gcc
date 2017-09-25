@@ -23,10 +23,10 @@ TEST_F(KeyedMemoryPersistenceTest, IsPersistent) // note TEST_F, not TEST_P
     TestSerializable object("A", "1");
 
     KeyedMemoryPersistence<TestSerializable> firstPersister("");
-    firstPersister.Add(object);
+    firstPersister.add(object);
 
     KeyedMemoryPersistence<TestSerializable> secondPersister("");
-    std::unique_ptr<TestSerializable> retrieved = secondPersister.Get("1");
+    std::unique_ptr<TestSerializable> retrieved = secondPersister.get("1");
 
     ASSERT_THAT(*retrieved, Eq(object));
 };

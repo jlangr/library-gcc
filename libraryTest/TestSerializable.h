@@ -25,29 +25,29 @@ public:
     {
     }
 
-    std::string Name() 
+    std::string name() 
     { 
         return mName; 
     }
 
-    virtual std::string Id() const 
+    virtual std::string id() const 
     { 
         return mId; 
     }
     
-    virtual void Load(std::istream& input)
+    virtual void load(std::istream& input)
     {
         StreamLineReader reader(&input);
-        reader.Read(mName);
-        reader.Read(mId);
+        reader.read(mName);
+        reader.read(mId);
     }
 
-    virtual TestSerializable* Clone() const
+    virtual TestSerializable* clone() const
     {
         return new TestSerializable(mName, mId);
     }
 
-    virtual void WriteOn(std::ostream& output)
+    virtual void writeOn(std::ostream& output)
     {
         output << mName << std::endl << mId << std::endl;
     }

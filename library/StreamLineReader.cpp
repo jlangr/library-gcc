@@ -16,12 +16,12 @@ StreamLineReader::~StreamLineReader(void)
 {
 }
 
-void StreamLineReader::Read(string& stringMember)
+void StreamLineReader::read(string& stringMember)
 {
     getline(*mInput, stringMember);
 }
 
-void StreamLineReader::Read(unsigned int& intMember)
+void StreamLineReader::read(unsigned int& intMember)
 {
     string text;
     getline(*mInput, text);

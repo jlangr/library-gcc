@@ -7,10 +7,10 @@
 class Serializable
 {
 public:
-    virtual void Load(std::istream& input)=0;
-    virtual void WriteOn(std::ostream& output)=0;
-    virtual std::string Id() const=0;
-    virtual Serializable* Clone() const=0;
+    virtual void load(std::istream& input)=0;
+    virtual void writeOn(std::ostream& output)=0;
+    virtual std::string id() const=0;
+    virtual Serializable* clone() const=0;
 };
 
 #endif

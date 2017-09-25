@@ -16,34 +16,34 @@ public:
     KeyedMemoryPersistence(const std::string& table) : Persistence<T>(table) {}
     ~KeyedMemoryPersistence(void) {}
 
-    static void ClearAll()
+    static void clearAll()
     {
         mData.clear();
     }    
     
-    virtual void Clear()
+    virtual void clear()
     {
-        KeyedMemoryPersistence::ClearAll();
+        KeyedMemoryPersistence::clearAll();
     }
 
-    unsigned int Size() const 
+    unsigned int size() const 
     { 
         return mData.size(); 
     }
 
-    virtual void Add(const T& object) 
+    virtual void add(const T& object) 
     { 
-        mData[object.Id()] = object.Clone();
+        mData[object.id()] = object.clone();
         // TODO need a Remove (that also does a delete on this object);
     }
 
-    std::unique_ptr<T> Get(const std::string& id) const
+    std::unique_ptr<T> get(const std::string& id) const
     {
         std::map<std::string,Serializable*>::const_iterator it = mData.find(id);
         if (it == mData.end())
             return std::unique_ptr<T>(nullptr);
         T* existing = static_cast<T*>(it->second);
-        T* copy = existing->Clone();
+        T* copy = existing->clone();
         return std::unique_ptr<T>(copy);
     }
 
@@ -51,7 +51,7 @@ public:
     // TODO: can we use find_if?
     //DataIterator it = std::find_if(mData.begin(), mData.end(), std::bind2nd(f, value));
 
-    virtual bool Matches(MatcherFunction matches, const std::string& name) const
+    virtual bool matches(MatcherFunction matches, const std::string& name) const
     {
         for (std::map<std::string,Serializable*>::const_iterator it = mData.begin();
             it != mData.end();
@@ -64,7 +64,7 @@ public:
         return false;
     }
 
-    virtual void FindAllMatching(MatcherFunction matches, const std::string& name, std::vector<Serializable*>& matchesToPopulate) const
+    virtual void findAllMatching(MatcherFunction matches, const std::string& name, std::vector<Serializable*>& matchesToPopulate) const
     {
         for (std::map<std::string,Serializable*>::const_iterator it = mData.begin();
             it != mData.end();

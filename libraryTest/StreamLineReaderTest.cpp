@@ -22,7 +22,7 @@ public:
     }
 
     template <typename T>
-    unique_ptr<istream> CreateInputStream(T text)
+    unique_ptr<istream> createInputStream(T text)
     {
         ostringstream output;
         output << text << endl;
@@ -34,33 +34,33 @@ public:
 
 TEST_F(StreamLineReaderTest, CanReadLineOfText)
 {
-    auto input = CreateInputStream<const string&>("hello");
+    auto input = createInputStream<const string&>("hello");
     StreamLineReader reader(input.get());
     string text;
 
-    reader.Read(text);
+    reader.read(text);
 
     ASSERT_THAT(text, Eq("hello"));
 }
 
 TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)
 {
-    auto input = CreateInputStream<unsigned int>(42);
+    auto input = createInputStream<unsigned int>(42);
     StreamLineReader reader(input.get());
     unsigned int number;
 
-    reader.Read(number);
+    reader.read(number);
 
     ASSERT_THAT(number, Eq(42));
 }
 
 TEST_F(StreamLineReaderTest, SetsUnsignedIntToZeroOnConvertFail)
 {
-    auto input = CreateInputStream<const string&>("dsadf");
+    auto input = createInputStream<const string&>("dsadf");
     StreamLineReader reader(input.get());
     unsigned int number;
 
-    reader.Read(number);
+    reader.read(number);
 
     ASSERT_THAT(number, Eq(0));
 }

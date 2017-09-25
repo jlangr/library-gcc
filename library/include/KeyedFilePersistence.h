@@ -21,30 +21,30 @@ public:
     {
     }
 
-    unsigned int Size() const 
+    unsigned int size() const 
     { 
         return 0; 
     }
 
-    virtual void Clear()
+    virtual void clear()
     {
     }
 
-    void Add(const T& object) 
+    void add(const T& object) 
     { 
     }
 
-    std::unique_ptr<T> Get(const std::string& id) const
+    std::unique_ptr<T> get(const std::string& id) const
     {
         return std::unique_ptr<T>(nullptr);
     }
 
-    virtual bool Matches(MatcherFunction matches, const std::string& name) const
+    virtual bool matches(MatcherFunction matches, const std::string& name) const
     {
         return false;
     }
 
-    virtual void FindAllMatching(MatcherFunction matches, const std::string& name, std::vector<Serializable*>& matchesToPopulate) const
+    virtual void findAllMatching(MatcherFunction matches, const std::string& name, std::vector<Serializable*>& matchesToPopulate) const
     {
     }
 

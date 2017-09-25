@@ -17,12 +17,12 @@ public:
     {
     }
 
-    virtual void WriteAll(std::vector<T>& objects)
+    virtual void writeAll(std::vector<T>& objects)
     {
         // TODO: introduce raii-writer to ensure file close
         std::ofstream output(mFilename.c_str());
         for (auto it = objects.begin(); it != objects.end(); it++)
-            it->WriteOn(output);
+            it->writeOn(output);
         output.flush();
         output.close();
     }

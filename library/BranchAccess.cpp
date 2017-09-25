@@ -39,12 +39,12 @@ bool matchBranchByName(Serializable& each, const string& name)
 
 bool BranchAccess::existsWithName(const string& name) const
 {
-    return mPersister->Matches(matchBranchByName, name);
+    return mPersister->matches(matchBranchByName, name);
 }
 
 bool BranchAccess::find(Branch& branch) const
 {
-    unique_ptr<Branch> retrieved = mPersister->Get(branch.Id());
+    unique_ptr<Branch> retrieved = mPersister->get(branch.id());
     if (retrieved.get() == NULL)
     {
         return false;
@@ -55,15 +55,15 @@ bool BranchAccess::find(Branch& branch) const
 
 int BranchAccess::size() const
 {
-    return mPersister->Size();
+    return mPersister->size();
 }
 
 void BranchAccess::save(const Branch& branch)
 {
-    mPersister->Add(branch);
+    mPersister->add(branch);
 }
 
 void BranchAccess::deleteAll()
 {
-    mPersister->Clear();
+    mPersister->clear();
 }

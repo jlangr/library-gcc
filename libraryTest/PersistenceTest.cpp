@@ -11,27 +11,27 @@ using namespace testing;
 
 TEST_P(PersistenceTest, IsEmptyOnCreation)
 {
-    ASSERT_THAT(persister->Size(), Eq(0));
+    ASSERT_THAT(persister->size(), Eq(0));
 }
 
 TEST_P(PersistenceTest, SizeSetToOneOnFirstAdd)
 {
-    persister->Add(*objectWithId1);
+    persister->add(*objectWithId1);
 
-    ASSERT_THAT(persister->Size(), Eq(1));
+    ASSERT_THAT(persister->size(), Eq(1));
 }
 
 TEST_P(PersistenceTest, SizeIncrementsWithEachAdd)
 {
-    persister->Add(*objectWithId1);
-    persister->Add(*objectWithId2);
+    persister->add(*objectWithId1);
+    persister->add(*objectWithId2);
 
-    ASSERT_THAT(persister->Size(), Eq(2));
+    ASSERT_THAT(persister->size(), Eq(2));
 }
 
 TEST_P(PersistenceTest, ReturnsNullPointerWhenItemNotFound)
 {
-    auto found{persister->Get("1")};
+    auto found{persister->get("1")};
 
     TestSerializable* serializable = found.get();
 
@@ -40,51 +40,51 @@ TEST_P(PersistenceTest, ReturnsNullPointerWhenItemNotFound)
 
 TEST_P(PersistenceTest, AddedItemCanBeRetrievedById)
 {
-    persister->Add(*objectWithId1);
+    persister->add(*objectWithId1);
 
-    ASSERT_THAT(*persister->Get("1"), Eq(*objectWithId1));
+    ASSERT_THAT(*persister->get("1"), Eq(*objectWithId1));
 }
 
 TEST_P(PersistenceTest, GetAnswersNullWhenNoMatchingEntries)
 {
-    ASSERT_THAT(persister->Get("1").get(), IsNull());
+    ASSERT_THAT(persister->get("1").get(), IsNull());
 };
 
 TEST_P(PersistenceTest, RetrievedItemIsNewInstance)
 {
-    persister->Add(*objectWithId1);
+    persister->add(*objectWithId1);
 
-    ASSERT_THAT(objectWithId1 == persister->Get("1").get(), Eq(false));
+    ASSERT_THAT(objectWithId1 == persister->get("1").get(), Eq(false));
 }
 
 TEST_P(PersistenceTest, CanPersistMultipleObjects)
 {
-    persister->Add(*objectWithId1);
-    persister->Add(*objectWithId2);
+    persister->add(*objectWithId1);
+    persister->add(*objectWithId2);
 
-    ASSERT_THAT(*(persister->Get("1")), Eq(*objectWithId1));
-    ASSERT_THAT(*(persister->Get("2")), Eq(*objectWithId2));
+    ASSERT_THAT(*(persister->get("1")), Eq(*objectWithId1));
+    ASSERT_THAT(*(persister->get("2")), Eq(*objectWithId2));
 }
 
 bool NameMatcher(Serializable& each, const string& name)
 {
-    return (dynamic_cast<TestSerializable&>(each)).Name() == name;
+    return (dynamic_cast<TestSerializable&>(each)).name() == name;
 }
 
 TEST_P(PersistenceTest, MatchesAnswersTrueWithMatchingEntries)
 {
-    persister->Add(*objectWithId1);
-    persister->Add(*objectWithId2);
-    string object1Name = objectWithId1->Name();
+    persister->add(*objectWithId1);
+    persister->add(*objectWithId2);
+    string object1Name = objectWithId1->name();
 
-    bool exists = persister->Matches(NameMatcher, object1Name);
+    bool exists = persister->matches(NameMatcher, object1Name);
 
     ASSERT_THAT(exists, Eq(true));
 };
 
 TEST_P(PersistenceTest, MatchesAnswersFalseWhenNoMatchingEntries)
 {
-    bool exists = persister->Matches(NameMatcher, "don't match anything");
+    bool exists = persister->matches(NameMatcher, "don't match anything");
 
     ASSERT_THAT(exists, Eq(false));
 };
@@ -94,12 +94,12 @@ TEST_P(PersistenceTest, FindAllMatching)
     TestSerializable coolidge("Calvin", "1");
     TestSerializable langr("Jeff", "2");
     TestSerializable lynne("Jeff", "3");
-    persister->Add(coolidge);
-    persister->Add(langr);
-    persister->Add(lynne);
+    persister->add(coolidge);
+    persister->add(langr);
+    persister->add(lynne);
 
     vector<Serializable*> matches;
-    persister->FindAllMatching(NameMatcher, "Jeff", matches);
+    persister->findAllMatching(NameMatcher, "Jeff", matches);
 
     ASSERT_THAT(matches.size(), Eq(2));
 };

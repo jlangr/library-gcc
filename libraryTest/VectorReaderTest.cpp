@@ -9,22 +9,17 @@
 using namespace std;
 using namespace testing;
 
-class VectorReaderTest : public Test
-{
-public:
-};
-
-TEST_F(VectorReaderTest, CanRead)
+TEST(VectorReaderTest, CanRead)
 {
     vector<TestSerializable> objects =
       { TestSerializable("a", "10"),
         TestSerializable("b", "42") };
 
     VectorWriter<TestSerializable> writer("test.dat");
-    writer.WriteAll(objects);
+    writer.writeAll(objects);
 
     VectorReader<TestSerializable> reader("test.dat");
-    vector<TestSerializable> loadedObjects = reader.Load();
+    vector<TestSerializable> loadedObjects = reader.load();
 
     ASSERT_THAT(loadedObjects, Eq(objects));
 }

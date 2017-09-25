@@ -13,7 +13,7 @@ TEST(BranchTest, CreateInitializesMembers)
     Branch branch("5", "south");
 
     ASSERT_THAT(branch.name(), Eq("south"));
-    ASSERT_THAT(branch.Id(), Eq("5"));
+    ASSERT_THAT(branch.id(), Eq("5"));
 }
 
 TEST(BranchTest, CloneCopiesAllMembers)
@@ -21,9 +21,9 @@ TEST(BranchTest, CloneCopiesAllMembers)
     Branch branch("17", "north");
     branch.setAddress("123 B Street");
 
-    unique_ptr<Branch>clone(branch.Clone());
+    unique_ptr<Branch>clone(branch.clone());
 
-    ASSERT_THAT(clone->Id(), Eq(branch.Id()));
+    ASSERT_THAT(clone->id(), Eq(branch.id()));
     ASSERT_THAT(clone->name(), Eq(branch.name()));
     ASSERT_THAT(clone->address(), Eq(branch.address()));
 }
@@ -56,13 +56,13 @@ TEST(BranchTest, CanLoadFromSerialized)
     Branch branch("20", "xyz");
     branch.setAddress("101 Main St, Laurel, MD");
     unique_ptr<ostringstream> o(new ostringstream(ios::out | ios::binary));
-    branch.WriteOn(*o);
+    branch.writeOn(*o);
     unique_ptr<istream> i(new istringstream(o->str(), ios::in | ios::binary));
 
     Branch loaded;
-    loaded.Load(*i);
+    loaded.load(*i);
 
-    ASSERT_THAT(loaded.Id(), Eq("20"));
+    ASSERT_THAT(loaded.id(), Eq("20"));
     ASSERT_THAT(loaded.name(), Eq("xyz"));
     ASSERT_THAT(loaded.address(), Eq("101 Main St, Laurel, MD"));
 }

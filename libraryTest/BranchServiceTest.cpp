@@ -92,7 +92,7 @@ TEST_F(BranchServiceTest, FindRetrievesById)
 {
     service.add(*eastBranch);
 
-    Branch retrieved(eastBranch->Id(), "");
+    Branch retrieved(eastBranch->id(), "");
     service.find(retrieved);
 
     ASSERT_THAT(retrieved.name(), Eq(eastBranch->name()));

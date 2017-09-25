@@ -18,10 +18,10 @@ public:
 
     static Branch CHECKED_OUT;
 
-    virtual void WriteOn(std::ostream& output);
-    virtual void Load(std::istream& input);
-    virtual Branch* Clone() const;
-    std::string Id() const;
+    virtual void writeOn(std::ostream& output);
+    virtual void load(std::istream& input);
+    virtual Branch* clone() const;
+    std::string id() const;
     std::string name() const;
     // TODO: change to 'changeAddress'
     void setAddress(const std::string&);

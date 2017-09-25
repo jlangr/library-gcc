@@ -19,7 +19,7 @@ public:
     {    
     }
     
-    virtual std::vector<T> Load() const
+    virtual std::vector<T> load() const
     {
         std::ifstream mStream(mName.c_str());
 
@@ -28,14 +28,14 @@ public:
         while (mStream) 
         {
             T object;
-            object.Load(mStream);
-            if (object.Id() != "") objects.push_back(object);
+            object.load(mStream);
+            if (object.id() != "") objects.push_back(object);
         }
         mStream.close();
         return objects;
     }
 
-    std::string Name() const
+    std::string name() const
     { 
         return mName; 
     }

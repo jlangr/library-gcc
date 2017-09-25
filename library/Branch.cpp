@@ -26,22 +26,22 @@ Branch::~Branch()
 {
 }
 
-Branch* Branch::Clone() const
+Branch* Branch::clone() const
 {
     Branch* branch = new Branch(mId, mName);
     branch->setAddress(mAddress);
     return branch;
 }
 
-void Branch::Load(istream& input)
+void Branch::load(istream& input)
 {
     StreamLineReader reader(&input);
-    reader.Read(mId);
-    reader.Read(mName);
-    reader.Read(mAddress);
+    reader.read(mId);
+    reader.read(mName);
+    reader.read(mAddress);
 }
 
-void Branch::WriteOn(ostream& output)
+void Branch::writeOn(ostream& output)
 {
     output
         << mId << endl
@@ -49,7 +49,7 @@ void Branch::WriteOn(ostream& output)
         << mAddress << endl;
 }
 
-std::string Branch::Id() const
+std::string Branch::id() const
 {
     return mId;
 }
