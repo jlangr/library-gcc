@@ -14,19 +14,19 @@ TimestampSource::~TimestampSource(void)
 {
 }
 
-void TimestampSource::ClearQueue()
+void TimestampSource::clearQueue()
 {
     mStoredTimes.clear();
 }
 
-void TimestampSource::QueueNextTime(date& time)
+void TimestampSource::queueNextTime(date& time)
 {
     mStoredTimes.push_back(time);
 }
 
-date TimestampSource::Now()
+date TimestampSource::now()
 {
-    if (IsExhausted())
+    if (isExhausted())
     {
         return date(day_clock::local_day());
     }
@@ -35,7 +35,7 @@ date TimestampSource::Now()
     return firstStored;
 }
 
-bool TimestampSource::IsExhausted()
+bool TimestampSource::isExhausted()
 {
     return mStoredTimes.empty();
 }

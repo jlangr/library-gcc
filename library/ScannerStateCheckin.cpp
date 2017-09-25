@@ -30,7 +30,7 @@ void ScannerStateCheckin::pressDone()
 
 void ScannerStateCheckin::scanHolding(const string& barcode)
 {
-    holdingService()->checkIn(barcode, TimestampSource::Now(), branchId());
+    holdingService()->checkIn(barcode, TimestampSource::now(), branchId());
 }
 
 void ScannerStateCheckin::scanBranchCard(const string& branchId)

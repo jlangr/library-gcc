@@ -41,7 +41,7 @@ void ScannerStateCheckout::scanHolding(const string& barcode)
         return;
     }
 
-    holdingService()->checkOut(patronId(), barcode, TimestampSource::Now());
+    holdingService()->checkOut(patronId(), barcode, TimestampSource::now());
     showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING);
 }
 

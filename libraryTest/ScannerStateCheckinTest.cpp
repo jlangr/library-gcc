@@ -72,7 +72,7 @@ TEST_F(ScannerStateCheckinTest, ChecksInBookWhenBarcodeScanned)
 {
     scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     EXPECT_CALL(*holdingService(), 
-        checkIn(Eq(ScannerTestData::HOLDING_CATCH22_BARCODE), TimestampSource::Now(), ScannerTestData::BRANCH_SOUTH_CARD));
+        checkIn(Eq(ScannerTestData::HOLDING_CATCH22_BARCODE), TimestampSource::now(), ScannerTestData::BRANCH_SOUTH_CARD));
 
     state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
 }

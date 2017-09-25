@@ -14,7 +14,7 @@ public:
 
     virtual void SetUp() 
     {
-        TimestampSource::ClearQueue();
+        TimestampSource::clearQueue();
     }
     virtual void TearDown() {}
 };
@@ -24,48 +24,48 @@ date TimestampSourceTest::GROUNDHOG_DAY(2013, Feb, 2);
 
 TEST_F(TimestampSourceTest, RetrievesSinglePushedTime)
 {
-    TimestampSource::QueueNextTime(NEW_YEARS_DAY);
+    TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
-    ASSERT_THAT(TimestampSource::Now(), Eq(NEW_YEARS_DAY));
+    ASSERT_THAT(TimestampSource::now(), Eq(NEW_YEARS_DAY));
 }
 
 TEST_F(TimestampSourceTest, RetrievesMultiplePushedTimes)
 {
-    TimestampSource::QueueNextTime(NEW_YEARS_DAY);
-    TimestampSource::QueueNextTime(GROUNDHOG_DAY);
+    TimestampSource::queueNextTime(NEW_YEARS_DAY);
+    TimestampSource::queueNextTime(GROUNDHOG_DAY);
 
-    ASSERT_THAT(TimestampSource::Now(), Eq(NEW_YEARS_DAY));
-    ASSERT_THAT(TimestampSource::Now(), Eq(GROUNDHOG_DAY));
+    ASSERT_THAT(TimestampSource::now(), Eq(NEW_YEARS_DAY));
+    ASSERT_THAT(TimestampSource::now(), Eq(GROUNDHOG_DAY));
 }
 
 TEST_F(TimestampSourceTest, IsExhaustedWhenNoTimeQueued)
 {
-    ASSERT_THAT(TimestampSource::IsExhausted(), Eq(true));
+    ASSERT_THAT(TimestampSource::isExhausted(), Eq(true));
 }
 
 TEST_F(TimestampSourceTest, IsNotExhaustedWhenTimeQueued)
 {
-    TimestampSource::QueueNextTime(NEW_YEARS_DAY);
+    TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
-    ASSERT_THAT(TimestampSource::IsExhausted(), Eq(false));
+    ASSERT_THAT(TimestampSource::isExhausted(), Eq(false));
 }
 
 TEST_F(TimestampSourceTest, ClearExhaustsQueue)
 {
-    TimestampSource::QueueNextTime(NEW_YEARS_DAY);
+    TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
-    TimestampSource::ClearQueue();
+    TimestampSource::clearQueue();
 
-    ASSERT_THAT(TimestampSource::IsExhausted(), Eq(true));
+    ASSERT_THAT(TimestampSource::isExhausted(), Eq(true));
 }
 
 TEST_F(TimestampSourceTest, ReturnsCurrentTimeWhenQueueExhausted)
 {    
     date today(day_clock::local_day());
-    TimestampSource::QueueNextTime(GROUNDHOG_DAY);
-    TimestampSource::Now();
+    TimestampSource::queueNextTime(GROUNDHOG_DAY);
+    TimestampSource::now();
 
-    date retrieved = TimestampSource::Now();
+    date retrieved = TimestampSource::now();
 
     ASSERT_THAT(retrieved, Eq(today));
 }

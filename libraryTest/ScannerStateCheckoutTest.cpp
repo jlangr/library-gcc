@@ -30,7 +30,7 @@ public:
         EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(true));
         EXPECT_CALL(*holdingService(), isAvailable(_)).WillOnce(Return(true));
         EXPECT_CALL(*holdingService(), 
-            checkOut(patronCardNumber, holdingBarcode, TimestampSource::Now()));
+            checkOut(patronCardNumber, holdingBarcode, TimestampSource::now()));
         EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
         state->scanHolding(holdingBarcode);
     }
@@ -59,7 +59,7 @@ TEST_F(ScannerStateCheckoutTest, ChecksOutHoldingWhenHoldingBarcodeScanned)
     EXPECT_CALL(*holdingService(), existsWithBarcode(_)).WillOnce(Return(true));
     EXPECT_CALL(*holdingService(), isAvailable(_)).WillOnce(Return(true));
     EXPECT_CALL(*holdingService(), 
-        checkOut(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_CATCH22_BARCODE, TimestampSource::Now()));
+        checkOut(ScannerTestData::PATRON_JANE_CARD, ScannerTestData::HOLDING_CATCH22_BARCODE, TimestampSource::now()));
     EXPECT_CALL(*display, showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING));
 
     state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);

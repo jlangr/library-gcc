@@ -10,10 +10,10 @@ public:
     TimestampSource(void);
     ~TimestampSource(void);
 
-    static void ClearQueue();
-    static void QueueNextTime(boost::gregorian::date&);
-    static boost::gregorian::date Now();
-    static bool IsExhausted();
+    static void clearQueue();
+    static void queueNextTime(boost::gregorian::date&);
+    static boost::gregorian::date now();
+    static bool isExhausted();
 
 private:
     static std::list<boost::gregorian::date> mStoredTimes;
