@@ -1,8 +1,9 @@
 project(library)
-cmake_minimum_required(VERSION 2.7)
+cmake_minimum_required(VERSION 3.7)
 
-include_directories(../boost ./include)
-add_definitions(-std=c++0x)
+include_directories(../boost ./include ../ftplibpp)
+add_definitions(-std=c++11)
+add_definitions(-DNOSSL)
 
 set(sources 
    include/BarcodeUtil.h
@@ -42,4 +43,3 @@ set(sources
 add_library(library ${sources})
 target_link_libraries(library pthread)
 target_link_libraries(library rt)
-

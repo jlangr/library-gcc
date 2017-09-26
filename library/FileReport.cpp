@@ -6,59 +6,36 @@
 #include <vector>
 #include <fstream>
 
+#include "ftplib.h"
+
 using namespace std;
 
 FileReport::FileReport(std::string filename): _filename{filename} {
-    // copy filename from remote server
-//        FTPClient ftp;
-//        FTPClientConfig config;
-//        ftp.configure(config);
-    bool error{false};
-    try {
-//            int reply;
-//            ftp.connect(FtpServer);
-//            reply = ftp.getReplyCode();
-//            cout << "reply code:" << reply << endl;
-//
-//            if (!FTPReply.isPositiveCompletion(reply)) {
-//                ftp.disconnect();
-//                throw runtime_error("FTP server refused connection");
-//            }
-//
-//            ftp.login("ftp", "");
-//
-//            // transfer files
-//            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-//
-//            InputStream inputStream = ftp.retrieveFileStream("robots.txt");
-
-        ofstream localOutputStream{"local.txt", ios::out};
-        std::string content{"123\n123\n3rd\n4th\n"};
-        localOutputStream << content;
-        localOutputStream.close();
-
-//            localOutputStream = new FileOutputStream("local.txt");
-//            IOUtils.copy(inputStream, localOutputStream);
-//            localOutputStream.flush();
-//            IOUtils.closeQuietly(localOutputStream);
-//            IOUtils.closeQuietly(inputStream);
-
-//            ftp.logout();
-    }
-
+    ftpGet();
+    load();
 }
 
-string FileReport::text() {
-    if (!_isLoaded) {
-        load();
+void FileReport::ftpGet() {
+    ftplib ftp;
+    auto connect{ftp.Connect(FtpServer.c_str())};
+    if (!connect) {
+        throw runtime_error("unable to connect to " + FtpServer);
     }
+    auto error{false};
+    auto loginSuccess{ftp.Login("ftp", "")};
+    if (!loginSuccess) {
+        ftp.Quit();
+        throw runtime_error("unable to log in");
+    }
+    ftp.Get("local.txt", "robots.txt", ftplib::transfermode::ascii, 0);
+    ftp.Quit();
+}
+
+string FileReport::text() const {
     return _text;
 }
 
-string FileReport::name() {
-    if (!_isLoaded) {
-        load();
-    }
+string FileReport::name() const {
     return _name;
 }
 
@@ -93,7 +70,7 @@ vector<string> FileReport::load(istream& reader) {
         report.push_back(rest);
         return report;
     } catch (exception& e) {
-        throw runtime_error("unable to load"); // cause?
+        throw runtime_error("unable to load");
     }
 }
 

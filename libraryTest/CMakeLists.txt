@@ -2,8 +2,8 @@ project(libraryTest)
 cmake_minimum_required(VERSION 3.7)
 
 include_directories(../googletest/googlemock/include ../googletest/googletest/include ../boost ../library/include)
-link_directories(../googletest/googlemock ../googletest/googlemock/gtest ../library)
-add_definitions(-std=c++0x)
+link_directories(../googletest/googlemock ../googletest/googlemock/gtest ../library ../ftplibpp)
+add_definitions(-std=c++11)
 
 set(sources 
    main.cpp 
@@ -44,4 +44,5 @@ target_link_libraries(libraryTest gmock)
 target_link_libraries(libraryTest gtest)
 target_link_libraries(libraryTest rt)
 target_link_libraries(libraryTest library)
+target_link_libraries(libraryTest ftp++)
 
