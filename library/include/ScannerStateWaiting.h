@@ -7,8 +7,7 @@
 
 class Scanner;
 
-class ScannerStateWaiting: public ScannerState
-{
+class ScannerStateWaiting: public ScannerState {
 public:
     const static std::string MSG_SCAN_BRANCH_ID_FIRST;
 

@@ -5,8 +5,7 @@
 #include <vector>
 #include "Rental.h"
 
-class Customer
-{
+class Customer {
 public:
 	explicit Customer(const std::string& name);
 	virtual ~Customer();

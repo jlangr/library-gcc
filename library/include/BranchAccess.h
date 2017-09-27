@@ -10,8 +10,7 @@
 
 class Branch;
 
-class BranchAccess
-{
+class BranchAccess {
 public:
     BranchAccess();
     explicit BranchAccess(std::shared_ptr<Persistence<Branch>> persister);

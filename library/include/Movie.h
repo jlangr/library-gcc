@@ -4,8 +4,7 @@
 #include <string>
 #include "PriceCode.h"
 
-class Movie
-{
+class Movie {
 public:
 	explicit Movie(const std::string& title, int priceCode);
 	virtual ~Movie();

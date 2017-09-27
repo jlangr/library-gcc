@@ -6,17 +6,10 @@
 #include "HoldingService.h"
 #include "Scanner.h"
 
-class ScannerState
-{
+class ScannerState {
 public:
-    ScannerState(Scanner* scanner)
-        : mScanner(scanner)
-    {
-    }
-
-    virtual ~ScannerState()
-    {
-    }
+    ScannerState(Scanner* scanner) : mScanner(scanner) {}
+    virtual ~ScannerState() { }
 
     virtual void scanHolding(const std::string& barcode)=0;
     virtual void scanBranchCard(const std::string& barcode)=0;
@@ -39,8 +32,7 @@ private:
 };
 
 template <typename T>
-void ScannerState::setState()
-{
+void ScannerState::setState() {
     mScanner->setCurrentState(new T(mScanner));
 }
 

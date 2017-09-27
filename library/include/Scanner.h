@@ -8,8 +8,7 @@
 class DisplayListener;
 class ScannerState;
 
-class Scanner
-{
+class Scanner {
 public:
     const static std::string INVENTORY_CARD_NUMBER;
     const static std::string MSG_INVALID_BARCODE;

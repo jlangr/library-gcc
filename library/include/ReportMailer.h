@@ -13,15 +13,10 @@
 class ReportMailerException: public std::exception
 {
 public:
-    ReportMailerException(const std::string& message)
-        : mMessage(message)
-    {
-    }
-
+    ReportMailerException(const std::string& message) : mMessage(message) {}
     virtual ~ReportMailerException() {}
 
-    const char* what() const throw()
-    {
+    const char* what() const throw() {
         return mMessage.c_str();
     }
 
@@ -29,40 +24,31 @@ private:
     std::string mMessage;
 };
 
-class ReportMailer
-{
+class ReportMailer {
 public:
     ReportMailer(std::vector<MailDestination> destinations)
-        : mDestinations(destinations)
-    {
-        if (mDestinations.empty())
-        {
+        : mDestinations(destinations) {
+        if (mDestinations.empty()) {
             throw ReportMailerException("destinations required");
         }
         EndpointValidator validator;
         for (std::vector<MailDestination>::iterator it = mDestinations.begin();
             it != mDestinations.end();
-            it++)
-        {
+            it++) {
             MailDestination destination = *it;
             // verify all endpoints
-            if (!validator.isValid(&destination))
-            {
+            if (!validator.isValid(&destination)) {
                 throw ReportMailerException("invalid endpoint");
             }
         }
     }
 
-    virtual ~ReportMailer() 
-    {
-    }
+    virtual ~ReportMailer() {}
 
-    void MailReport(Report* report) 
-    {
+    void MailReport(Report* report) {
         for (std::vector<MailDestination>::iterator it = mDestinations.begin();
             it != mDestinations.end();
-            it++)
-        {
+            it++) {
             MailDestination destination = *it;
             std::string toAddress = destination.address();
             MailMessage message = constructMailMessage(toAddress, report);

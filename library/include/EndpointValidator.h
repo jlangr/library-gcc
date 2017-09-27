@@ -3,12 +3,10 @@
 
 class MailDestination;
 
-class EndpointValidator
-{
+class EndpointValidator {
 public:
     EndpointValidator(void);
     virtual ~EndpointValidator(void);
-
     virtual bool isValid(MailDestination*) const;
 };
 

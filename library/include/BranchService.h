@@ -11,8 +11,7 @@ public:
     ~DuplicateBranchNameException() {};
 };
 
-class BranchService
-{
+class BranchService {
 public:
     BranchService(void);
     virtual ~BranchService(void);

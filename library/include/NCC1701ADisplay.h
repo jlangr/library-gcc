@@ -7,15 +7,12 @@
 
 using namespace std;
 
-class NCC1701ADisplay: public DisplayListener
-{
+class NCC1701ADisplay: public DisplayListener {
 public:
     NCC1701ADisplay() {}
     virtual ~NCC1701ADisplay() {}
 
-    virtual void showMessage(const std::string& text)
-    {
-    }
+    virtual void showMessage(const std::string& text) {}
 };
 
 #endif

@@ -4,8 +4,7 @@
 #include <istream>
 #include <string>
 
-class StreamLineReader
-{
+class StreamLineReader {
 public:
     StreamLineReader(std::istream* input);
     ~StreamLineReader(void);

@@ -3,8 +3,7 @@
 
 #include <exception>
 
-class PatronNotFoundException: public std::exception
-{
+class PatronNotFoundException: public std::exception {
 public:
     PatronNotFoundException(void) {}
     ~PatronNotFoundException() {};

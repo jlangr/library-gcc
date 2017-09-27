@@ -8,8 +8,7 @@
 
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 
-class Holding
-{
+class Holding {
 public:
     Holding();
     explicit Holding(const std::string& barcode);

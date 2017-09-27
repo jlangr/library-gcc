@@ -7,8 +7,7 @@ class Scanner;
 
 #include <string>
 
-class ScannerStateCheckout : public ScannerState
-{
+class ScannerStateCheckout : public ScannerState {
 public:
     ScannerStateCheckout(Scanner*);
     ~ScannerStateCheckout(void);

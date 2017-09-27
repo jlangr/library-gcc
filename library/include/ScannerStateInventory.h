@@ -7,8 +7,7 @@
 
 class Scanner;
 
-class ScannerStateInventory: public ScannerState
-{
+class ScannerStateInventory: public ScannerState {
 public:
     ScannerStateInventory(Scanner*);
     ~ScannerStateInventory(void);

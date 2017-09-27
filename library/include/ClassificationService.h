@@ -6,8 +6,7 @@
 
 #include "Book.h"
 
-class ClassificationService
-{
+class ClassificationService {
 public:
     ClassificationService(void);
     ~ClassificationService(void);
@@ -19,13 +18,9 @@ class ClassificationNotFoundException: public std::exception
 {
 public:
     ClassificationNotFoundException(const std::string& classification) 
-        : mClassification(classification)
-    {
-    }
+        : mClassification(classification) {}
 
-    ~ClassificationNotFoundException() 
-    {
-    }
+    ~ClassificationNotFoundException() {}
 
     // TODO include classification in message
     virtual const char* what() const throw()

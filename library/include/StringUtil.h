@@ -6,8 +6,7 @@
 #include <algorithm>
 #include <cctype>
 
-namespace stringutil
-{
+namespace stringutil {
     // See http://stackoverflow.com/questions/236129/split-a-string-in-c
     inline std::vector<std::string> split(const std::string& text, char sep) {
         std::vector<std::string> tokens;
@@ -21,8 +20,7 @@ namespace stringutil
     }
 
     // See http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
-    inline std::string trim(const std::string &s)
-    {
+    inline std::string trim(const std::string &s) {
         auto isSpace = [](int i){ return std::isspace(i); };
         auto frontOfWhitespace = std::find_if_not(s.begin(), s.end(), isspace);
         return std::string(

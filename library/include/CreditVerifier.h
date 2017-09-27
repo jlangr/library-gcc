@@ -3,8 +3,7 @@
 
 #include <string>
 
-class CreditVerifier
-{
+class CreditVerifier {
 public:
     virtual unsigned int creditScore(const std::string& cardNumber) = 0;
 };

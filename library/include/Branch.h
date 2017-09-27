@@ -9,8 +9,7 @@
 #include <istream>
 #include <iostream>
 
-class Branch : public Serializable
-{
+class Branch : public Serializable {
 public:
     Branch();
     Branch(const std::string& id, const std::string& name = "");

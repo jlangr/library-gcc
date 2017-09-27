@@ -6,8 +6,7 @@
 #include "Scanner.h"
 #include "ScannerState.h"
 
-class ScannerStateCheckin: public ScannerState
-{
+class ScannerStateCheckin: public ScannerState {
 public:
     ScannerStateCheckin(Scanner*);
     virtual ~ScannerStateCheckin(void);

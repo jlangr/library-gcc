@@ -3,8 +3,7 @@
 
 #include "Movie.h"
 
-class Rental
-{
+class Rental {
 public:
 	explicit Rental(const Movie& movie, int daysRented);
 	virtual ~Rental();

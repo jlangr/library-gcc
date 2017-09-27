@@ -4,8 +4,7 @@
 #include <list>
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 
-class TimestampSource
-{
+class TimestampSource {
 public:
     TimestampSource(void);
     ~TimestampSource(void);

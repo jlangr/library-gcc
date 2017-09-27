@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Book
-{
+class Book {
 public:
     Book();
     Book(

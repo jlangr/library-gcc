@@ -4,8 +4,7 @@
 #include <string>
 #include <vector>
 
-class MailMessage
-{
+class MailMessage {
 public:
     MailMessage(const std::string& subject, const std::string& content, const std::string& from);
     ~MailMessage(void);

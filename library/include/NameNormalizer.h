@@ -8,17 +8,12 @@
 
 class InvalidNameException : public std::exception {};
 
-class NormalizedName
-{
+class NormalizedName {
 public:
-    NormalizedName(const std::string& name)
-    {
-    }
-
+    NormalizedName(const std::string& name) {}
     ~NormalizedName() {}
 
-    std::string AsString() const
-    {
+    std::string AsString() const {
         return "wha?";
     }
 };

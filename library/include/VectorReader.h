@@ -7,26 +7,17 @@
 #include <memory>
 
 template <typename T>
-class VectorReader
-{
+class VectorReader {
 public:
-    VectorReader(const std::string& name)
-        : mName(name)
-    {
-    }
-
-    virtual ~VectorReader(void) 
-    {    
-    }
+    VectorReader(const std::string& name) : mName(name) {}
+    virtual ~VectorReader(void) {}
     
-    virtual std::vector<T> load() const
-    {
+    virtual std::vector<T> load() const {
         std::ifstream mStream(mName.c_str());
 
         std::vector<T> objects;
 
-        while (mStream) 
-        {
+        while (mStream) {
             T object;
             object.load(mStream);
             if (object.id() != "") objects.push_back(object);
@@ -35,8 +26,7 @@ public:
         return objects;
     }
 
-    std::string name() const
-    { 
+    std::string name() const { 
         return mName; 
     }
 

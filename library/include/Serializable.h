@@ -4,8 +4,7 @@
 #include <string>
 #include <iostream>
 
-class Serializable
-{
+class Serializable {
 public:
     virtual void load(std::istream& input)=0;
     virtual void writeOn(std::ostream& output)=0;

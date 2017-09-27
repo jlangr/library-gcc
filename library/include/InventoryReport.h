@@ -11,11 +11,9 @@
 #include <exception>
 #include <sstream>
 
-class LibraryOfCongressAPI
-{
+class LibraryOfCongressAPI {
 public:
-    virtual std::string GetISBN(const std::string& classification)
-    {
+    virtual std::string GetISBN(const std::string& classification) {
         throw std::runtime_error(std::string{"connection currently unavailable, please try later"});
     }
 };
@@ -26,13 +24,11 @@ struct Record
         : title(book.title())
         , branch(branchName)
         , author(book.author())
-        , year(book.year())
-    {
+        , year(book.year()) {
         isbn = isbnApi->GetISBN(book.classification());
     }
 
-    bool operator<(const Record& rhs) const
-    {
+    bool operator<(const Record& rhs) const {
         if (author != rhs.author) 
             return author < rhs.author;
         if (year != rhs.year) 
@@ -47,8 +43,7 @@ struct Record
     std::string isbn;
 };
 
-class InventoryReport
-{
+class InventoryReport {
 public:
     static const std::string NEWLINE;
     static const unsigned int SPACING;

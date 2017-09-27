@@ -16,8 +16,7 @@ class Branch;
 class Patron;
 
 namespace service {
-    class HoldingService
-    {
+    class HoldingService {
     public:
         HoldingService();
         virtual ~HoldingService();

@@ -4,33 +4,25 @@
 #include <string>
 #include <sstream>
 
-class HoldingBarcode
-{
+class HoldingBarcode {
 public:
     HoldingBarcode(const std::string& classification, unsigned int copyNumber) 
         : mClassification(classification)
-        , mCopyNumber(copyNumber) 
-    {
-    }
+        , mCopyNumber(copyNumber) {}
     
-    ~HoldingBarcode(void) 
-    {
-    }
+    ~HoldingBarcode(void) {}
 
-    std::string AsString() const
-    {
+    std::string AsString() const {
         std::stringstream buffer;
         buffer << mClassification << ":" << mCopyNumber;
         return buffer.str();
     }
 
-    std::string Classification() const 
-    { 
+    std::string Classification() const { 
         return mClassification; 
     }
     
-    unsigned int CopyNumber() const 
-    { 
+    unsigned int CopyNumber() const { 
         return mCopyNumber; 
     }
 

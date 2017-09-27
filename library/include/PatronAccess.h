@@ -6,8 +6,7 @@
 
 class Patron;
 
-class PatronAccess
-{
+class PatronAccess {
 public:
     PatronAccess();
     virtual ~PatronAccess();

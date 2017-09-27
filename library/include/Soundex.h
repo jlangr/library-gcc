@@ -9,46 +9,39 @@
 
 using namespace std; // tsk tsk
 
-class Soundex
-{
+class Soundex {
 public:
     const static unsigned int MAX_LENGTH;
     const static string SOFT_SOUNDS;
     const static string SOFT_CONSONANTS;
     const static string VOWELS;
 
-    Soundex(void)
-    {
+    Soundex(void) {
         initializeConsonantToDigitTable();
     }
     virtual ~Soundex(void) {}
 
-    string convert(const string& name)
-    {
+    string convert(const string& name) {
         return "";
     }
 
     // +++ do not change any of these helper methods +++
-    char digit(char consonant) const
-    {
+    char digit(char consonant) const {
         map<char, char>::const_iterator it = consonantIndices.find(consonant);
         if (it == consonantIndices.end())
             return '0';
         return it->second;
     }
 
-    bool isSoftSound(char letter) const
-    {
+    bool isSoftSound(char letter) const {
         return SOFT_SOUNDS.find(letter) != string::npos;
     }
 
-    bool isSoftConsonant(char letter) const
-    {
+    bool isSoftConsonant(char letter) const {
         return SOFT_CONSONANTS.find(letter) != string::npos;
     }
 
-    bool isVowel(char letter) const
-    {
+    bool isVowel(char letter) const {
         return VOWELS.find(letter) != string::npos;
     }
     // ^^^ do not change any of the above helper methods ^^^
@@ -57,8 +50,7 @@ public:
 private:
     map<char, char> consonantIndices;
 
-    void initializeConsonantToDigitTable()
-    {
+    void initializeConsonantToDigitTable() {
         consonantIndices['b'] = '1';
         consonantIndices['f'] = '1';
         consonantIndices['p'] = '1';

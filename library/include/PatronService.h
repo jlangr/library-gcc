@@ -7,8 +7,7 @@
 
 class Patron;
 
-class PatronService
-{
+class PatronService {
 public:
     PatronService();
     virtual ~PatronService(void);

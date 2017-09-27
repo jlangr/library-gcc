@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Report
-{
+class Report {
 public:
     virtual ~Report(void) {}
 

@@ -6,16 +6,13 @@
 
 #include <string>
 
-class MailDestinationException: public std::exception
-{
-    const char* what() const throw()
-    {
+class MailDestinationException: public std::exception {
+    const char* what() const throw() {
         return "unable to connect to LDAP server";
     }
 };
 
-class MailDestination
-{
+class MailDestination {
 public:
     MailDestination(const std::string& address);
     ~MailDestination(void);

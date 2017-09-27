@@ -3,8 +3,7 @@
 
 #include "MailMessage.h"
 
-class Transport
-{
+class Transport {
 public:
     Transport(void);
     ~Transport(void);

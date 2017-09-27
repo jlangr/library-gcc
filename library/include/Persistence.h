@@ -11,8 +11,7 @@
 typedef bool(*MatcherFunction)(Serializable&, const std::string&);
 
 template <class T>
-class Persistence
-{
+class Persistence {
 public:
     Persistence(const std::string& table) : mTable(table) {}
     Persistence() : mTable{""} {}

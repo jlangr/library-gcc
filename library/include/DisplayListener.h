@@ -3,8 +3,7 @@
 
 #include <string>
 
-class DisplayListener
-{
+class DisplayListener {
 public:
     virtual void showMessage(const std::string& text)=0;
 };

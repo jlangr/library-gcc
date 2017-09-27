@@ -7,8 +7,7 @@
 
 class Holding;
 
-class Catalog
-{
+class Catalog {
 public:
     Catalog();
     virtual ~Catalog();

@@ -3,8 +3,7 @@
 
 #include <string>
 
-class StockService
-{
+class StockService {
 public:
     virtual unsigned int currentPrice(const std::string& symbol)=0;
 };

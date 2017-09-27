@@ -6,24 +6,20 @@
 
 using std::string;
 
-class BarcodeUtil
-{
+class BarcodeUtil {
 public:
     BarcodeUtil(void) {}
     ~BarcodeUtil(void) {}
 
-    static bool IsBranchId(const string& barcode)
-    {
+    static bool IsBranchId(const string& barcode) {
         return toupper(barcode[0]) == 'B';
     }
 
-    static bool IsPatronId(const string& barcode)
-    {
+    static bool IsPatronId(const string& barcode) {
         return toupper(barcode[0]) == 'P';
     }
 
-    static bool IsHoldingBarcode(const string& barcode)
-    {
+    static bool IsHoldingBarcode(const string& barcode) {
         return barcode.find(":") != string::npos;
     }
 };
