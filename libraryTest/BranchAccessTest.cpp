@@ -64,7 +64,7 @@ TEST_F(BranchAccessTest, PersistsBranch)
 
     access2.find(retrieve);
 
-    ASSERT_THAT(retrieve.address(), Eq("address"));
+    ASSERT_THAT(retrieve.address(), StrEq("address"));
 }
 
 TEST_F(BranchAccessTest, FindAnswersFalseForNonexistentBranch)
@@ -84,6 +84,6 @@ TEST_F(BranchAccessTest, MultipleItemsPersistedCorrectly)
     access2.find(east);
     access2.find(north);
 
-    ASSERT_THAT(east.name(), Eq("EAST"));
-    ASSERT_THAT(north.name(), Eq("NORTH"));
+    ASSERT_THAT(east.name(), StrEq("EAST"));
+    ASSERT_THAT(north.name(), StrEq("NORTH"));
 }

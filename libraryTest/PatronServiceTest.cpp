@@ -43,7 +43,7 @@ TEST_F(PatronServiceTest, AddUsingAttributes)
 
     Patron retrieved("", 20);
     service.find(retrieved);
-    ASSERT_THAT(retrieved.name(), Eq("Suresh"));
+    ASSERT_THAT(retrieved.name(), StrEq("Suresh"));
 }
 
 TEST_F(PatronServiceTest, AddIncrementsCount)
@@ -96,7 +96,7 @@ TEST_F(PatronServiceTest, FindRetrieves)
 
     service.find(retrieved);
 
-    ASSERT_THAT(retrieved.name(), Eq(joe->name()));
+    ASSERT_THAT(retrieved.name(), StrEq(joe->name()));
 }
 
 TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron)

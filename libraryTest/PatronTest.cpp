@@ -40,7 +40,7 @@ TEST_F(PatronTest, PrintableRepresentation)
 
     stream << joe;
 
-    ASSERT_THAT(stream.str(), Eq("Joe (p1)"));
+    ASSERT_THAT(stream.str(), StrEq("Joe (p1)"));
 }
 
 TEST_F(PatronTest, CanConstructWithPatronCardNumber)
@@ -54,14 +54,14 @@ TEST_F(PatronTest, CardNumberIsIdPreprendedWithPrefix)
 {
     Patron mary("", 5);
 
-    ASSERT_THAT(mary.cardNumber(), Eq("p5"));
+    ASSERT_THAT(mary.cardNumber(), StrEq("p5"));
 }
 
 TEST_F(PatronTest, CreateInitializesFields)
 {
     Patron mary("Mary", 5);
 
-    ASSERT_THAT(mary.name(), Eq("Mary"));
+    ASSERT_THAT(mary.name(), StrEq("Mary"));
     ASSERT_THAT(mary.Id(), Eq(5));
     ASSERT_THAT(mary.fineBalance(), Eq(0));
 }
@@ -70,7 +70,7 @@ TEST_F(PatronTest, CreateDefaultsCardNumber)
 {
     Patron john("john");
 
-    ASSERT_THAT(john.name(), Eq("john"));
+    ASSERT_THAT(john.name(), StrEq("john"));
     ASSERT_THAT(john.Id(), Eq(0));
     ASSERT_THAT(john.fineBalance(), Eq(0));
 }
@@ -79,7 +79,7 @@ TEST_F(PatronTest, CreateDefaultsAllFields)
 {
     Patron nobody;
 
-    ASSERT_THAT(nobody.name(), Eq(""));
+    ASSERT_THAT(nobody.name(), StrEq(""));
     ASSERT_THAT(nobody.Id(), Eq(0));
     ASSERT_THAT(nobody.fineBalance(), Eq(0));
 }

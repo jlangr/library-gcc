@@ -19,7 +19,7 @@ public:
 TEST_F(MovieTest, Create)
 {
 	Movie movie("title", PriceCode::REGULAR);
-	ASSERT_THAT(movie.title(), Eq("title"));
+	ASSERT_THAT(movie.title(), StrEq("title"));
 	ASSERT_THAT(movie.priceCode(), Eq(PriceCode::REGULAR));
 }
 
@@ -27,5 +27,5 @@ TEST_F(MovieTest, ChangePriceCode)
 {
 	Movie movie("a", PriceCode::NEW_RELEASE);
 	movie.setPriceCode(PriceCode::CHILDRENS);
-	ASSERT_THAT(movie.priceCode(), Eq(PriceCode::CHILDRENS));
+	ASSERT_THAT(movie.priceCode(), StrEq(PriceCode::CHILDRENS));
 }

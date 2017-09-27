@@ -40,7 +40,7 @@ TEST_F(StreamLineReaderTest, CanReadLineOfText)
 
     reader.read(text);
 
-    ASSERT_THAT(text, Eq("hello"));
+    ASSERT_THAT(text, StrEq("hello"));
 }
 
 TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)

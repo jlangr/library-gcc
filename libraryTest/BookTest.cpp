@@ -13,10 +13,10 @@ TEST(BookTest, PopulatesAllFieldsOnConstruction)
 {
     Book book("title", "author", 1999, "classification");
 
-    ASSERT_THAT(book.title(), Eq("title"));
-    ASSERT_THAT(book.author(), Eq("author"));
+    ASSERT_THAT(book.title(), StrEq("title"));
+    ASSERT_THAT(book.author(), StrEq("author"));
     ASSERT_THAT(book.year(), Eq(1999));
-    ASSERT_THAT(book.classification(), Eq("classification"));
+    ASSERT_THAT(book.classification(), StrEq("classification"));
     ASSERT_THAT(book.type(), Eq(Book::TYPE_BOOK));
 }
 
@@ -24,10 +24,10 @@ TEST(BookTest, NoArgConstructorInitializesFieldsToDefault)
 {
     Book book;
 
-    ASSERT_THAT(book.title(), Eq(""));
-    ASSERT_THAT(book.author(), Eq(""));
+    ASSERT_THAT(book.title(), StrEq(""));
+    ASSERT_THAT(book.author(), StrEq(""));
     ASSERT_THAT(book.year(), Eq(0));
-    ASSERT_THAT("", Eq(book.classification()));
+    ASSERT_THAT("", StrEq(book.classification()));
 }
 
 TEST(BookTest, AllowsSpecificationOfTypeOnConstruction)

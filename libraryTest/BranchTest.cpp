@@ -12,8 +12,8 @@ TEST(BranchTest, CreateInitializesMembers)
 {
     Branch branch("5", "south");
 
-    ASSERT_THAT(branch.name(), Eq("south"));
-    ASSERT_THAT(branch.id(), Eq("5"));
+    ASSERT_THAT(branch.name(), StrEq("south"));
+    ASSERT_THAT(branch.id(), StrEq("5"));
 }
 
 TEST(BranchTest, CloneCopiesAllMembers)
@@ -23,16 +23,16 @@ TEST(BranchTest, CloneCopiesAllMembers)
 
     unique_ptr<Branch>clone(branch.clone());
 
-    ASSERT_THAT(clone->id(), Eq(branch.id()));
-    ASSERT_THAT(clone->name(), Eq(branch.name()));
-    ASSERT_THAT(clone->address(), Eq(branch.address()));
+    ASSERT_THAT(clone->id(), StrEq(branch.id()));
+    ASSERT_THAT(clone->name(), StrEq(branch.name()));
+    ASSERT_THAT(clone->address(), StrEq(branch.address()));
 }
 
 TEST(BranchTest, CreateDefaultsName)
 {
     Branch branch("10");
 
-    ASSERT_THAT(branch.name(), Eq(""));
+    ASSERT_THAT(branch.name(), StrEq(""));
 }
 
 TEST(BranchTest, EqualityAnswersTrueOnIdMatch)
@@ -62,7 +62,7 @@ TEST(BranchTest, CanLoadFromSerialized)
     Branch loaded;
     loaded.load(*i);
 
-    ASSERT_THAT(loaded.id(), Eq("20"));
-    ASSERT_THAT(loaded.name(), Eq("xyz"));
-    ASSERT_THAT(loaded.address(), Eq("101 Main St, Laurel, MD"));
+    ASSERT_THAT(loaded.id(), StrEq("20"));
+    ASSERT_THAT(loaded.name(), StrEq("xyz"));
+    ASSERT_THAT(loaded.address(), StrEq("101 Main St, Laurel, MD"));
 }

@@ -72,7 +72,7 @@ TEST_F(HoldingTest, CanExtractClassificationWhenCreatedWithBarcode)
 {
     Holding holding(Holding::constructBarcode("A123", 3));
 
-    ASSERT_THAT(holding.classification(), Eq("A123"));
+    ASSERT_THAT(holding.classification(), StrEq("A123"));
 }
 
 TEST_F(HoldingTest, CanExtractCopyNumberWhenCreatedWithBarcode)
@@ -108,7 +108,7 @@ TEST_F(HoldingTest, CanSpecifyClassificationSeparatelyWhenCreated)
 {
     Holding holding("B", 2);
 
-    ASSERT_THAT(holding.classification(), Eq("B"));
+    ASSERT_THAT(holding.classification(), StrEq("B"));
 }
 
 TEST_F(HoldingTest, CanSpecifyCopyNumberSeparatelyWhenCreated)
@@ -150,7 +150,7 @@ TEST_F(HoldingTest, BarCodeCombinesClassificationAndCopyNumber)
 {
     Holding holding(THE_TRIAL_CLASSIFICATION, 5);
     string barcode = holding.barcode();
-    ASSERT_THAT(barcode, Eq(THE_TRIAL_CLASSIFICATION + ":5"));
+    ASSERT_THAT(barcode, StrEq(THE_TRIAL_CLASSIFICATION + ":5"));
 }
 
 TEST_F(HoldingTest, AreEqualWhenClassificationAndCopyMatch)

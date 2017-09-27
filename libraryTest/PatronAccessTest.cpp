@@ -71,7 +71,7 @@ TEST_F(PatronAccessTest, SavePersistsAllAttributes)
     PatronAccess newAccess;
     Patron& retrieved = newAccess.findByName("patron1");
 
-    ASSERT_THAT(retrieved.name(), Eq(patron->name()));
+    ASSERT_THAT(retrieved.name(), StrEq(patron->name()));
     ASSERT_THAT(retrieved.fineBalance(), Eq(patron->fineBalance()));
 }
 

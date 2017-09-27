@@ -80,7 +80,7 @@ TEST_F(CustomerTest, AddRental)
 	ASSERT_THAT(rentals.size(), Eq(1));
 	Rental retrieved = rentals[0];
 	ASSERT_THAT(retrieved.daysRented(), Eq(rental.daysRented()));
-	ASSERT_THAT(retrieved.movie().title(), Eq(shane->title()));
+	ASSERT_THAT(retrieved.movie().title(), StrEq(shane->title()));
 }
 
 TEST_F(CustomerTest, StatementNoRentals)
@@ -90,7 +90,7 @@ TEST_F(CustomerTest, StatementNoRentals)
 		"Rental Record for Jane Doe\n"
 		"Amount owed is 0.00\n"
 		"You earned 0 frequent renter points");
-	ASSERT_THAT(statement, Eq(expected));
+	ASSERT_THAT(statement, StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithOneRegularRental) 
@@ -104,7 +104,7 @@ TEST_F(CustomerTest, StatementWithOneRegularRental)
 		"\tFight Club\t2.00\n"
 		"Amount owed is 2.00\n"
 		"You earned 1 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithTwoRegularRentals) 
@@ -120,7 +120,7 @@ TEST_F(CustomerTest, StatementWithTwoRegularRentals)
 		"\tShane\t3.50\n"
 		"Amount owed is 7.00\n"
 		"You earned 2 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithChildrensRental)
@@ -132,7 +132,7 @@ TEST_F(CustomerTest, StatementWithChildrensRental)
 		"\tBambi\t9.00\n"
 		"Amount owed is 9.00\n"
 		"You earned 1 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithNewReleaseOneNight)
@@ -144,7 +144,7 @@ TEST_F(CustomerTest, StatementWithNewReleaseOneNight)
 		"\tCasino Royale\t3.00\n"
 		"Amount owed is 3.00\n"
 		"You earned 1 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithNewReleaseMoreThanOneNight)
@@ -156,7 +156,7 @@ TEST_F(CustomerTest, StatementWithNewReleaseMoreThanOneNight)
 		"\tCasino Royale\t9.00\n"
 		"Amount owed is 9.00\n"
 		"You earned 2 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
 TEST_F(CustomerTest, StatementWithManyRentals)
@@ -178,5 +178,5 @@ TEST_F(CustomerTest, StatementWithManyRentals)
 		"\tShane\t14.00\n"
 		"Amount owed is 40.00\n"
 		"You earned 5 frequent renter points");
-	ASSERT_THAT(customer->statement(), Eq(expected));
+	ASSERT_THAT(customer->statement(), StrEq(expected));
 }

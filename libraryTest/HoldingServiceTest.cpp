@@ -107,7 +107,7 @@ TEST_F(HoldingServiceTest, RetrievesAddedHolding)
     holdingService.addAtBranch(branch1->id(), barcode);
 
     auto holding{holdingService.findByBarCode(barcode)};
-    ASSERT_THAT(holding.barcode(), Eq(barcode));
+    ASSERT_THAT(holding.barcode(), StrEq(barcode));
 }
 
 TEST_F(HoldingServiceTest, ExistsReturnsFalseWhenNotFound)

@@ -95,7 +95,7 @@ TEST_F(BranchServiceTest, FindRetrievesById)
     Branch retrieved(eastBranch->id(), "");
     service.find(retrieved);
 
-    ASSERT_THAT(retrieved.name(), Eq(eastBranch->name()));
+    ASSERT_THAT(retrieved.name(), StrEq(eastBranch->name()));
 }
 
 TEST_F(BranchServiceTest, AddBranchIncrementsCount)

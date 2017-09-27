@@ -40,20 +40,20 @@ TEST(StringUtil_Split, ReturnsEmptyStringWhenInputEmpty)
 
 TEST(StringUtil_Trim, EliminatesFrontWhitespace)
 {
-    ASSERT_THAT(stringutil::trim(" \t\n\r abc"), Eq("abc"));
+    ASSERT_THAT(stringutil::trim(" \t\n\r abc"), StrEq("abc"));
 }
 
 TEST(StringUtil_Trim, EliminatesTrailingWhitespace)
 {
-    ASSERT_THAT(trim("abc \n\t\r "), Eq("abc"));
+    ASSERT_THAT(trim("abc \n\t\r "), StrEq("abc"));
 }
 
 TEST(StringUtil_Trim, EliminatesWhitespaceFromBothEnds)
 {
-    ASSERT_THAT(trim("   abc  def  "), Eq("abc  def"));
+    ASSERT_THAT(trim("   abc  def  "), StrEq("abc  def"));
 }
 
 TEST(StringUtil_Trim, LeavesAlreadyTrimmedStringsUntouched)
 {
-    ASSERT_THAT(trim(""), Eq(""));
+    ASSERT_THAT(trim(""), StrEq(""));
 }
