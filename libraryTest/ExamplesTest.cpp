@@ -134,9 +134,16 @@ ASSERT_THAT(a, Eq(b.str()));
 
 class Item {
 public:
+    Item(string description, double price) : _description{description}, _price{price} {
+    }
     bool isDiscountable() { return false; }
-    string description() { return "milk"; }
-    double price() { return 10.0; }
+    string description() { return _description; }
+    double price() { return _price; }
+    void completeSale() { }
+
+private:
+    double _price;
+    string _description;
 };
 
 class POS {
@@ -255,3 +262,49 @@ public:
 
    int someValue() { return 42; }
 };
+
+class DisplayDevice {
+public:
+    static void appendMessage(const string& message) {
+        throw 1;
+    }
+};
+class Register {
+public:
+    void completeSale() {
+        _total = 0.0;
+        for (auto purchase: _purchases) {
+            string message{"item: " + purchase.description()};
+            _total += purchase.price();
+            appendMessage(message);
+        }
+    }
+
+    double total() { 
+        return _total;
+    }
+
+    void purchase(const string& description, double price) {
+        _purchases.push_back(Item(description, price));
+    }
+
+    virtual void appendMessage(string& message) {
+        DisplayDevice::appendMessage(message);
+    }
+
+private:
+    double _total{0.0};
+    vector<Item> _purchases;
+};
+
+TEST(POS2, Override) {
+    class TestRegister: public Register {
+    public:
+        void appendMessage(string& message) override {}
+    } posRegister;
+    posRegister.purchase("milk", 42);
+
+    posRegister.completeSale();
+
+    ASSERT_THAT(posRegister.total(), Eq(42));
+}
