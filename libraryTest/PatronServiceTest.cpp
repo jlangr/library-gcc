@@ -92,7 +92,7 @@ TEST_F(PatronServiceTest, FindAnswersTrueForAddedPatron)
 TEST_F(PatronServiceTest, FindRetrieves)
 {
     service.add(*joe);
-    Patron retrieved("dummy name", joe->Id());
+    Patron retrieved("dummy name", joe->id());
 
     service.find(retrieved);
 
@@ -105,7 +105,7 @@ TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron)
     Holding theTrial(THE_TRIAL_CLASSIFICATION, 1);
     joe->borrow(theTrial);
     service.add(*joe);
-    Patron retrieved("", joe->Id());
+    Patron retrieved("", joe->id());
 
     service.find(retrieved);
 

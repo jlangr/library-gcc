@@ -33,7 +33,7 @@ string Patron::name() const {
     return mName;
 }
 
-int Patron::Id() const {
+int Patron::id() const {
     return mId;
 }
 

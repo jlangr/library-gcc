@@ -47,7 +47,7 @@ TEST_F(PatronTest, CanConstructWithPatronCardNumber)
 {
     Patron zelda("", "p32");
 
-    ASSERT_THAT(zelda.Id(), Eq(32));
+    ASSERT_THAT(zelda.id(), Eq(32));
 }
 
 TEST_F(PatronTest, CardNumberIsIdPreprendedWithPrefix)
@@ -62,7 +62,7 @@ TEST_F(PatronTest, CreateInitializesFields)
     Patron mary("Mary", 5);
 
     ASSERT_THAT(mary.name(), StrEq("Mary"));
-    ASSERT_THAT(mary.Id(), Eq(5));
+    ASSERT_THAT(mary.id(), Eq(5));
     ASSERT_THAT(mary.fineBalance(), Eq(0));
 }
 
@@ -71,7 +71,7 @@ TEST_F(PatronTest, CreateDefaultsCardNumber)
     Patron john("john");
 
     ASSERT_THAT(john.name(), StrEq("john"));
-    ASSERT_THAT(john.Id(), Eq(0));
+    ASSERT_THAT(john.id(), Eq(0));
     ASSERT_THAT(john.fineBalance(), Eq(0));
 }
 
@@ -80,7 +80,7 @@ TEST_F(PatronTest, CreateDefaultsAllFields)
     Patron nobody;
 
     ASSERT_THAT(nobody.name(), StrEq(""));
-    ASSERT_THAT(nobody.Id(), Eq(0));
+    ASSERT_THAT(nobody.id(), Eq(0));
     ASSERT_THAT(nobody.fineBalance(), Eq(0));
 }
 

@@ -91,7 +91,7 @@ TEST_F(PatronAccessTest, FindByNameReturnsChronologicallyFirstMatch)
 
     Patron found = access.findByName("Langr");
 
-    ASSERT_THAT(found.Id(), Eq(1));
+    ASSERT_THAT(found.id(), Eq(1));
 }
 
 TEST_F(PatronAccessTest, UpdatePersistsChanges)
