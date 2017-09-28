@@ -16,8 +16,7 @@ public:
     MOCK_METHOD1(showMessage, void(const std::string& text));
 };
 
-class MockHoldingService: public service::HoldingService
-{
+class MockHoldingService: public service::HoldingService {
 public:
     MOCK_METHOD3(checkIn, void(const std::string& barCode, boost::gregorian::date, const std::string& branchId));
     MOCK_METHOD3(checkOut, void(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date));
@@ -29,8 +28,7 @@ public:
 // TODO holding service should be an override mock, not required in ctor
 
 // TODO not sure this is a good idea
-class TestScanner
-{
+class TestScanner {
 public:
     Scanner* scanner;
     MockDisplayListener* display;
@@ -48,8 +46,7 @@ public:
         delete display;
     }
 
-    MockHoldingService* holdingService()
-    {
+    MockHoldingService* holdingService() {
          return dynamic_cast<MockHoldingService*>(scanner->holdingService());
     }
 };

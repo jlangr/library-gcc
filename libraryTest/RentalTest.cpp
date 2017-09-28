@@ -5,19 +5,13 @@
 
 using namespace testing;
 
-class RentalTest: public Test 
-{
-	virtual void SetUp()
-	{
-	}
+class RentalTest: public Test {
+	virtual void SetUp() {}
 
-	virtual void TearDown()
-	{
-	}
+	virtual void TearDown() {}
 };
 
-TEST_F(RentalTest, Create)
-{
+TEST_F(RentalTest, Create) {
 	Movie movie("title", PriceCode::REGULAR);
 	Rental rental(movie, 3);
 	ASSERT_THAT(rental.daysRented(), Eq(3));

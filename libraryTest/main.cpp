@@ -23,15 +23,13 @@ unordered_map<string,bool> showNoOptions{
     {"inlineFailures", false}
 };
 
-class ConfigurableEventListener : public TestEventListener
-{
+class ConfigurableEventListener : public TestEventListener {
     
 protected:
     TestEventListener* eventListener;
     
 public:
-    virtual ~ConfigurableEventListener()
-    {
+    virtual ~ConfigurableEventListener() {
         delete eventListener;
     }
     
@@ -44,8 +42,7 @@ public:
     explicit ConfigurableEventListener(
         TestEventListener* theEventListener,
         unordered_map<string, bool>& toShow) 
-      : eventListener(theEventListener)
-    {
+      : eventListener(theEventListener) {
         showTestCases = toShow["testCases"];
         showTestNames = toShow["testNames"];
         showSuccesses = toShow["successes"];
@@ -53,84 +50,71 @@ public:
         showEnvironment = toShow["environment"];
     }
     
-    virtual void OnTestProgramStart(const UnitTest& unit_test)
-    {
+    virtual void OnTestProgramStart(const UnitTest& unit_test) {
         eventListener->OnTestProgramStart(unit_test);
     }
     
-    virtual void OnTestIterationStart(const UnitTest& unit_test, int iteration)
-    {
+    virtual void OnTestIterationStart(const UnitTest& unit_test, int iteration) {
         eventListener->OnTestIterationStart(unit_test, iteration);
     }
     
-    virtual void OnEnvironmentsSetUpStart(const UnitTest& unit_test)
-    {
+    virtual void OnEnvironmentsSetUpStart(const UnitTest& unit_test) {
         if (showEnvironment) {
             eventListener->OnEnvironmentsSetUpStart(unit_test);
         }
     }
     
-    virtual void OnEnvironmentsSetUpEnd(const UnitTest& unit_test)
-    {
+    virtual void OnEnvironmentsSetUpEnd(const UnitTest& unit_test) {
         if (showEnvironment) {
             eventListener->OnEnvironmentsSetUpEnd(unit_test);
         }
     }
     
-    virtual void OnTestCaseStart(const TestCase& test_case)
-    {
+    virtual void OnTestCaseStart(const TestCase& test_case) {
         if (showTestCases) {
             eventListener->OnTestCaseStart(test_case);
         }
     }
     
-    virtual void OnTestStart(const TestInfo& test_info)
-    {
+    virtual void OnTestStart(const TestInfo& test_info) {
         if (showTestNames) {
             eventListener->OnTestStart(test_info);
         }
     }
     
-    virtual void OnTestPartResult(const TestPartResult& result)
-    {
+    virtual void OnTestPartResult(const TestPartResult& result) {
         eventListener->OnTestPartResult(result);
     }
     
-    virtual void OnTestEnd(const TestInfo& test_info)
-    {
+    virtual void OnTestEnd(const TestInfo& test_info) {
         if ((showInlineFailures && test_info.result()->Failed()) || (showSuccesses && !test_info.result()->Failed())) {
             eventListener->OnTestEnd(test_info);
         }
     }
     
-    virtual void OnTestCaseEnd(const TestCase& test_case)
-    {
+    virtual void OnTestCaseEnd(const TestCase& test_case) {
         if (showTestCases) {
             eventListener->OnTestCaseEnd(test_case);
         }
     }
     
-    virtual void OnEnvironmentsTearDownStart(const UnitTest& unit_test)
-    {
+    virtual void OnEnvironmentsTearDownStart(const UnitTest& unit_test) {
         if (showEnvironment) {
             eventListener->OnEnvironmentsTearDownStart(unit_test);
         }
     }
     
-    virtual void OnEnvironmentsTearDownEnd(const UnitTest& unit_test)
-    {
+    virtual void OnEnvironmentsTearDownEnd(const UnitTest& unit_test) {
         if (showEnvironment) {
             eventListener->OnEnvironmentsTearDownEnd(unit_test);
         }
     }
     
-    virtual void OnTestIterationEnd(const UnitTest& unit_test, int iteration)
-    {
+    virtual void OnTestIterationEnd(const UnitTest& unit_test, int iteration) {
         eventListener->OnTestIterationEnd(unit_test, iteration);
     }
     
-    virtual void OnTestProgramEnd(const UnitTest& unit_test)
-    {
+    virtual void OnTestProgramEnd(const UnitTest& unit_test) {
         eventListener->OnTestProgramEnd(unit_test);
     }
     
@@ -146,8 +130,7 @@ bool hasShowFailuresOnlyOption(int argc, char **argv) {
     return showFailuresOnly;
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
      cout << endl << "NOTE: The --failed-only option is also available." << endl << endl;
 
     ::testing::InitGoogleTest(&argc, argv);

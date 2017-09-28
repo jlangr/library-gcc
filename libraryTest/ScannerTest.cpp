@@ -16,8 +16,7 @@
 using namespace std;
 using namespace testing;
 
-class MockState: public ScannerState
-{
+class MockState: public ScannerState {
 public:
     MockState() : ScannerState(NULL) {}
     MOCK_METHOD0(pressDone, void());
@@ -27,73 +26,63 @@ public:
     MOCK_METHOD1(scanPatronCard, void(const std::string& barcode));
 };
 
-class ScannerTest : public Test, public TestScanner
-{
+class ScannerTest : public Test, public TestScanner {
 public:
     Scanner* scanner;
     MockState* state;
     MockDisplayListener* display;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         display = new MockDisplayListener();
         scanner = new Scanner(display, NULL);
         state = new MockState();
         scanner->setCurrentState(state);
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         delete scanner;
         delete display;
     }
 };
 
-TEST_F(ScannerTest, IsInWaitingModeByDefault)
-{
+TEST_F(ScannerTest, IsInWaitingModeByDefault) {
     Scanner scanner(NULL, NULL);
 
     ASSERT_CURRENT_STATE<ScannerStateWaiting>(&scanner);
 }
 
-TEST_F(ScannerTest, PressDoneDelegatesToAppropriateState)
-{
+TEST_F(ScannerTest, PressDoneDelegatesToAppropriateState) {
     EXPECT_CALL(*state, pressDone());
 
     scanner->pressDone();
 }
 
-TEST_F(ScannerTest, ScanHoldingDelegatesToAppropriateState)
-{
+TEST_F(ScannerTest, ScanHoldingDelegatesToAppropriateState) {
     string barcode("A123:1");
     EXPECT_CALL(*state, scanHolding(barcode));
 
     scanner->scan(barcode);
 }
 
-TEST_F(ScannerTest, ScanInventoryCardDelegatesToAppropriateState)
-{
+TEST_F(ScannerTest, ScanInventoryCardDelegatesToAppropriateState) {
     EXPECT_CALL(*state, scanInventoryCard(Scanner::INVENTORY_CARD_NUMBER));
 
     scanner->scan(Scanner::INVENTORY_CARD_NUMBER);
 }
 
-TEST_F(ScannerTest, ScanBranchCardDelegatesToAppropriateState)
-{
+TEST_F(ScannerTest, ScanBranchCardDelegatesToAppropriateState) {
     EXPECT_CALL(*state, scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD));
 
     scanner->scan(ScannerTestData::BRANCH_SOUTH_CARD);
 }
 
-TEST_F(ScannerTest, ScanPatronCardDelegatesToAppropriateState)
-{
+TEST_F(ScannerTest, ScanPatronCardDelegatesToAppropriateState) {
     EXPECT_CALL(*state, scanPatronCard(ScannerTestData::PATRON_JANE_CARD));
 
     scanner->scan(ScannerTestData::PATRON_JANE_CARD);
 }
 
-TEST_F(ScannerTest, ScanUnrecognizedIdDisplaysMessage)
-{
+TEST_F(ScannerTest, ScanUnrecognizedIdDisplaysMessage) {
     EXPECT_CALL(*display, showMessage(Scanner::MSG_INVALID_BARCODE));
 
     scanner->scan("234");

@@ -9,12 +9,10 @@ using namespace std;
 using namespace testing;
 using namespace ClassificationData;
 
-class InventoryReportTest: public Test
-{
+class InventoryReportTest: public Test {
 public:
 };
 
-TEST_F(InventoryReportTest, QuePasa)
-{  
+TEST_F(InventoryReportTest, QuePasa) {  
 }
 

@@ -14,8 +14,7 @@
 using namespace std;
 using namespace testing;
 
-class ScannerStateWaitingTest : public Test, public TestScanner 
-{
+class ScannerStateWaitingTest : public Test, public TestScanner {
 public:
     ScannerState* state;
     
@@ -28,43 +27,37 @@ public:
     }
 };
 
-TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenDonePressed) 
-{
+TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenDonePressed)  {
     EXPECT_CALL(*display, showMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST));
 
     state->pressDone();
 }
 
-TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenPatronCardScanned) 
-{
+TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenPatronCardScanned)  {
     EXPECT_CALL(*display, showMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST));
 
     state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 }
 
-TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenInventoryCardScanned) 
-{
+TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenInventoryCardScanned)  {
     EXPECT_CALL(*display, showMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST));
 
     state->scanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
 }
 
-TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenHoldingScanned) 
-{
+TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenHoldingScanned)  {
     EXPECT_CALL(*display, showMessage(ScannerStateWaiting::MSG_SCAN_BRANCH_ID_FIRST));
 
     state->scanHolding(ScannerTestData::HOLDING_CATCH22_BARCODE);
 }
 
-TEST_F(ScannerStateWaitingTest, SetsStateToCheckinWhenBranchScanned) 
-{
+TEST_F(ScannerStateWaitingTest, SetsStateToCheckinWhenBranchScanned)  {
     state->scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
 
     ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
 }
 
-TEST_F(ScannerStateWaitingTest, StoresBranchWhenBranchScanned)
-{
+TEST_F(ScannerStateWaitingTest, StoresBranchWhenBranchScanned) {
     state->scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
 
     ASSERT_THAT(scanner->branchId(), Eq(ScannerTestData::BRANCH_SOUTH_CARD));

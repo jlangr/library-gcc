@@ -10,15 +10,11 @@
 using namespace std;
 using namespace testing;
 
-class AReportMailer: public Test
-{
+class AReportMailer: public Test {
 public:
-    virtual void SetUp()
-    {
-    }
+    virtual void SetUp() {}
 };
 
-TEST_F(AReportMailer, CanBeCreated)
-{
+TEST_F(AReportMailer, CanBeCreated) {
 }
 

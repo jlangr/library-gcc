@@ -10,17 +10,8 @@
 using namespace std;
 using namespace testing;
 
-class StreamLineReaderTest: public Test
-{
+class StreamLineReaderTest: public Test {
 public:
-    void SetUp()
-    {
-    }
-
-    void TearDown()
-    {
-    }
-
     template <typename T>
     unique_ptr<istream> createInputStream(T text)
     {
@@ -32,8 +23,7 @@ public:
     }
 };
 
-TEST_F(StreamLineReaderTest, CanReadLineOfText)
-{
+TEST_F(StreamLineReaderTest, CanReadLineOfText) {
     auto input = createInputStream<const string&>("hello");
     StreamLineReader reader(input.get());
     string text;
@@ -43,8 +33,7 @@ TEST_F(StreamLineReaderTest, CanReadLineOfText)
     ASSERT_THAT(text, StrEq("hello"));
 }
 
-TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)
-{
+TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt) {
     auto input = createInputStream<unsigned int>(42);
     StreamLineReader reader(input.get());
     unsigned int number;
@@ -54,8 +43,7 @@ TEST_F(StreamLineReaderTest, CanReadLineWithUnsignedInt)
     ASSERT_THAT(number, Eq(42));
 }
 
-TEST_F(StreamLineReaderTest, SetsUnsignedIntToZeroOnConvertFail)
-{
+TEST_F(StreamLineReaderTest, SetsUnsignedIntToZeroOnConvertFail) {
     auto input = createInputStream<const string&>("dsadf");
     StreamLineReader reader(input.get());
     unsigned int number;

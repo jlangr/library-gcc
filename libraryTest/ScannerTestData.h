@@ -2,8 +2,7 @@
 
 #include <string>
 
-class ScannerTestData
-{
+class ScannerTestData {
 public:
     const static std::string PATRON_JOE_CARD;
     const static std::string PATRON_JANE_CARD;

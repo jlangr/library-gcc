@@ -70,8 +70,7 @@ ASSERT_THAT(allAlpha, Each(Eq("alpha")));
 }
 
 
-TEST(AnAutomobile, IdlesItsEngineWhenStarted) 
-{
+TEST(AnAutomobile, IdlesItsEngineWhenStarted) {
     Auto automobile;
     automobile.depressBrake();
 

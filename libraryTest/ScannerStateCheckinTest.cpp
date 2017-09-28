@@ -17,8 +17,7 @@ using namespace std;
 using namespace testing;
 using namespace boost::gregorian;
 
-class ScannerStateCheckinTest : public Test, public TestScanner
-{
+class ScannerStateCheckinTest : public Test, public TestScanner {
 public:
     ScannerStateCheckin* state;
 
@@ -31,36 +30,31 @@ public:
     }
 };
 
-TEST_F(ScannerStateCheckinTest, DisplaysWarningMessageWhenCompletePressed)
-{
+TEST_F(ScannerStateCheckinTest, DisplaysWarningMessageWhenCompletePressed) {
     EXPECT_CALL(*display, showMessage(ScannerStateCheckin::MSG_WAITING_FOR_RETURNS));
 
     state->pressDone();
 }
 
-TEST_F(ScannerStateCheckinTest, ChangesStateToInventoryWhenInventoryCardScanned)
-{
+TEST_F(ScannerStateCheckinTest, ChangesStateToInventoryWhenInventoryCardScanned) {
     state->scanInventoryCard("");
 
     ASSERT_CURRENT_STATE<ScannerStateInventory>(scanner);
 }
 
-TEST_F(ScannerStateCheckinTest, ChangesStateToCheckoutWhenPatronCardScanned)
-{
+TEST_F(ScannerStateCheckinTest, ChangesStateToCheckoutWhenPatronCardScanned) {
     state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 
     ASSERT_CURRENT_STATE<ScannerStateCheckout>(scanner);
 }
 
-TEST_F(ScannerStateCheckinTest, StoresPatronIdWhenScanned)
-{
+TEST_F(ScannerStateCheckinTest, StoresPatronIdWhenScanned) {
     state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 
     ASSERT_THAT(scanner->patronId(), Eq(ScannerTestData::PATRON_JOE_CARD));
 }
 
-TEST_F(ScannerStateCheckinTest, ChangesBranchWhenBranchIdScanned)
-{
+TEST_F(ScannerStateCheckinTest, ChangesBranchWhenBranchIdScanned) {
     scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
 
     state->scanBranchCard(ScannerTestData::BRANCH_WEST_CARD);
@@ -68,8 +62,7 @@ TEST_F(ScannerStateCheckinTest, ChangesBranchWhenBranchIdScanned)
     ASSERT_THAT(scanner->branchId(), Eq(ScannerTestData::BRANCH_WEST_CARD));
 }
 
-TEST_F(ScannerStateCheckinTest, ChecksInBookWhenBarcodeScanned)
-{
+TEST_F(ScannerStateCheckinTest, ChecksInBookWhenBarcodeScanned) {
     scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     EXPECT_CALL(*holdingService(), 
         checkIn(Eq(ScannerTestData::HOLDING_CATCH22_BARCODE), TimestampSource::now(), ScannerTestData::BRANCH_SOUTH_CARD));

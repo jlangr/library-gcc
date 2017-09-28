@@ -11,8 +11,7 @@
 using namespace std;
 using namespace testing;
 
-class BranchAccessTest : public Test
-{
+class BranchAccessTest : public Test {
 public:
     BranchAccess access;
     BranchAccess access2;
@@ -23,8 +22,7 @@ public:
     vector<Branch> noBranches;
     Branch* eastBranch;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         branchAccess = new BranchAccess();
         branchAccess->deleteAll();
 
@@ -33,8 +31,7 @@ public:
         access.deleteAll();
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         branchAccess->deleteAll();
         delete branchAccess;
         delete eastBranch;
@@ -43,20 +40,17 @@ public:
     }
 };
 
-TEST_F(BranchAccessTest, SizeInitiallyZero)
-{
+TEST_F(BranchAccessTest, SizeInitiallyZero) {
     ASSERT_THAT(branchAccess->size(), Eq(0));
 }
 
-TEST_F(BranchAccessTest, SaveIncrementsSize)
-{
+TEST_F(BranchAccessTest, SaveIncrementsSize) {
     branchAccess->save(*eastBranch);
 
     ASSERT_THAT(branchAccess->size(), Eq(1));
 }
 
-TEST_F(BranchAccessTest, PersistsBranch)
-{
+TEST_F(BranchAccessTest, PersistsBranch) {
     Branch branch("55", "WEST");
     branch.setAddress("address");
     access.save(branch);
@@ -67,15 +61,13 @@ TEST_F(BranchAccessTest, PersistsBranch)
     ASSERT_THAT(retrieve.address(), StrEq("address"));
 }
 
-TEST_F(BranchAccessTest, FindAnswersFalseForNonexistentBranch)
-{
+TEST_F(BranchAccessTest, FindAnswersFalseForNonexistentBranch) {
     Branch east("66");
 
     ASSERT_THAT(access.find(east), Eq(false));
 }
 
-TEST_F(BranchAccessTest, MultipleItemsPersistedCorrectly)
-{
+TEST_F(BranchAccessTest, MultipleItemsPersistedCorrectly) {
     access.save(Branch{"66", "EAST"});
     access.save(Branch{"77", "NORTH"});
     Branch east{"66"};

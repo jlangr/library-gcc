@@ -16,25 +16,20 @@ struct AssertEq {
     AssertEq() {}
     AssertEq(const string& convertArg, const string& expected)
         : ConvertArg(convertArg)
-        , Expected(expected)
-    {
-    }
+        , Expected(expected) {} 
 
     string ConvertArg;
     string Expected;
 };
-struct TestTracker
-{
+
+struct TestTracker {
     TestTracker() {}
     TestTracker(const string& name, int order)
         : Name(name)
         , Order(order)
-        , WasExecuted(false)
-    {
-    }
+        , WasExecuted(false) {}
 
-    void AddAssertEq(const string& convertArg, const string& expected ) 
-    {
+    void AddAssertEq(const string& convertArg, const string& expected) {
         AssertEq assertEq(convertArg, expected);
         assertEqs.push_back(assertEq);
     }
@@ -49,12 +44,10 @@ struct TestTracker
 class SoundexListener: public EmptyTestEventListener
 {
 public:
-    SoundexListener()
-    {
+    SoundexListener() {
         PopulateTests();
     }
-    ~SoundexListener()
-    {
+    ~SoundexListener() {
         //for (map<string,TestTracker*>::iterator it = mTests.begin();
         //    it != mTests.end();
         //    it++)
@@ -63,10 +56,8 @@ public:
         //}
     }
 
-    void OnTestEnd(const TestInfo& testInfo)
-    {
-        if (strcmp(testInfo.test_case_name(), "SoundexTest") == 0)
-        {
+    void OnTestEnd(const TestInfo& testInfo) {
+        if (strcmp(testInfo.test_case_name(), "SoundexTest") == 0) {
             string testName = string(testInfo.name());
             TestTracker* tracker = findTracker(testName);
             if (tracker == NULL)
@@ -76,14 +67,12 @@ public:
         }
     }
 
-    void AddAssertEq(const string& name, const string& convertArg, const string& expected)
-    {
+    void AddAssertEq(const string& name, const string& convertArg, const string& expected) {
         TestTracker* tracker = findTracker(name);
         tracker->AddAssertEq(convertArg, expected);
     }
 
-    void PopulateTests()
-    {
+    void PopulateTests() {
         AddTestTracker("AppendsThreeTrailingZerosIfSingleLetter",0);
         AddTestTracker("RetainsFirstLetter", 1);
         AddTestTracker("ConvertsHardSoundsUsingLookupTable" ,2);
@@ -117,39 +106,32 @@ public:
         AddAssertEq("HardSoundIgnoredIfSoftConsonantPrecedesIt", "Acwgbm", "A215");
     }
 
-    void AddTestTracker(const string& name, int order)
-    {
+    void AddTestTracker(const string& name, int order) {
         TestTracker* tracker = new TestTracker(name, order);
         mTests[name] = tracker;
         mOrderedTests[order] = name;
     }
 
-    TestTracker* findTracker(string name)
-    {
+    TestTracker* findTracker(string name) {
         return mTests[name];
     }
 
-    void OnTestIterationEnd(const UnitTest& unit_test, int iteration) 
-    {
+    void OnTestIterationEnd(const UnitTest& unit_test, int iteration) {
         if (unit_test.failed_test_count() > 0)
             return;
 
         string highOrder = HighOrderTestName();
-        if (highOrder != "")
-        {
+        if (highOrder != "") {
             TestTracker* tracker = mTests[highOrder];
-            if (tracker->Order < 9)
-            {
+            if (tracker->Order < 9) {
                 TestTracker* next = findTracker(mOrderedTests[tracker->Order + 1]);
 
                 Soundex soundex;
                 for (vector<AssertEq>::iterator it = next->assertEqs.begin();
                     it != next->assertEqs.end();
-                    it++)
-                {
+                    it++) {
                     AssertEq assertEq = *it;
-                    if (soundex.Convert(assertEq.ConvertArg) == assertEq.Expected)
-                    {
+                    if (soundex.Convert(assertEq.ConvertArg) == assertEq.Expected) {
                         stringstream s;
                         s << "You've implemented too much functionality! " << endl
                           << "Your solution allows Convert(\"" << assertEq.ConvertArg 
@@ -162,14 +144,12 @@ public:
         }
     }
 
-    string HighOrderTestName()
-    {
+    string HighOrderTestName() {
         int highOrder = -1;
         string highTest("");
         for (map<string,TestTracker*>::iterator it = mTests.begin();
             it != mTests.end();
-            it++)
-        {
+            it++) {
             TestTracker* tracker = it->second;
             if (tracker->WasExecuted && tracker->Passed) {
                 if (tracker->Order > highOrder) {

@@ -6,57 +6,49 @@
 using std::string;
 using namespace testing;
 
-class BranchServiceTest: public Test
-{
+class BranchServiceTest: public Test {
 public:
     Branch* eastBranch;
     Branch* westBranch;
     BranchService service;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         BranchService::deleteAll();
         eastBranch = new Branch("1", "east");
         westBranch = new Branch("2", "west");
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         delete eastBranch;
         delete westBranch;
         BranchService::deleteAll();
     }
 };
 
-TEST_F(BranchServiceTest, AddReturnsGeneratedId)
-{
+TEST_F(BranchServiceTest, AddReturnsGeneratedId) {
     string id = service.add("newname", "address");
 
     ASSERT_THAT(id, Gt("0"));
 }
 
-TEST_F(BranchServiceTest, AddGeneratesUniqueId)
-{
+TEST_F(BranchServiceTest, AddGeneratesUniqueId) {
     string id1 = service.add("newname1", "address");
     string id2 = service.add("newname2", "address");
 
     ASSERT_THAT(id1, Ne(id2));
 }
 
-TEST_F(BranchServiceTest, AddThrowsWhenNameNotUnique)
-{
+TEST_F(BranchServiceTest, AddThrowsWhenNameNotUnique) {
     service.add("samename", "address1");
 
     ASSERT_THROW(service.add("samename", "address2"), DuplicateBranchNameException);
 }
 
-TEST_F(BranchServiceTest, CountInitiallyZero)
-{
+TEST_F(BranchServiceTest, CountInitiallyZero) {
     ASSERT_THAT(service.branchCount(), Eq(0));
 }
 
-TEST_F(BranchServiceTest, DeleteAllRemovesAnyAddedBranches)
-{
+TEST_F(BranchServiceTest, DeleteAllRemovesAnyAddedBranches) {
     service.add(*eastBranch);
     service.add(*westBranch);
 
@@ -66,8 +58,7 @@ TEST_F(BranchServiceTest, DeleteAllRemovesAnyAddedBranches)
     ASSERT_THAT(service.find(*westBranch), Eq(false));
 }
 
-TEST_F(BranchServiceTest, DeleteAllSetsCountToZero)
-{
+TEST_F(BranchServiceTest, DeleteAllSetsCountToZero) {
     service.add(*eastBranch);
     service.add(*westBranch);
 
@@ -76,20 +67,17 @@ TEST_F(BranchServiceTest, DeleteAllSetsCountToZero)
     ASSERT_THAT(service.branchCount(), Eq(0));
 }
 
-TEST_F(BranchServiceTest, FindAnswersFalseForNonexistentBranch)
-{
+TEST_F(BranchServiceTest, FindAnswersFalseForNonexistentBranch) {
     ASSERT_THAT(service.find(*eastBranch), Eq(false));
 }
 
-TEST_F(BranchServiceTest, FindAnswersTrueForAddedBranch)
-{
+TEST_F(BranchServiceTest, FindAnswersTrueForAddedBranch) {
     service.add(*eastBranch);
     
     ASSERT_THAT(service.find(*eastBranch), Eq(true));
 }
 
-TEST_F(BranchServiceTest, FindRetrievesById)
-{
+TEST_F(BranchServiceTest, FindRetrievesById) {
     service.add(*eastBranch);
 
     Branch retrieved(eastBranch->id(), "");
@@ -98,8 +86,7 @@ TEST_F(BranchServiceTest, FindRetrievesById)
     ASSERT_THAT(retrieved.name(), StrEq(eastBranch->name()));
 }
 
-TEST_F(BranchServiceTest, AddBranchIncrementsCount)
-{
+TEST_F(BranchServiceTest, AddBranchIncrementsCount) {
     service.add(*eastBranch);
     ASSERT_THAT(service.branchCount(), Eq(1));
 
@@ -107,8 +94,7 @@ TEST_F(BranchServiceTest, AddBranchIncrementsCount)
     ASSERT_THAT(service.branchCount(), Eq(2));
 }
 
-TEST_F(BranchServiceTest, PersistsAcrossServiceInstances)
-{
+TEST_F(BranchServiceTest, PersistsAcrossServiceInstances) {
     service.add(*eastBranch);
 
     BranchService anotherServiceInstance;

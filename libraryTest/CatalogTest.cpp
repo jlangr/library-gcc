@@ -12,24 +12,21 @@ using namespace std;
 using namespace ClassificationData;
 using namespace testing;
 
-class CatalogTest : public Test
-{
+class CatalogTest : public Test {
 public:
     Catalog catalog;
     Holding* theTrialHolding;
     Holding* catch22Holding;
     Holding* catch22HoldingCopy2;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         Catalog::deleteAll();
         theTrialHolding = new Holding(THE_TRIAL_CLASSIFICATION, 1);
         catch22Holding = new Holding(CATCH22_CLASSIFICATION, 1);
         catch22HoldingCopy2 = new Holding(CATCH22_CLASSIFICATION, 2);
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         delete theTrialHolding;
         delete catch22Holding;
         delete catch22HoldingCopy2;
@@ -37,25 +34,21 @@ public:
     }
 };
 
-TEST_F(CatalogTest, IsEmptyOnCreation)
-{
+TEST_F(CatalogTest, IsEmptyOnCreation) {
     ASSERT_THAT(catalog.size(), Eq(0));
 }
 
-TEST_F(CatalogTest, AddIncrementsCount)
-{
+TEST_F(CatalogTest, AddIncrementsCount) {
     catalog.add(*theTrialHolding);
 
     ASSERT_THAT(catalog.size(), Eq(1));
 }
 
-TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound)
-{
+TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound) {
     ASSERT_THAT(catalog.contains("123:1"), Eq(false));
 }
 
-TEST_F(CatalogTest, AddedHoldingCanBeRetrieved)
-{
+TEST_F(CatalogTest, AddedHoldingCanBeRetrieved) {
     catalog.add(*theTrialHolding);
     auto barcode{Holding::constructBarcode(
       theTrialHolding->classification(), theTrialHolding->copyNumber())};
@@ -64,8 +57,7 @@ TEST_F(CatalogTest, AddedHoldingCanBeRetrieved)
 }
 
 /*
-TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
-{
+TEST_F(CatalogTest, FindByBarCodePopulatesMembers) {
     Branch west("1", "West");
     theTrialHolding->Transfer(west);
     catalog.add(*theTrialHolding);
@@ -77,8 +69,7 @@ TEST_F(CatalogTest, FindByBarCodePopulatesMembers)
 }
 */
 
-TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings)
-{
+TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings) {
     catalog.add(*theTrialHolding);
     catalog.add(*catch22Holding);
     catalog.add(*catch22HoldingCopy2);

@@ -8,16 +8,14 @@
 using namespace std;
 using namespace testing;
 
-TEST(BranchTest, CreateInitializesMembers)
-{
+TEST(BranchTest, CreateInitializesMembers) {
     Branch branch("5", "south");
 
     ASSERT_THAT(branch.name(), StrEq("south"));
     ASSERT_THAT(branch.id(), StrEq("5"));
 }
 
-TEST(BranchTest, CloneCopiesAllMembers)
-{
+TEST(BranchTest, CloneCopiesAllMembers) {
     Branch branch("17", "north");
     branch.setAddress("123 B Street");
 
@@ -28,31 +26,27 @@ TEST(BranchTest, CloneCopiesAllMembers)
     ASSERT_THAT(clone->address(), StrEq(branch.address()));
 }
 
-TEST(BranchTest, CreateDefaultsName)
-{
+TEST(BranchTest, CreateDefaultsName) {
     Branch branch("10");
 
     ASSERT_THAT(branch.name(), StrEq(""));
 }
 
-TEST(BranchTest, EqualityAnswersTrueOnIdMatch)
-{
+TEST(BranchTest, EqualityAnswersTrueOnIdMatch) {
     Branch branch1("1", "a");
     Branch branch1copy("1", "b");
 
     ASSERT_THAT(branch1 == branch1copy, Eq(true));
 }
 
-TEST(BranchTest, InequalityAnswersFalseOnIdMismatch)
-{
+TEST(BranchTest, InequalityAnswersFalseOnIdMismatch) {
     Branch branch1("1", "a");
     Branch branch2("2", "a");
 
     ASSERT_THAT(branch1 != branch2, Eq(true));
 }
 
-TEST(BranchTest, CanLoadFromSerialized)
-{
+TEST(BranchTest, CanLoadFromSerialized) {
     Branch branch("20", "xyz");
     branch.setAddress("101 Main St, Laurel, MD");
     unique_ptr<ostringstream> o(new ostringstream(ios::out | ios::binary));

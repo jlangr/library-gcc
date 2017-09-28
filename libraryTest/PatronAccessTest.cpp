@@ -9,43 +9,36 @@
 using std::vector;
 using namespace testing;
 
-class PatronAccessTest : public Test
-{
+class PatronAccessTest : public Test {
 public:
     PatronAccess access;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         PatronAccess::deleteAll();
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         PatronAccess::deleteAll();
     }
 };
 
-TEST_F(PatronAccessTest, SizeIsZeroWithNoPatrons)
-{
+TEST_F(PatronAccessTest, SizeIsZeroWithNoPatrons) {
     ASSERT_THAT(access.size(), Eq(0));
 }
 
-TEST_F(PatronAccessTest, IncrementsSizeOnAdd)
-{
+TEST_F(PatronAccessTest, IncrementsSizeOnAdd) {
     Patron patron1("patron1");
     access.save(patron1);
 
     ASSERT_THAT(access.size(), Eq(1));
 }
 
-TEST_F(PatronAccessTest, FindAnswersFalseForNonexistentPatron)
-{
+TEST_F(PatronAccessTest, FindAnswersFalseForNonexistentPatron) {
     Patron patron("nobody");
     ASSERT_THAT(access.find(patron), Eq(false));
 }
 
-TEST_F(PatronAccessTest, FindAnswerTrueForSavedPatron)
-{
+TEST_F(PatronAccessTest, FindAnswerTrueForSavedPatron) {
     Patron patron1("patron1");
     access.save(patron1);
 
@@ -53,8 +46,7 @@ TEST_F(PatronAccessTest, FindAnswerTrueForSavedPatron)
     ASSERT_THAT(access.find(retrieved), Eq(true));
 }
 
-TEST_F(PatronAccessTest, SaveIsPersistentAcrossAccessInstances)
-{
+TEST_F(PatronAccessTest, SaveIsPersistentAcrossAccessInstances) {
     Patron patron1("patron1");
     access.save(patron1);
 
@@ -63,8 +55,7 @@ TEST_F(PatronAccessTest, SaveIsPersistentAcrossAccessInstances)
     ASSERT_THAT(newAccess.find(retrieved), Eq(true));
 }
 
-TEST_F(PatronAccessTest, SavePersistsAllAttributes)
-{
+TEST_F(PatronAccessTest, SavePersistsAllAttributes) {
     std::shared_ptr<Patron> patron(new Patron("patron1"));
     access.save(*patron);
 
@@ -75,13 +66,11 @@ TEST_F(PatronAccessTest, SavePersistsAllAttributes)
     ASSERT_THAT(retrieved.fineBalance(), Eq(patron->fineBalance()));
 }
 
-TEST_F(PatronAccessTest, FindByNameThrowsWhenNoNameMatches)
-{
+TEST_F(PatronAccessTest, FindByNameThrowsWhenNoNameMatches) {
     EXPECT_THROW(access.findByName("nobody"), PatronNotFoundException);
 }
 
-TEST_F(PatronAccessTest, FindByNameReturnsChronologicallyFirstMatch)
-{
+TEST_F(PatronAccessTest, FindByNameReturnsChronologicallyFirstMatch) {
     Patron match1("Langr", 1);
     access.save(match1);
     Patron mismatch("Long", 2);
@@ -94,8 +83,7 @@ TEST_F(PatronAccessTest, FindByNameReturnsChronologicallyFirstMatch)
     ASSERT_THAT(found.id(), Eq(1));
 }
 
-TEST_F(PatronAccessTest, UpdatePersistsChanges)
-{
+TEST_F(PatronAccessTest, UpdatePersistsChanges) {
     int id = 10;
     Patron patron1("x", id);
     access.save(patron1);
@@ -109,8 +97,7 @@ TEST_F(PatronAccessTest, UpdatePersistsChanges)
     ASSERT_THAT(retrieved.fineBalance(), Eq(fine));
 }
 
-TEST_F(PatronAccessTest, GetAllAnswersAllSavedPatrons)
-{
+TEST_F(PatronAccessTest, GetAllAnswersAllSavedPatrons) {
     Patron patron1("a", 10);
     Patron patron2("b", 20);
     access.save(patron1);

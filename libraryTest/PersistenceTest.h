@@ -17,25 +17,21 @@ public:
     TestSerializable* objectWithId1;
     TestSerializable* objectWithId2;
 
-    void SetUp() 
-    {
+    void SetUp() {
         persister = (*InjectedFactoryFunction())();
         persister->clear();
         objectWithId1 = new TestSerializable("one", "1");
         objectWithId2 = new TestSerializable("two", "2");
     }
 
-    PersistenceFactoryFunction InjectedFactoryFunction() 
-    {
+    PersistenceFactoryFunction InjectedFactoryFunction() {
         return GetParam();
     }
 
-    void TearDown()
-    {
+    void TearDown() {
         persister->clear();
         delete objectWithId2;
         delete objectWithId1;
         delete persister;
     }
-
 };

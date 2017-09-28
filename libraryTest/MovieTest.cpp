@@ -4,27 +4,20 @@
 
 using namespace testing;
 
-class MovieTest: public Test 
-{
+class MovieTest: public Test {
 public:
-	virtual void SetUp()
-	{
-	}
+	virtual void SetUp() {}
 
-	virtual void TearDown()
-	{
-	}
+	virtual void TearDown() {}
 };
 
-TEST_F(MovieTest, Create)
-{
+TEST_F(MovieTest, Create) {
 	Movie movie("title", PriceCode::REGULAR);
 	ASSERT_THAT(movie.title(), StrEq("title"));
 	ASSERT_THAT(movie.priceCode(), Eq(PriceCode::REGULAR));
 }
 
-TEST_F(MovieTest, ChangePriceCode)
-{
+TEST_F(MovieTest, ChangePriceCode) {
 	Movie movie("a", PriceCode::NEW_RELEASE);
 	movie.setPriceCode(PriceCode::CHILDRENS);
 	ASSERT_THAT(movie.priceCode(), StrEq(PriceCode::CHILDRENS));

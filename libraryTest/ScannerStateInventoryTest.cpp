@@ -13,8 +13,7 @@
 using namespace std;
 using namespace testing;
 
-class ScannerStateInventoryTest : public Test, public TestScanner
-{
+class ScannerStateInventoryTest : public Test, public TestScanner {
 public:
     ScannerStateInventory* state;
 
@@ -27,15 +26,13 @@ public:
     }
 };
 
-TEST_F(ScannerStateInventoryTest, DisplaysWarningMessageWhenInventoryCardScanned)
-{
+TEST_F(ScannerStateInventoryTest, DisplaysWarningMessageWhenInventoryCardScanned) {
     EXPECT_CALL(*display, showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
 
     state->scanInventoryCard(Scanner::INVENTORY_CARD_NUMBER);
 }
 
-TEST_F(ScannerStateInventoryTest, ChangesBranchWhenBranchIdScanned)
-{
+TEST_F(ScannerStateInventoryTest, ChangesBranchWhenBranchIdScanned) {
     stringstream expected;
     expected << ScannerStateInventory::MSG_BRANCH_CHANGED << ScannerTestData::BRANCH_SOUTH_CARD;
     EXPECT_CALL(*display, showMessage(expected.str()));
@@ -46,8 +43,7 @@ TEST_F(ScannerStateInventoryTest, ChangesBranchWhenBranchIdScanned)
     ASSERT_THAT(scanner->branchId(), Eq(ScannerTestData::BRANCH_SOUTH_CARD));
 }
 
-TEST_F(ScannerStateInventoryTest, AddsNewHoldingWhenHoldingScanned) 
-{
+TEST_F(ScannerStateInventoryTest, AddsNewHoldingWhenHoldingScanned)  {
     scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     EXPECT_CALL(*display, showMessage(_));
     EXPECT_CALL(*holdingService(),
@@ -56,8 +52,7 @@ TEST_F(ScannerStateInventoryTest, AddsNewHoldingWhenHoldingScanned)
     state->scanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }
 
-TEST_F(ScannerStateInventoryTest, DisplaysHoldingAddedMessageWhenHoldingScanned) 
-{
+TEST_F(ScannerStateInventoryTest, DisplaysHoldingAddedMessageWhenHoldingScanned)  {
     scanner->setBranchId(ScannerTestData::BRANCH_SOUTH_CARD);
     
     EXPECT_CALL(*display, 
@@ -67,21 +62,18 @@ TEST_F(ScannerStateInventoryTest, DisplaysHoldingAddedMessageWhenHoldingScanned)
     state->scanHolding(ScannerTestData::HOLDING_TRIAL_BARCODE);
 }
 
-TEST_F(ScannerStateInventoryTest, DisplaysErrorWhenDuplicateHoldingScanned)
-{
+TEST_F(ScannerStateInventoryTest, DisplaysErrorWhenDuplicateHoldingScanned) {
     // TODO new feature!
     // needs HoldingService to throw if holding already exists
 }
 
-TEST_F(ScannerStateInventoryTest, DisplayMessageWhenPatronScanned)
-{
+TEST_F(ScannerStateInventoryTest, DisplayMessageWhenPatronScanned) {
     EXPECT_CALL(*display, showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY));
 
     state->scanPatronCard(ScannerTestData::PATRON_JANE_CARD);
 }
 
-TEST_F(ScannerStateInventoryTest, ChangesStateToCheckinWhenDonePressed)
-{
+TEST_F(ScannerStateInventoryTest, ChangesStateToCheckinWhenDonePressed) {
     state->pressDone();
     
     ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);

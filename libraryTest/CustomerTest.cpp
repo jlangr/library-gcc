@@ -8,8 +8,7 @@
 using namespace testing;
 using namespace std;
 
-class CustomerTest: public Test
-{
+class CustomerTest: public Test {
 public:
     Customer* customer;
     Movie* fightClub;
@@ -18,8 +17,7 @@ public:
     Movie* bambi;
     Movie* matrix;
 
-	virtual void SetUp()
-	{
+	virtual void SetUp() {
 		customer = new Customer("Jane Doe");
 		fightClub = new Movie("Fight Club", PriceCode::REGULAR);
 		shane = new Movie("Shane", PriceCode::REGULAR);
@@ -28,8 +26,7 @@ public:
 		matrix = new Movie("Matrix", PriceCode::CHILDRENS);
 	}
 
-	virtual void TearDown()
-	{
+	virtual void TearDown() {
 		delete fightClub;
 		delete shane;
 		delete casinoRoyaleNew;
@@ -40,8 +37,7 @@ public:
 };
 
 /*
-TEST_F(CustomerTest, PerformanceOfStatement)
-{
+TEST_F(CustomerTest, PerformanceOfStatement) {
 	time_t start, stop;
 	int its = 500000;
 	Rental rental1(*shane, 3);
@@ -65,15 +61,13 @@ TEST_F(CustomerTest, PerformanceOfStatement)
 }
 */
 
-TEST_F(CustomerTest, Create)
-{
+TEST_F(CustomerTest, Create) {
 	ASSERT_THAT(customer->name(), Eq("Jane Doe"));
 	vector<Rental> rentals = customer->rentals();
 	ASSERT_THAT(rentals.size(), Eq(0));
 }
 
-TEST_F(CustomerTest, AddRental)
-{
+TEST_F(CustomerTest, AddRental) {
 	Rental rental(*shane, 3);
 	customer->add(rental);
 	vector<Rental> rentals = customer->rentals();
@@ -83,8 +77,7 @@ TEST_F(CustomerTest, AddRental)
 	ASSERT_THAT(retrieved.movie().title(), StrEq(shane->title()));
 }
 
-TEST_F(CustomerTest, StatementNoRentals)
-{
+TEST_F(CustomerTest, StatementNoRentals) {
 	string statement = customer->statement();
 	string expected(
 		"Rental Record for Jane Doe\n"
@@ -93,8 +86,7 @@ TEST_F(CustomerTest, StatementNoRentals)
 	ASSERT_THAT(statement, StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithOneRegularRental) 
-{
+TEST_F(CustomerTest, StatementWithOneRegularRental) {
 	int daysRented = 2;
 	Rental rental(*fightClub, daysRented);
 	customer->add(rental);
@@ -107,8 +99,7 @@ TEST_F(CustomerTest, StatementWithOneRegularRental)
 	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithTwoRegularRentals) 
-{
+TEST_F(CustomerTest, StatementWithTwoRegularRentals) {
 	Rental rental1(*fightClub, 3);
 	Rental rental2(*shane, 3);
 	customer->add(rental1);
@@ -123,8 +114,7 @@ TEST_F(CustomerTest, StatementWithTwoRegularRentals)
 	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithChildrensRental)
-{
+TEST_F(CustomerTest, StatementWithChildrensRental) {
 	Rental rental(*bambi, 7);
 	customer->add(rental);
 	string expected(
@@ -135,8 +125,7 @@ TEST_F(CustomerTest, StatementWithChildrensRental)
 	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithNewReleaseOneNight)
-{
+TEST_F(CustomerTest, StatementWithNewReleaseOneNight) {
 	Rental rental(*casinoRoyaleNew, 1);
 	customer->add(rental);
 	string expected(
@@ -147,8 +136,7 @@ TEST_F(CustomerTest, StatementWithNewReleaseOneNight)
 	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithNewReleaseMoreThanOneNight)
-{
+TEST_F(CustomerTest, StatementWithNewReleaseMoreThanOneNight) {
 	Rental rental(*casinoRoyaleNew, 3);
 	customer->add(rental);
 	string expected(
@@ -159,8 +147,7 @@ TEST_F(CustomerTest, StatementWithNewReleaseMoreThanOneNight)
 	ASSERT_THAT(customer->statement(), StrEq(expected));
 }
 
-TEST_F(CustomerTest, StatementWithManyRentals)
-{
+TEST_F(CustomerTest, StatementWithManyRentals) {
 	Rental rental1(*casinoRoyaleNew, 3);
 	Rental rental2(*fightClub, 3);
 	Rental rental3(*bambi, 10);

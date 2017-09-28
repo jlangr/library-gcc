@@ -6,14 +6,12 @@
 using namespace testing;
 using namespace boost::gregorian;
 
-class TimestampSourceTest: public Test
-{
+class TimestampSourceTest: public Test {
 public:
     static date NEW_YEARS_DAY;
     static date GROUNDHOG_DAY;
 
-    virtual void SetUp() 
-    {
+    virtual void SetUp() {
         TimestampSource::clearQueue();
     }
     virtual void TearDown() {}
@@ -22,15 +20,13 @@ public:
 date TimestampSourceTest::NEW_YEARS_DAY(2013, Jan, 1);
 date TimestampSourceTest::GROUNDHOG_DAY(2013, Feb, 2);
 
-TEST_F(TimestampSourceTest, RetrievesSinglePushedTime)
-{
+TEST_F(TimestampSourceTest, RetrievesSinglePushedTime) {
     TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
     ASSERT_THAT(TimestampSource::now(), Eq(NEW_YEARS_DAY));
 }
 
-TEST_F(TimestampSourceTest, RetrievesMultiplePushedTimes)
-{
+TEST_F(TimestampSourceTest, RetrievesMultiplePushedTimes) {
     TimestampSource::queueNextTime(NEW_YEARS_DAY);
     TimestampSource::queueNextTime(GROUNDHOG_DAY);
 
@@ -38,20 +34,17 @@ TEST_F(TimestampSourceTest, RetrievesMultiplePushedTimes)
     ASSERT_THAT(TimestampSource::now(), Eq(GROUNDHOG_DAY));
 }
 
-TEST_F(TimestampSourceTest, IsExhaustedWhenNoTimeQueued)
-{
+TEST_F(TimestampSourceTest, IsExhaustedWhenNoTimeQueued) {
     ASSERT_THAT(TimestampSource::isExhausted(), Eq(true));
 }
 
-TEST_F(TimestampSourceTest, IsNotExhaustedWhenTimeQueued)
-{
+TEST_F(TimestampSourceTest, IsNotExhaustedWhenTimeQueued) {
     TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
     ASSERT_THAT(TimestampSource::isExhausted(), Eq(false));
 }
 
-TEST_F(TimestampSourceTest, ClearExhaustsQueue)
-{
+TEST_F(TimestampSourceTest, ClearExhaustsQueue) {
     TimestampSource::queueNextTime(NEW_YEARS_DAY);
 
     TimestampSource::clearQueue();
@@ -59,8 +52,7 @@ TEST_F(TimestampSourceTest, ClearExhaustsQueue)
     ASSERT_THAT(TimestampSource::isExhausted(), Eq(true));
 }
 
-TEST_F(TimestampSourceTest, ReturnsCurrentTimeWhenQueueExhausted)
-{    
+TEST_F(TimestampSourceTest, ReturnsCurrentTimeWhenQueueExhausted) {    
     date today(day_clock::local_day());
     TimestampSource::queueNextTime(GROUNDHOG_DAY);
     TimestampSource::now();

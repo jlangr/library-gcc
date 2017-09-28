@@ -9,36 +9,31 @@ using namespace ClassificationData;
 using namespace testing;
 using namespace std;
 
-class PatronServiceTest : public Test
-{
+class PatronServiceTest : public Test {
 public:
     static const string CARD_NUMBER;
     PatronService service;
     Patron* joe;
     Patron* jane;
 
-    virtual void SetUp()
-    {
+    virtual void SetUp() {
         PatronService::deleteAll();
         joe = new Patron("Joe", 1);
         jane = new Patron("Jane", 2);
     }
 
-    virtual void TearDown()
-    {
+    virtual void TearDown() {
         delete jane;
         delete joe;
         PatronService::deleteAll();
     }
 };
 
-TEST_F(PatronServiceTest, CountInitiallyZero)
-{
+TEST_F(PatronServiceTest, CountInitiallyZero) {
     ASSERT_THAT(service.patronCount(), Eq(0));
 }
 
-TEST_F(PatronServiceTest, AddUsingAttributes)
-{
+TEST_F(PatronServiceTest, AddUsingAttributes) {
     service.add("Suresh", 20);
 
     Patron retrieved("", 20);
@@ -46,8 +41,7 @@ TEST_F(PatronServiceTest, AddUsingAttributes)
     ASSERT_THAT(retrieved.name(), StrEq("Suresh"));
 }
 
-TEST_F(PatronServiceTest, AddIncrementsCount)
-{
+TEST_F(PatronServiceTest, AddIncrementsCount) {
     service.add(*joe);
     ASSERT_THAT(service.patronCount(), Eq(1));
 
@@ -55,8 +49,7 @@ TEST_F(PatronServiceTest, AddIncrementsCount)
     ASSERT_THAT(service.patronCount(), Eq(2));
 }
 
-TEST_F(PatronServiceTest, DeleteAllSetsCountToZero)
-{
+TEST_F(PatronServiceTest, DeleteAllSetsCountToZero) {
     service.add(*joe);
     service.add(*jane);
 
@@ -65,8 +58,7 @@ TEST_F(PatronServiceTest, DeleteAllSetsCountToZero)
     ASSERT_THAT(service.patronCount(), Eq(0));
 }
 
-TEST_F(PatronServiceTest, DeleteAllRemovesAnyAddedPatrons)
-{
+TEST_F(PatronServiceTest, DeleteAllRemovesAnyAddedPatrons) {
     service.add(*joe);
     service.add(*jane);
 
@@ -75,13 +67,11 @@ TEST_F(PatronServiceTest, DeleteAllRemovesAnyAddedPatrons)
     ASSERT_THAT(service.patronCount(), Eq(0));
 }
 
-TEST_F(PatronServiceTest, FindAnswerFalseForNonexistentPatron)
-{
+TEST_F(PatronServiceTest, FindAnswerFalseForNonexistentPatron) {
     ASSERT_THAT(service.find(*joe), Eq(false));
 }
 
-TEST_F(PatronServiceTest, FindAnswersTrueForAddedPatron)
-{
+TEST_F(PatronServiceTest, FindAnswersTrueForAddedPatron) {
     service.add(*joe);
 
     bool found = service.find(*joe);
@@ -89,8 +79,7 @@ TEST_F(PatronServiceTest, FindAnswersTrueForAddedPatron)
     ASSERT_THAT(found, Eq(true));
 }
 
-TEST_F(PatronServiceTest, FindRetrieves)
-{
+TEST_F(PatronServiceTest, FindRetrieves) {
     service.add(*joe);
     Patron retrieved("dummy name", joe->id());
 
@@ -99,8 +88,7 @@ TEST_F(PatronServiceTest, FindRetrieves)
     ASSERT_THAT(retrieved.name(), StrEq(joe->name()));
 }
 
-TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron)
-{
+TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron) {
     joe->addFine(20);
     Holding theTrial(THE_TRIAL_CLASSIFICATION, 1);
     joe->borrow(theTrial);
