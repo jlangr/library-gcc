@@ -61,8 +61,8 @@ public:
     void CheckOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000")
     {
         patronService.add(Patron{"", patronCardNumber});
-        holdingService.addAtBranch(branch->id(), barcode.AsString());
-        holdingService.checkOut(patronCardNumber, barcode.AsString(), *arbitraryDate);
+        holdingService.addAtBranch(branch->id(), barcode.asString());
+        holdingService.checkOut(patronCardNumber, barcode.asString(), *arbitraryDate);
     }
 };
 
@@ -73,17 +73,17 @@ TEST_F(HoldingServiceTest, SizeInitiallyZero)
 
 TEST_F(HoldingServiceTest, SizeIncrementedOnAddRegardlessOfBranch)
 {
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString());
     ASSERT_THAT(holdingService.inventorySize(), Eq(1));
 
-    holdingService.addAtBranch(branch2->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).AsString());
+    holdingService.addAtBranch(branch2->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).asString());
     ASSERT_THAT(holdingService.inventorySize(), Eq(2));
 }
 
 TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero)
 {
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString());
-    holdingService.addAtBranch(branch2->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).AsString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString());
+    holdingService.addAtBranch(branch2->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).asString());
 
     HoldingService::deleteAll();
 
@@ -92,7 +92,7 @@ TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero)
 
 TEST_F(HoldingServiceTest, AddInitializesBranch)
 {
-    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString()};
+    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString()};
     holdingService.addAtBranch(branch1->id(), barcode);
 
     auto holding = holdingService.findByBarCode(barcode);
@@ -102,7 +102,7 @@ TEST_F(HoldingServiceTest, AddInitializesBranch)
 
 TEST_F(HoldingServiceTest, RetrievesAddedHolding)
 {
-    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString()};
+    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString()};
 
     holdingService.addAtBranch(branch1->id(), barcode);
 
@@ -137,11 +137,11 @@ TEST_F(HoldingServiceTest, IsAvailableReturnsTrueWhenHoldingAvailable)
 
 TEST_F(HoldingServiceTest, IsAvailableReturnsFalseWhenHoldingCheckedOut)
 {
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     CheckOut(barcode, branch1);
 
-    auto isAvailable{holdingService.isAvailable(barcode.AsString())};
+    auto isAvailable{holdingService.isAvailable(barcode.asString())};
 
     ASSERT_THAT(isAvailable, Eq(false));
 }
@@ -157,9 +157,9 @@ TEST_F(HoldingServiceTest, FindByClassificationReturnsEmptyWhenNoMatch)
 
 TEST_F(HoldingServiceTest, FindByClassificationReturnsMultipleMatches)
 {
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).AsString());
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).AsString());
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).asString());
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
 
     set<Holding> holdings;
     holdingService.findByClassification(THE_TRIAL_CLASSIFICATION, holdings);
@@ -181,7 +181,7 @@ TEST_F(HoldingServiceTest, Transfer)
 
 TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
 {
-    auto barcode{HoldingBarcode{CATCH22_CLASSIFICATION, 1}.AsString()};
+    auto barcode{HoldingBarcode{CATCH22_CLASSIFICATION, 1}.asString()};
     holdingService.addAtBranch(branch1->id(), barcode);
     patronService.add(Patron{"", "p1001"});
 
@@ -193,13 +193,13 @@ TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable)
 
 TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron)
 {
-    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
-    auto barcode{HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString()};
+    holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
+    auto barcode{HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString()};
     patronService.add(Patron{"", "p1001"});
 
-    holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString(), *arbitraryDate);
+    holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString(), *arbitraryDate);
 
-    Holding holding(HoldingBarcode(CATCH22_CLASSIFICATION, 1).AsString());
+    Holding holding(HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
     ASSERT_THAT(FindPatronWithId("p1001").holdings(),
         Eq(set<Holding>{holding}));
 }
@@ -209,9 +209,9 @@ TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch)
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     CheckOut(barcode, branch1);
 
-    holdingService.checkIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
-    ASSERT_THAT(holdingService.findByBarCode(barcode.AsString()).currentBranch(), Eq(*branch2));
+    ASSERT_THAT(holdingService.findByBarCode(barcode.asString()).currentBranch(), Eq(*branch2));
 }
 
 TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings)
@@ -220,7 +220,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings)
     string patronId("5");
     CheckOut(barcode, branch1, patronId);
 
-    holdingService.checkIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
     ASSERT_THAT(FindPatronWithId(patronId).holdings().size(), Eq(0));
 }
@@ -231,7 +231,7 @@ TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance)
     string patronCardNumber("p5");
     CheckOut(barcode, branch1, patronCardNumber);
 
-    holdingService.checkIn(barcode.AsString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
     ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(0));
 }
@@ -243,7 +243,7 @@ TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance)
     CheckOut(barcode, branch1, patronCardNumber);
     date_duration oneDayLate(Book::BOOK_CHECKOUT_PERIOD + 1);
 
-    holdingService.checkIn(barcode.AsString(), *arbitraryDate + oneDayLate, branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + oneDayLate, branch2->id());
 
     ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
 }

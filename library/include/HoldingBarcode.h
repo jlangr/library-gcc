@@ -12,17 +12,17 @@ public:
     
     ~HoldingBarcode(void) {}
 
-    std::string AsString() const {
+    std::string asString() const {
         std::stringstream buffer;
         buffer << mClassification << ":" << mCopyNumber;
         return buffer.str();
     }
 
-    std::string Classification() const { 
+    std::string classification() const { 
         return mClassification; 
     }
     
-    unsigned int CopyNumber() const { 
+    unsigned int copyNumber() const { 
         return mCopyNumber; 
     }
 

@@ -6,5 +6,5 @@ using namespace testing;
 
 TEST(HoldingBarcodeTest, StringRepresentation)
 {
-    ASSERT_THAT(HoldingBarcode("abc", 2).AsString(), StrEq("abc:2"));
+    ASSERT_THAT(HoldingBarcode("abc", 2).asString(), StrEq("abc:2"));
 }
