@@ -42,11 +42,11 @@ ScannerState* Scanner::currentState() {
 void Scanner::scan(const std::string& barcode) {
     if (barcode == INVENTORY_CARD_NUMBER)
         currentState()->scanInventoryCard(INVENTORY_CARD_NUMBER);
-    else if (BarcodeUtil::IsBranchId(barcode))
+    else if (BarcodeUtil::isBranchId(barcode))
         currentState()->scanBranchCard(barcode);
-    else if (BarcodeUtil::IsPatronId(barcode))
+    else if (BarcodeUtil::isPatronId(barcode))
         currentState()->scanPatronCard(barcode);
-    else if (BarcodeUtil::IsHoldingBarcode(barcode))
+    else if (BarcodeUtil::isHoldingBarcode(barcode))
         currentState()->scanHolding(barcode);
     else
         showMessage(MSG_INVALID_BARCODE);
