@@ -9,35 +9,26 @@ MailMessage::MailMessage(const std::string& subject,
     const std::string& from)
     : mSubject(subject)
     , mContent(content)
-    , mFrom(from)
-{
-}
+    , mFrom(from) {}
 
-MailMessage::~MailMessage(void)
-{
-}
+MailMessage::~MailMessage(void) {}
 
-void MailMessage::addRecipient(const std::string& to)
-{
+void MailMessage::addRecipient(const std::string& to) {
     mTo.push_back(to);
 }
 
-string MailMessage::subject() const
-{
+string MailMessage::subject() const {
     return mSubject;
 }
 
-string MailMessage::content() const
-{
+string MailMessage::content() const {
     return mContent;
 }
 
-vector<string> MailMessage::to() const
-{
+vector<string> MailMessage::to() const {
     return mTo;
 }
 
-string MailMessage::from() const
-{
+string MailMessage::from() const {
     return mFrom;
 }

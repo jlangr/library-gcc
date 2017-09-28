@@ -18,35 +18,28 @@ Scanner::Scanner(DisplayListener* display, service::HoldingService* holdingServi
     , mBranchId("")
     , mCurrentState(0)
     , mPatronId("")
-    , mHoldingService(holdingService)
-{
+    , mHoldingService(holdingService) {
     setCurrentState(new ScannerStateWaiting(this));
 }
 
-Scanner::~Scanner()
-{
-    if (mCurrentState)
-    {
+Scanner::~Scanner() {
+    if (mCurrentState) {
         delete mCurrentState;
     }
 }
 
-void Scanner::setCurrentState(ScannerState* state)
-{
-    if (mCurrentState)
-    {
+void Scanner::setCurrentState(ScannerState* state) {
+    if (mCurrentState) {
         delete mCurrentState;
     }
     mCurrentState = state;
 }
 
-ScannerState* Scanner::currentState()
-{
+ScannerState* Scanner::currentState() {
     return mCurrentState;
 }
 
-void Scanner::scan(const std::string& barcode) 
-{
+void Scanner::scan(const std::string& barcode) {
     if (barcode == INVENTORY_CARD_NUMBER)
         currentState()->scanInventoryCard(INVENTORY_CARD_NUMBER);
     else if (BarcodeUtil::IsBranchId(barcode))
@@ -59,37 +52,30 @@ void Scanner::scan(const std::string& barcode)
         showMessage(MSG_INVALID_BARCODE);
 }
 
-void Scanner::setBranchId(const string& branchId)
-{
+void Scanner::setBranchId(const string& branchId) {
     mBranchId = branchId;
 }
 
-string Scanner::branchId()
-{
+string Scanner::branchId() {
     return mBranchId;
 }
 
-void Scanner::setPatronId(const string& patronId)
-{
+void Scanner::setPatronId(const string& patronId) {
     mPatronId = patronId;
 }
 
-string Scanner::patronId()
-{
+string Scanner::patronId() {
     return mPatronId;
 }
 
-void Scanner::showMessage(const std::string& message)
-{
+void Scanner::showMessage(const std::string& message) {
     mDisplay->showMessage(message);
 }
 
-void Scanner::pressDone() 
-{
+void Scanner::pressDone() {
     currentState()->pressDone();
 }
 
-service::HoldingService* Scanner::holdingService()
-{
+service::HoldingService* Scanner::holdingService() {
     return mHoldingService;
 }

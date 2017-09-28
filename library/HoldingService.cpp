@@ -13,46 +13,36 @@ using namespace std;
 using boost::gregorian::date;
 using namespace service;
 
-HoldingService::HoldingService()
-{
-}
+HoldingService::HoldingService() {}
 
-HoldingService::~HoldingService()
-{
-}
+HoldingService::~HoldingService() {}
 
-void HoldingService::deleteAll()
-{
+void HoldingService::deleteAll() {
     Catalog::deleteAll();
 }
 
-unsigned int HoldingService::inventorySize() const
-{
+unsigned int HoldingService::inventorySize() const {
     return mCatalog.size();
 }
 
-void HoldingService::findByClassification(const string& classification, set<Holding>& holdings) const
-{
+void HoldingService::findByClassification(
+        const string& classification, set<Holding>& holdings) const {
     mCatalog.findByClassification(classification, holdings);
 }
 
-bool HoldingService::existsWithBarcode(const std::string& barcode) const
-{
+bool HoldingService::existsWithBarcode(const std::string& barcode) const {
     return mCatalog.contains(barcode);
 }
 
-bool HoldingService::isAvailable(const std::string& barcode) const
-{
+bool HoldingService::isAvailable(const std::string& barcode) const {
     return mCatalog.contains(barcode) && findByBarCode(barcode).isAvailable();
 }
 
-Holding HoldingService::findByBarCode(const std::string& barcode) const
-{
+Holding HoldingService::findByBarCode(const std::string& barcode) const {
     return mCatalog.findByBarCode(barcode);
 }
 
-void HoldingService::addAtBranch(const string& id, const string& barcode)
-{
+void HoldingService::addAtBranch(const string& id, const string& barcode) {
     Branch branch(id);
     mBranchService.find(branch);
 
@@ -61,14 +51,12 @@ void HoldingService::addAtBranch(const string& id, const string& barcode)
     transfer(holding, branch);
 }
 
-void HoldingService::transfer(Holding& holding, Branch& branch)
-{
+void HoldingService::transfer(Holding& holding, Branch& branch) {
     holding.transfer(branch);
     mCatalog.update(holding);
 }
 
-void HoldingService::transfer(const string& barcode, const string& branchId)
-{
+void HoldingService::transfer(const string& barcode, const string& branchId) {
     Branch branch(branchId);
     mBranchService.find(branch);
 
@@ -77,8 +65,7 @@ void HoldingService::transfer(const string& barcode, const string& branchId)
     mCatalog.update(holding);
 }
 
-void HoldingService::checkOut(const string& patronCardNumber, const string& barcode, date date)
-{
+void HoldingService::checkOut(const string& patronCardNumber, const string& barcode, date date) {
     auto holding = findByBarCode(barcode);
     holding.checkOut(date);
     mCatalog.update(holding);
@@ -90,8 +77,7 @@ void HoldingService::checkOut(const string& patronCardNumber, const string& barc
     mPatronService.update(patron);
 }
 
-void HoldingService::checkIn(const string& barCode, date date, const string& branchId)
-{
+void HoldingService::checkIn(const string& barCode, date date, const string& branchId) {
     Branch branch(branchId);
     mBranchService.find(branch);
 
@@ -115,16 +101,13 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
     vector<Patron>::const_iterator it;
     for (it = patrons.begin();
         it != patrons.end();
-        it++)
-    {
+        it++) {
         p = *it;
         holdings = p.holdings();
         set<Holding>::const_iterator it1;
-        for (it1 = holdings.begin(); it1 != holdings.end(); it1++)
-        {
+        for (it1 = holdings.begin(); it1 != holdings.end(); it1++) {
             patHld = *it1;
             if (hld.classification() == patHld.classification())
-
                 f = p;
         }
     }
@@ -148,8 +131,7 @@ void HoldingService::checkIn(const string& barCode, date date, const string& bra
             case Book::TYPE_BOOK:
                 f.addFine(Book::BOOK_DAILY_FINE * daysLate);
                 break;
-            case Book::TYPE_MOVIE:
-            {
+            case Book::TYPE_MOVIE: {
                 int fine = 100 + Book::MOVIE_DAILY_FINE * daysLate;
                 if (fine > 1000)
                     fine = 1000;

@@ -6,10 +6,7 @@ const int Book::BOOK_CHECKOUT_PERIOD(21);
 const int Book::MOVIE_CHECKOUT_PERIOD(7);
 const int Book::NEW_RELEASE_CHECKOUT_PERIOD(3);
 
-Book::Book()
-    : mYear(0)
-{
-}
+Book::Book() : mYear(0) {}
 
 Book::Book(
     const string& title,
@@ -21,16 +18,11 @@ Book::Book(
     , mAuthor(author)
     , mYear(year)
     , mClassification(classification)
-    , mType(type)
-{
-}
+    , mType(type) {}
 
-Book::~Book()
-{
-}
+Book::~Book() {}
 
-Book& Book::operator=(const Book& rhs)
-{
+Book& Book::operator=(const Book& rhs) {
     if (this == &rhs) return *this;
 
     mTitle = rhs.mTitle;

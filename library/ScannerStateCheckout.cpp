@@ -14,29 +14,21 @@ const string ScannerStateCheckout::MSG_INVALID_HOLDING_ID("Holding barcode not r
 const string ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT("Holding already checked out.");
 
 ScannerStateCheckout::ScannerStateCheckout(Scanner* scanner)
-    : ScannerState(scanner)
-{
-}
+    : ScannerState(scanner) {}
 
-ScannerStateCheckout::~ScannerStateCheckout(void)
-{
-}
+ScannerStateCheckout::~ScannerStateCheckout(void) {}
 
-void ScannerStateCheckout::pressDone()
-{
+void ScannerStateCheckout::pressDone() {
     setState<ScannerStateCheckin>();
 }
 
-void ScannerStateCheckout::scanHolding(const string& barcode)
-{
-    if (!holdingService()->existsWithBarcode(barcode))
-    {
+void ScannerStateCheckout::scanHolding(const string& barcode) {
+    if (!holdingService()->existsWithBarcode(barcode)) {
         showMessage(ScannerStateCheckout::MSG_INVALID_HOLDING_ID);
         return;
     }
 
-    if (!holdingService()->isAvailable(barcode))
-    {
+    if (!holdingService()->isAvailable(barcode)) {
         showMessage(ScannerStateCheckout::MSG_ALREADY_CHECKED_OUT);
         return;
     }
@@ -45,17 +37,14 @@ void ScannerStateCheckout::scanHolding(const string& barcode)
     showMessage(ScannerStateCheckout::MSG_SCANNED_HOLDING);
 }
 
-void ScannerStateCheckout::scanBranchCard(const string& barcode)
-{    
+void ScannerStateCheckout::scanBranchCard(const string& barcode) {    
     showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }
 
-void ScannerStateCheckout::scanPatronCard(const string& patronId)
-{
+void ScannerStateCheckout::scanPatronCard(const string& patronId) {
     showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }
 
-void ScannerStateCheckout::scanInventoryCard(const string&)
-{
+void ScannerStateCheckout::scanInventoryCard(const string&) {
     showMessage(ScannerStateCheckout::MSG_COMPLETE_CHECKOUT_FIRST);
 }

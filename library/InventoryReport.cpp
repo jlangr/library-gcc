@@ -21,12 +21,9 @@ const unsigned int InventoryReport::ISBN_LENGTH(10);
 
 InventoryReport::InventoryReport(Catalog* catalog)
 	: mCatalog(catalog)
-	, mIsbnApi(new LibraryOfCongressAPI())
-{
-}
+	, mIsbnApi(new LibraryOfCongressAPI()) {}
 
-InventoryReport::~InventoryReport(void)
-{
+InventoryReport::~InventoryReport(void) {
     delete mIsbnApi;
 }
 
@@ -38,12 +35,10 @@ std::string InventoryReport::generate() {
     vector<Holding>* holdings = Catalog::holdings();
     for (vector<Holding>::iterator it = holdings->begin();
         it != holdings->end();
-        it++)
-    {
+        it++) {
         Holding holding = *it;
         Book book = classificationService.retrieveDetails(holding.classification());
-        if (book.type() == Book::TYPE_BOOK)
-        {
+        if (book.type() == Book::TYPE_BOOK) {
             Record record(book, holding.currentBranch().name(), mIsbnApi);
             records.push_back(record);
         }

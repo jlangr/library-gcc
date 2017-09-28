@@ -6,32 +6,23 @@
 #include "Rental.h"
 #include "PriceCode.h"
 
-Customer::Customer(const std::string& name)
-	: mName(name)
-{
-}
+Customer::Customer(const std::string& name) : mName(name) {}
 
-Customer::~Customer()
-{
-}
+Customer::~Customer() {}
 
-void Customer::add(const Rental& rental)
-{
+void Customer::add(const Rental& rental) {
 	mRentals.push_back(rental);
 }
 
-std::string Customer::name() const
-{
+std::string Customer::name() const {
 	return mName;
 }
 
-std::vector<Rental> Customer::rentals() const
-{
+std::vector<Rental> Customer::rentals() const {
 	return mRentals;
 }
 
-std::string Customer::statement() 
-{
+std::string Customer::statement() {
 	double totalAmount = 0.0;
 	int frequentRenterPoints = 0;
 
@@ -40,14 +31,12 @@ std::string Customer::statement()
 	result << std::setprecision(2) << std::fixed << std::showpoint;
 	result << "Rental Record for " << mName << "\n";
 
-	for (it = mRentals.begin(); it != mRentals.end(); it++)
-	{
+	for (it = mRentals.begin(); it != mRentals.end(); it++) {
 		double thisAmount = 0;
 		Rental& each = (*it);
 
 		// Determine amounts for each line of movies
 		switch (each.movie().priceCode()) {
-
 			case PriceCode::REGULAR:
 				thisAmount += 2;
 				if (each.daysRented() > 2) 
@@ -70,8 +59,7 @@ std::string Customer::statement()
 
 		// Add bonus for a two-day new release rental
 		if ((each.movie().priceCode() == PriceCode::NEW_RELEASE) &&
-			 each.daysRented() > 1) 
-		{
+			 each.daysRented() > 1) {
 			frequentRenterPoints++;
 		}
 

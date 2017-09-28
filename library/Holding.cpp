@@ -16,10 +16,8 @@ using namespace std;
 
 Holding::Holding(const string& barcode)
     : mBranch(Branch::CHECKED_OUT)
-    , mLastCheckedOutOn()
-{
-    if (barcode.find(":") == string::npos)
-    {
+    , mLastCheckedOutOn() {
+    if (barcode.find(":") == string::npos) {
         throw InvalidBarcodeException();
     }
     vector<string> barcodeParts = stringutil::split(barcode, ':');
@@ -32,88 +30,69 @@ Holding::Holding(const string& classification, unsigned short copyNumber)
     : mClassification(classification)
     , mCopyNumber(copyNumber)
     , mBranch(Branch::CHECKED_OUT)
-    , mLastCheckedOutOn()
-{
-}
+    , mLastCheckedOutOn() {}
 
 Holding::Holding()
     : mClassification("")
     , mCopyNumber(1)
     , mBranch(Branch::CHECKED_OUT)
-    , mLastCheckedOutOn()
-{
-}
+    , mLastCheckedOutOn() {}
 
-Holding::~Holding()
-{
-}
+Holding::~Holding() {}
 
-bool Holding::operator==(const Holding& rhs) const
-{
+bool Holding::operator==(const Holding& rhs) const {
     return barcode() == rhs.barcode();
 }
 
-bool Holding::operator<(const Holding& rhs) const
-{
+bool Holding::operator<(const Holding& rhs) const {
     return barcode() < rhs.barcode();
 }
 
-bool Holding::operator!=(const Holding& rhs) const
-{
+bool Holding::operator!=(const Holding& rhs) const {
     return !(*this == rhs);
 }
 
-string Holding::classification() const
-{
+string Holding::classification() const {
     return mClassification;
 }
 
-unsigned short Holding::copyNumber() const
-{
+unsigned short Holding::copyNumber() const {
     return mCopyNumber;
 }
 
-Branch Holding::currentBranch() const
-{
+Branch Holding::currentBranch() const {
     return mBranch;
 }
 
-void Holding::transfer(Branch& branch)
-{
+void Holding::transfer(Branch& branch) {
     mBranch = branch;
 }
 
-string Holding::barcode() const
-{
+string Holding::barcode() const {
     return Holding::constructBarcode(mClassification, mCopyNumber);
 }
 
 /* static */ string Holding::constructBarcode(
-    const string& classification, const int& copyNumber)
-{
+    const string& classification, const int& copyNumber) {
     stringstream buffer;
     buffer << classification << ":" << copyNumber;
     return buffer.str();
 }
 
-void Holding::checkOut(date checkOutDate)
-{
+void Holding::checkOut(date checkOutDate) {
     mLastCheckedOutOn = checkOutDate;
     mBranch = Branch::CHECKED_OUT;
 }
 
-void Holding::checkIn(date checkInDate, const Branch& branch)
-{
+void Holding::checkIn(date checkInDate, const Branch& branch) {
     mBranch = branch;
 }
 
-date Holding::lastCheckedOutOn() const
-{
+date Holding::lastCheckedOutOn() const {
     return mLastCheckedOutOn;
 }
 
-date Holding::dueDate() const
-{
+date Holding::dueDate() const {
     // should this go into HoldingService?
 
     // figure out how long the book can be held
@@ -138,7 +117,6 @@ date Holding::dueDate() const
     return mLastCheckedOutOn + date_duration(period);
 }
 
-bool Holding::isAvailable() const
-{
+bool Holding::isAvailable() const {
     return Branch::CHECKED_OUT != mBranch;
 }

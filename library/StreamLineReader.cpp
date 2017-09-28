@@ -8,25 +8,18 @@
 using namespace std;
 
 StreamLineReader::StreamLineReader(istream* input)
-    : mInput(input)
-{
-}
+    : mInput(input) {}
 
-StreamLineReader::~StreamLineReader(void)
-{
-}
+StreamLineReader::~StreamLineReader(void) {}
 
-void StreamLineReader::read(string& stringMember)
-{
+void StreamLineReader::read(string& stringMember) {
     getline(*mInput, stringMember);
 }
 
-void StreamLineReader::read(unsigned int& intMember)
-{
+void StreamLineReader::read(unsigned int& intMember) {
     string text;
     getline(*mInput, text);
-    if ( !(istringstream(text) >> intMember)) 
-    {
+    if ( !(istringstream(text) >> intMember)) {
         intMember = 0;
     }
 }

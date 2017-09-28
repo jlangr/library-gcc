@@ -5,16 +5,11 @@
 using namespace std;
 using namespace ClassificationData;
 
-ClassificationService::ClassificationService(void)
-{
-}
+ClassificationService::ClassificationService(void) {}
 
-ClassificationService::~ClassificationService(void)
-{
-}
+ClassificationService::~ClassificationService(void) {}
 
-Book ClassificationService::retrieveDetails(const string& classification) const
-{
+Book ClassificationService::retrieveDetails(const string& classification) const {
     if (classification == ClassificationData::CATCH22_CLASSIFICATION)
         return ClassificationData::CATCH22;
     if (classification == ClassificationData::THE_TRIAL_CLASSIFICATION)

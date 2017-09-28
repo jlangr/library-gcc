@@ -7,30 +7,22 @@
 using namespace std;
 
 MailDestination::MailDestination(const string& address)
-    : mAddress(address)
-{
-}
+    : mAddress(address) {}
 
-MailDestination::~MailDestination(void)
-{
-}
+MailDestination::~MailDestination(void) {}
 
-/* static */ Endpoint MailDestination::createEndpoint(const string& address)
-{
+/* static */ Endpoint MailDestination::createEndpoint(const string& address) {
     throw MailDestinationException();
 }
 
-/* static */ Endpoint MailDestination::endpointForDestination(MailDestination& destination)
-{
+/* static */ Endpoint MailDestination::endpointForDestination(MailDestination& destination) {
     return createEndpoint(destination.address());
 }
 
-void MailDestination::send(MailMessage& message)
-{
+void MailDestination::send(MailMessage& message) {
     Transport::send(message);
 }
 
-string MailDestination::address() const
-{
+string MailDestination::address() const {
     return mAddress;
 }

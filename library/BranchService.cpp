@@ -7,26 +7,19 @@
 
 using namespace std;
 
-BranchService::BranchService(void)
-{
-}
+BranchService::BranchService(void) {}
 
-BranchService::~BranchService(void)
-{
-}
+BranchService::~BranchService(void) {}
 
-short BranchService::branchCount() const
-{
+short BranchService::branchCount() const {
     return mBranchAccess.size();
 }
 
-void BranchService::add(Branch& branch)
-{
+void BranchService::add(Branch& branch) {
     mBranchAccess.save(branch);
 }
 
-string BranchService::add(const string& name, const string& address)
-{
+string BranchService::add(const string& name, const string& address) {
     if (existsWithName(name))
         throw DuplicateBranchNameException();
 
@@ -40,18 +33,15 @@ string BranchService::add(const string& name, const string& address)
     return id;
 }
 
-bool BranchService::find(Branch& branch) const
-{
+bool BranchService::find(Branch& branch) const {
     return mBranchAccess.find(branch);
 }
 
-bool BranchService::existsWithName(const string& name) const
-{
+bool BranchService::existsWithName(const string& name) const {
     return mBranchAccess.existsWithName(name);
 }
 
-/* static */ void BranchService::deleteAll()
-{
+/* static */ void BranchService::deleteAll() {
     BranchAccess access;
     access.deleteAll();
 }

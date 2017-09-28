@@ -13,57 +13,42 @@
 
 using namespace std;
 
-BranchAccess::BranchAccess(shared_ptr<Persistence<Branch>> persister)
-    : mPersister(persister)
-{
-}
+BranchAccess::BranchAccess(shared_ptr<Persistence<Branch>> persister) : mPersister(persister) {}
 
 BranchAccess::BranchAccess()
-    : mPersister(new KeyedMemoryPersistence<Branch>(BranchAccess::dataFileName()))
-{
-}
+    : mPersister(new KeyedMemoryPersistence<Branch>(BranchAccess::dataFileName())) {}
 
-BranchAccess::~BranchAccess()
-{
-}
+BranchAccess::~BranchAccess() {}
 
-string BranchAccess::dataFileName()
-{
+string BranchAccess::dataFileName() {
     return "BranchAccess.txt";
 }
 
-bool matchBranchByName(Serializable& each, const string& name)
-{
+bool matchBranchByName(Serializable& each, const string& name) {
     return (dynamic_cast<Branch&>(each)).name() == name;
 }
 
-bool BranchAccess::existsWithName(const string& name) const
-{
+bool BranchAccess::existsWithName(const string& name) const {
     return mPersister->matches(matchBranchByName, name);
 }
 
-bool BranchAccess::find(Branch& branch) const
-{
+bool BranchAccess::find(Branch& branch) const {
     unique_ptr<Branch> retrieved = mPersister->get(branch.id());
-    if (retrieved.get() == NULL)
-    {
+    if (retrieved.get() == NULL) {
         return false;
     }
     branch = *retrieved;
     return true;
 }
 
-int BranchAccess::size() const
-{
+int BranchAccess::size() const {
     return mPersister->size();
 }
 
-void BranchAccess::save(const Branch& branch)
-{
+void BranchAccess::save(const Branch& branch) {
     mPersister->add(branch);
 }
 
-void BranchAccess::deleteAll()
-{
+void BranchAccess::deleteAll() {
     mPersister->clear();
 }

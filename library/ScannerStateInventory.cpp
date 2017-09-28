@@ -13,38 +13,29 @@ const string ScannerStateInventory::MSG_BRANCH_CHANGED("Branch changed to ");
 const string ScannerStateInventory::MSG_HOLDING_ADDED("Added holding ");
 
 ScannerStateInventory::ScannerStateInventory(Scanner* scanner)
-    : ScannerState(scanner)
-{
-}
+    : ScannerState(scanner) {}
 
-ScannerStateInventory::~ScannerStateInventory(void)
-{
-}
+ScannerStateInventory::~ScannerStateInventory(void) {}
 
-void ScannerStateInventory::scanHolding(const string& barcode)
-{
+void ScannerStateInventory::scanHolding(const string& barcode) {
     holdingService()->addAtBranch(branchId(), barcode);
 
     showMessage(ScannerStateInventory::MSG_HOLDING_ADDED + barcode);
 }
 
-void ScannerStateInventory::scanPatronCard(const string&)
-{
+void ScannerStateInventory::scanPatronCard(const string&) {
     showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY);
 }
 
-void ScannerStateInventory::scanInventoryCard(const string&)
-{
+void ScannerStateInventory::scanInventoryCard(const string&) {
     showMessage(ScannerStateInventory::MSG_COMPLETE_INVENTORY);
 }
 
-void ScannerStateInventory::scanBranchCard(const string& branchId)
-{
+void ScannerStateInventory::scanBranchCard(const string& branchId) {
     setBranchId(branchId);
     showMessage(ScannerStateInventory::MSG_BRANCH_CHANGED + branchId);
 }
 
-void ScannerStateInventory::pressDone()
-{
+void ScannerStateInventory::pressDone() {
     setState<ScannerStateCheckin>();
 }
