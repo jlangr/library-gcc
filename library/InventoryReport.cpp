@@ -20,11 +20,9 @@ const unsigned int InventoryReport::YEAR_LENGTH(6);
 const unsigned int InventoryReport::ISBN_LENGTH(10);
 
 InventoryReport::InventoryReport(Catalog* catalog)
-	: mCatalog(catalog)
-	, mIsbnApi(new LibraryOfCongressAPI()) {}
+	: mCatalog(catalog) {}
 
 InventoryReport::~InventoryReport(void) {
-    delete mIsbnApi;
 }
 
 std::string InventoryReport::generate() {
@@ -39,7 +37,7 @@ std::string InventoryReport::generate() {
         Holding holding = *it;
         Book book = classificationService.retrieveDetails(holding.classification());
         if (book.type() == Book::TYPE_BOOK) {
-            Record record(book, holding.currentBranch().name(), mIsbnApi);
+            Record record(book, holding.currentBranch().name(), &mIsbnApi);
             records.push_back(record);
         }
     }
@@ -90,7 +88,6 @@ void InventoryReport::append(stringstream& buffer, Record& record) {
     buffer << endl;
 }
 
-// TODO: copy over these better implementations to template project!
 string InventoryReport::pad(unsigned int totalLength, const string& text) {
     //stringstream buffer(text, ios::out | ios::ate);
     return text + string(totalLength - text.length(), ' ');

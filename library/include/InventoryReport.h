@@ -63,7 +63,7 @@ public:
     std::string pad(unsigned int totalLength, const std::string& text="");
 private:
     Catalog* mCatalog;
-    LibraryOfCongressAPI* mIsbnApi;
+    LibraryOfCongressAPI mIsbnApi;
 };
 
 #endif
