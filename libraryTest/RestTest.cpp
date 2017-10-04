@@ -7,28 +7,39 @@
 #include <mutex>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 using namespace ::testing;
 
 class Location {
 public:
-    Location(double lat, double lon): _lat{lat}, _lon{lon} {}
+    Location(double lat, double lon): _lat{lat}, _lon{lon} { } 
     virtual ~Location() {}
 
     void load() {
         auto response{get()};
-        parse(response.body);
+        parse(toJsonValue(response.body));
     }
 
-    void parse(const string& response) {
+    Json::Value toJsonValue(const string& jsonText) {
         Json::Value root;
-        stringstream s{ response };
+        stringstream s{ jsonText };
         s >> root;
+        return root;
+    }
+
+    void parse(const Json::Value& root) {
         _displayName = root["display_name"].asString();
         Json::Value address = root["address"];
         _city = address["city"].asString();
         _country = address["country"].asString();
+    }
+
+    string coordinates() {
+        stringstream s;
+        s << "(" << _lat << "," << _lon << ")";
+        return s.str();
     }
 
     string city() const {
@@ -50,7 +61,8 @@ private:
             << "&lat=" << _lat
             << "&lon=" << _lon
             << "&zoom=17";
-        return RestClient::get(url.str());
+        auto result = RestClient::get(url.str());
+        return result;
     }
 
     double _lat;
@@ -60,7 +72,7 @@ private:
     string _country{""};
 };
 
-TEST(ALocation, ParsesJson) {
+TEST(ALocation, DISABLED_ParsesJson) {
     Location location{10, -45};
 
     auto response{"{\"display_name\": \"display name\", \"address\": {\"city\": \"London\", \"country\": \"UK\"}}"};
@@ -74,38 +86,45 @@ TEST(ALocation, ParsesJson) {
 
 class Map {
 public:
-    void loadLocation(double lat, double lon) {
-        auto loc{Location(lat, lon)};
-        loc.load();
-        _lock.lock();
-        _locations.push_back(loc);
-        _lock.unlock();
+    virtual ~Map() {
+        for (auto loc: _locations)
+            delete loc;
+    }
+
+    void addLocation(double lat, double lon) {
+        _locations.push_back(new Location{lat, lon});
     }
 
     void loadLocations() {
-        thread t1(&Map::loadLocation, this, 38.848698884981346, -104.852791428566);
-        thread t2(&Map::loadLocation, this, 46.508732, 6.634088);
-
-        cout << "LOADING!" << endl;
-
-        t1.join();
-        t2.join();
-
-        cout << "LOADED!" << endl;
+        vector<thread> allThreads;
         for (auto loc: _locations)
-            cout << loc.displayName() << endl
-                << "\t" << loc.city() << ", " << loc.country() << endl;
+            allThreads.push_back(move(thread(&Location::load, loc)));
+
+        for (auto& t: allThreads)
+            t.join();
+    }
+
+    vector<Location*> locations() {
+        return _locations;
     }
 
 private:
-    vector<Location> _locations;
-    mutex _lock;
+    vector<Location*> _locations;
 };
 
 
-TEST(A, B) {
+TEST(AMap, CanStuff) {
     Map map;
-    //map.loadLocations();
-    FAIL();
+    map.addLocation(38.848698884981346, -104.852791428566); // colorado springs
+    map.addLocation(46.508732, 6.634088); // lausanne
+
+    map.loadLocations();
+    
+    vector<string> cities;
+    vector<Location*> locations = map.locations();
+    transform(locations.begin(), locations.end(), back_inserter(cities),
+            [](Location* loc) { return loc->city(); });
+
+    ASSERT_THAT(cities, UnorderedElementsAre("Colorado Springs", "Lausanne"));
 }
 
