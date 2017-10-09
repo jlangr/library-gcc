@@ -307,3 +307,31 @@ TEST(POS2, Override) {
 
     ASSERT_THAT(posRegister.total(), Eq(42));
 }
+
+class VerificationService {
+public:
+};
+
+class Verifier {
+public:
+    Verifier(int timeout, 
+            VerificationService* verificationService = new VerificationService) 
+        : _timeout{timeout}
+        , _verificationService{verificationService} {}
+
+    virtual ~Verifier() {
+        delete _verificationService;
+    }
+
+private:
+    VerificationService* _verificationService;
+    int _timeout;
+};
+
+
+TEST(V, X) {
+    class StubVerificationService: public VerificationService {
+    public:
+    };
+    Verifier v{10, new StubVerificationService};
+}
