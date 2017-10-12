@@ -7,8 +7,12 @@ test.dat
 CMakeCache.txt
 cmake_install.cmake
 CMakeFiles/
-Makefile
+libraryTest/Makefile
 libraryTest/libraryTest
+library/Makefile
+
+googletest/Makefile
+googletest/googlemock/Makefile
 
 # from googletest
 
