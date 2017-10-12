@@ -7,6 +7,7 @@ add_definitions(-std=c++11)
 
 set(sources 
    main.cpp 
+   AccountTest.cpp
    BarcodeUtilTest.cpp
    BookTest.cpp
    BranchAccessTest.cpp
@@ -36,6 +37,7 @@ set(sources
    StreamLineReaderTest.cpp
    TimestampSourceTest.cpp
    VectorReaderTest.cpp
+   VoteTest.cpp
    )
 add_executable(libraryTest ${sources})
 target_link_libraries(libraryTest pthread)
