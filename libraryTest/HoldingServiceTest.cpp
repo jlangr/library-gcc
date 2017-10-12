@@ -196,7 +196,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch) {
 
 TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
-    string patronId("5");
+    string patronId("p5");
     CheckOut(barcode, branch1, patronId);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());

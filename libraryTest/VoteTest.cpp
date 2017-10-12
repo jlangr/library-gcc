@@ -70,9 +70,7 @@ TEST_F(AVoteEngine, DISABLED_IgnoresMultipleUpvotesOnSameMessage) {
     ASSERT_THAT(engine.count(AMessageId), Eq(1));
 }
 
-// This might fail spuriously. That's not good. If it becomes
-// a problem, disable it until we can fix it.
-TEST_F(AVoteEngine, SupportsConcurrency) {
+TEST_F(AVoteEngine, DISABLED_SupportsConcurrency) {
     auto its{10000};
     auto concurrentThreadPairs{1};
     vector<thread> threads;
