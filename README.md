@@ -15,6 +15,12 @@ Build ftplibpp in library-gcc:
     cd ftplibpp
     make
    
+You can specify a path for 3rd party dependencies using the `EXT_PREFIX` variable. By
+default this is set to `/usr/local`. For example
+
+    # use 3rd party libraries installed in /opt/local
+    EXT_PREFIX=/opt/local make
+
 If you receive an error about openssl/ssh.h not being found:
 
     sudo apt-get install libssl-dev
