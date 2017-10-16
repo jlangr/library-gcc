@@ -43,7 +43,6 @@ add_executable(libraryTest ${sources})
 target_link_libraries(libraryTest pthread)
 target_link_libraries(libraryTest gmock)
 target_link_libraries(libraryTest gtest)
-target_link_libraries(libraryTest rt)
 target_link_libraries(libraryTest library)
 target_link_libraries(libraryTest ftp++)
 
