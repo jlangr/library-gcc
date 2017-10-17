@@ -5,7 +5,6 @@
 #include "BranchService.h"
 #include "Catalog.h"
 #include "Holding.h"
-#include "HoldingBarcode.h"
 
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 
