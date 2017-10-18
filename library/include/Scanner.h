@@ -4,7 +4,7 @@
 #include <string>
 
 #include "HoldingService.h"
-// TODO class HoldingService; need namespace wrappers
+
 class DisplayListener;
 class ScannerState;
 

@@ -25,9 +25,6 @@ public:
     MOCK_METHOD2(addAtBranch, void(const std::string& branchId, const std::string& barcode));
 };
 
-// TODO holding service should be an override mock, not required in ctor
-
-// TODO not sure this is a good idea
 class TestScanner {
 public:
     Scanner* scanner;

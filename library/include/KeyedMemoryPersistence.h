@@ -29,7 +29,6 @@ public:
 
     virtual void add(const T& object) { 
         mData[object.id()] = object.clone();
-        // TODO need a Remove (that also does a delete on this object);
     }
 
     std::unique_ptr<T> get(const std::string& id) const {
@@ -41,29 +40,23 @@ public:
         return std::unique_ptr<T>(copy);
     }
 
-
-    // TODO: can we use find_if?
-    //DataIterator it = std::find_if(mData.begin(), mData.end(), std::bind2nd(f, value));
-
     virtual bool matches(MatcherFunction matches, const std::string& name) const {
-        for (std::map<std::string,Serializable*>::const_iterator it = mData.begin();
-            it != mData.end();
-            it++) {
-            Serializable* object = it->second;
-            if (matches(*object, name))
-                return true;
-        }
-        return false;
+        auto it{std::find_if(mData.begin(), mData.end(),
+                [&] (const std::pair<std::string,Serializable*>& p) {
+                    Serializable* object = p.second;
+                    if (matches(*object, name))
+                        return true;
+                })};
+        return it != mData.end();
     }
 
     virtual void findAllMatching(MatcherFunction matches, const std::string& name, std::vector<Serializable*>& matchesToPopulate) const {
-        for (std::map<std::string,Serializable*>::const_iterator it = mData.begin();
-            it != mData.end();
-            it++) {
-            Serializable* object = it->second;
-            if (matches(*object, name))
-                matchesToPopulate.push_back(object);
-        }
+        std::for_each(mData.begin(), mData.end(),
+                [&] (const std::pair<std::string,Serializable*>& p) {
+                    Serializable* object = p.second;
+                    if (matches(*object, name))
+                        matchesToPopulate.push_back(object);
+                });
     }
 
 private:

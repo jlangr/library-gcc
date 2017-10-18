@@ -2,7 +2,7 @@
 #define CLASSIFICATION_SERVICE_H
 
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 #include "Book.h"
 
@@ -14,19 +14,13 @@ public:
     Book retrieveDetails(const std::string& classification) const;
 };
 
-class ClassificationNotFoundException: public std::exception
+class ClassificationNotFoundException: public std::runtime_error
 {
 public:
     ClassificationNotFoundException(const std::string& classification) 
-        : mClassification(classification) {}
+        : std::runtime_error("classification " + classification + " not found") {}
 
     ~ClassificationNotFoundException() {}
-
-    // TODO include classification in message
-    virtual const char* what() const throw()
-    {
-        return "classification not found";
-    }
 
 private:
     std::string mClassification;
