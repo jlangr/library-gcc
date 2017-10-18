@@ -48,13 +48,13 @@ public:
     }
 
     // TODO change to have patron service return object
-    Patron FindPatronWithId(string id) {
+    Patron findPatronWithId(string id) {
         Patron patron("", id);
         patronService.find(patron);
         return patron;
     }
 
-    void CheckOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000") {
+    void checkOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000") {
         patronService.add(Patron{"", patronCardNumber});
         holdingService.addAtBranch(branch->id(), barcode.asString());
         holdingService.checkOut(patronCardNumber, barcode.asString(), *arbitraryDate);
@@ -125,7 +125,7 @@ TEST_F(HoldingServiceTest, IsAvailableReturnsTrueWhenHoldingAvailable) {
 TEST_F(HoldingServiceTest, IsAvailableReturnsFalseWhenHoldingCheckedOut) {
     holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
-    CheckOut(barcode, branch1);
+    checkOut(barcode, branch1);
 
     auto isAvailable{holdingService.isAvailable(barcode.asString())};
 
@@ -181,13 +181,13 @@ TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron) {
     holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString(), *arbitraryDate);
 
     Holding holding(HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
-    ASSERT_THAT(FindPatronWithId("p1001").holdings(),
+    ASSERT_THAT(findPatronWithId("p1001").holdings(),
         Eq(set<Holding>{holding}));
 }
 
 TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
-    CheckOut(barcode, branch1);
+    checkOut(barcode, branch1);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
@@ -197,30 +197,30 @@ TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch) {
 TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     string patronId("p5");
-    CheckOut(barcode, branch1, patronId);
+    checkOut(barcode, branch1, patronId);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
-    ASSERT_THAT(FindPatronWithId(patronId).holdings().size(), Eq(0));
+    ASSERT_THAT(findPatronWithId(patronId).holdings().size(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     string patronCardNumber("p5");
-    CheckOut(barcode, branch1, patronCardNumber);
+    checkOut(barcode, branch1, patronCardNumber);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
-    ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(0));
+    ASSERT_THAT(findPatronWithId(patronCardNumber).fineBalance(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     string patronCardNumber("p5");
-    CheckOut(barcode, branch1, patronCardNumber);
+    checkOut(barcode, branch1, patronCardNumber);
     date_duration oneDayLate(Book::BOOK_CHECKOUT_PERIOD + 1);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + oneDayLate, branch2->id());
 
-    ASSERT_THAT(FindPatronWithId(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
+    ASSERT_THAT(findPatronWithId(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
 }

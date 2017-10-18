@@ -62,13 +62,15 @@ TEST_F(AVoteEngine, SumsMultipleVotes) {
     ASSERT_THAT(engine.count(AMessageId), Eq(2));
 }
 
-// TODO!
+// future feature
+/*
 TEST_F(AVoteEngine, DISABLED_IgnoresMultipleUpvotesOnSameMessage) {
     engine.accept(Vote::upvote(AMessageId, AClientId));
     engine.accept(Vote::upvote(AMessageId, AClientId));
 
     ASSERT_THAT(engine.count(AMessageId), Eq(1));
 }
+*/
 
 TEST_F(AVoteEngine, DISABLED_SupportsConcurrency) {
     auto its{10000};
