@@ -33,6 +33,7 @@ set(sources
    ScannerStateCheckoutTest.cpp
    ScannerStateInventoryTest.cpp
    ScannerStateWaitingTest.cpp
+   ScannerTest.cpp
    ScannerTestData.cpp
    StreamLineReaderTest.cpp
    TimestampSourceTest.cpp

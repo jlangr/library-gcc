@@ -69,7 +69,7 @@ TEST_F(ScannerStateCheckoutTest, DisplayMessageWhenHoldingDoesNotExist) {
 TEST_F(ScannerStateCheckoutTest, ChangesStateToCheckinWhenDonePressed) {
     state->pressDone();
     
-    ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
+    ASSERT_CURRENT_STATE<ScannerStateCheckin>(*scanner);
 }
 
 TEST_F(ScannerStateCheckoutTest, DisplaysMessageWhenBranchIdScanned) {

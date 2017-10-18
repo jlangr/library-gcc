@@ -54,7 +54,7 @@ TEST_F(ScannerStateWaitingTest, DisplaysWarningMessageWhenHoldingScanned)  {
 TEST_F(ScannerStateWaitingTest, SetsStateToCheckinWhenBranchScanned)  {
     state->scanBranchCard(ScannerTestData::BRANCH_SOUTH_CARD);
 
-    ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
+    ASSERT_CURRENT_STATE<ScannerStateCheckin>(*scanner);
 }
 
 TEST_F(ScannerStateWaitingTest, StoresBranchWhenBranchScanned) {
