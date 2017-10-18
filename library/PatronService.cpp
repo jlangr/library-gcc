@@ -35,6 +35,10 @@ bool PatronService::find(Patron& patron) const {
     return mPatronAccess.find(patron);
 }
 
+Patron PatronService::findByCardNumber(const string& cardNumber) const {
+    return mPatronAccess.findByCardNumber(cardNumber);
+}
+
 short PatronService::patronCount() const {
     return mPatronAccess.size();
 }

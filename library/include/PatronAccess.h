@@ -14,6 +14,7 @@ public:
     void save(const Patron&);
     bool find(Patron&) const;
     Patron& findByName(const std::string&) const;
+    Patron findByCardNumber(const std::string&) const;
     int size() const;
     void update(const Patron&);
     std::vector<Patron> getAll() const;
