@@ -18,8 +18,8 @@ vector<Patron> PatronService::getAll() const {
     return mPatronAccess.getAll();
 }
 
-void PatronService::add(const string& name, int id) {
-    Patron patron(name, id);
+void PatronService::add(const string& name, const string& cardNumber) {
+    Patron patron(name, cardNumber);
     add(patron);
 }
 

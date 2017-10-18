@@ -7,9 +7,9 @@
 
 using namespace std;
 
-Patron::Patron(const string& name, int id)
+Patron::Patron(const string& name)
     : mName(name)
-    , mId(id)
+    , mId(0)
     , mBalance(0) {}
 
 Patron::Patron(const string& name, const string& cardNumber)
@@ -31,10 +31,6 @@ std::ostream& operator<<(std::ostream& stream, Patron& patron) {
 
 string Patron::name() const {
     return mName;
-}
-
-int Patron::id() const {
-    return mId;
 }
 
 int Patron::fineBalance() const {

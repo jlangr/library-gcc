@@ -12,7 +12,7 @@ public:
     PatronService();
     virtual ~PatronService(void);
 
-    void add(const std::string& name, int id);
+    void add(const std::string& name, const std::string& cardNumber);
     void add(const Patron&);
     bool find(Patron&) const;
     short patronCount() const;
