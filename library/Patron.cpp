@@ -7,22 +7,13 @@
 
 using namespace std;
 
-Patron::Patron(const string& name)
-    : mName(name)
-    , mId(0)
-    , mBalance(0) {}
-
 Patron::Patron(const string& name, const string& cardNumber)
     : mName(name)
-    , mBalance(0) {
-    string idPortion = cardNumber.substr(1);
-    istringstream(idPortion) >> mId;
-}
+    , mBalance(0) 
+    , mCardNumber(cardNumber) {}
 
 string Patron::cardNumber() const {
-    ostringstream text;
-    text << "p" << mId;
-    return text.str();
+    return mCardNumber;
 }
 
 std::ostream& operator<<(std::ostream& stream, Patron& patron) {
@@ -58,7 +49,7 @@ void Patron::returnHolding(const Holding& holding) {
 }
 
 bool Patron::operator==(const Patron& rhs) const {
-    return mId == rhs.mId;
+    return mCardNumber == rhs.mCardNumber;
 }
 
 bool Patron::operator!=(const Patron& rhs) const {
