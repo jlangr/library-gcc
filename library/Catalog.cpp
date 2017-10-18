@@ -29,7 +29,8 @@ void Catalog::add(Holding& holding) {
 void Catalog::update(Holding& holding) {
     vector<Holding>* holdings = Catalog::holdings();
     HoldingIterator it = find(holdings->begin(), holdings->end(), holding);
-    // TODO: throw if not found? need a test!
+    if (it == holdings->end())
+        throw runtime_error("holding not found");
     *it = holding;
 }
 
