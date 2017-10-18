@@ -120,3 +120,11 @@ date Holding::dueDate() const {
 bool Holding::isAvailable() const {
     return Branch::CHECKED_OUT != mBranch;
 }
+
+void Holding::updateCondition(Condition newCondition) {
+    mCondition = newCondition;
+}
+
+Condition Holding::condition() const {
+    return mCondition;
+}
