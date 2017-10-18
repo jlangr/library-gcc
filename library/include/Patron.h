@@ -9,12 +9,11 @@
 
 class Patron {
 public:
-    Patron(const std::string& name = "", int id = 0);
+    Patron(const std::string& name = "");
     Patron(const std::string& name, const std::string& cardNumber);
 
     std::set<Holding> holdings() const;
     std::string name() const;
-    int id() const;
     std::string cardNumber() const;
     int fineBalance() const;
     void addFine(int amount);

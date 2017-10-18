@@ -18,8 +18,8 @@ public:
 
     virtual void SetUp() {
         PatronService::deleteAll();
-        joe = new Patron("Joe", 1);
-        jane = new Patron("Jane", 2);
+        joe = new Patron("Joe", "p1");
+        jane = new Patron("Jane", "p2");
     }
 
     virtual void TearDown() {
@@ -34,9 +34,9 @@ TEST_F(PatronServiceTest, CountInitiallyZero) {
 }
 
 TEST_F(PatronServiceTest, AddUsingAttributes) {
-    service.add("Suresh", 20);
+    service.add("Suresh", "p20");
 
-    Patron retrieved("", 20);
+    Patron retrieved("", "p20");
     service.find(retrieved);
     ASSERT_THAT(retrieved.name(), StrEq("Suresh"));
 }
@@ -81,7 +81,7 @@ TEST_F(PatronServiceTest, FindAnswersTrueForAddedPatron) {
 
 TEST_F(PatronServiceTest, FindRetrieves) {
     service.add(*joe);
-    Patron retrieved("dummy name", joe->id());
+    Patron retrieved("dummy name", joe->cardNumber());
 
     service.find(retrieved);
 
@@ -93,7 +93,7 @@ TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron) {
     Holding theTrial(THE_TRIAL_CLASSIFICATION, 1);
     joe->borrow(theTrial);
     service.add(*joe);
-    Patron retrieved("", joe->id());
+    Patron retrieved("", joe->cardNumber());
 
     service.find(retrieved);
 

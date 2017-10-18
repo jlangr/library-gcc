@@ -71,35 +71,35 @@ TEST_F(PatronAccessTest, FindByNameThrowsWhenNoNameMatches) {
 }
 
 TEST_F(PatronAccessTest, FindByNameReturnsChronologicallyFirstMatch) {
-    Patron match1("Langr", 1);
+    Patron match1("Langr", "p1");
     access.save(match1);
-    Patron mismatch("Long", 2);
+    Patron mismatch("Long", "p2");
     access.save(mismatch);
-    Patron match2("Langr", 3);
+    Patron match2("Langr", "p3");
     access.save(match2);
 
     Patron found = access.findByName("Langr");
 
-    ASSERT_THAT(found.id(), Eq(1));
+    ASSERT_THAT(found.cardNumber(), Eq("p1"));
 }
 
 TEST_F(PatronAccessTest, UpdatePersistsChanges) {
-    int id = 10;
-    Patron patron1("x", id);
+    auto cardNumber{"p10"};
+    Patron patron1("x", cardNumber);
     access.save(patron1);
     int fine = 100;
     patron1.addFine(fine);
 
     access.update(patron1);
 
-    Patron retrieved("", id);
+    Patron retrieved("", cardNumber);
     access.find(retrieved);
     ASSERT_THAT(retrieved.fineBalance(), Eq(fine));
 }
 
 TEST_F(PatronAccessTest, GetAllAnswersAllSavedPatrons) {
-    Patron patron1("a", 10);
-    Patron patron2("b", 20);
+    Patron patron1("a", "p10");
+    Patron patron2("b", "p20");
     access.save(patron1);
     access.save(patron2);
 

@@ -20,7 +20,7 @@ public:
 
     virtual void SetUp()
     {
-        jane = new Patron("Jane", 1);
+        jane = new Patron("Jane", "p1");
         theTrialHolding = new Holding(THE_TRIAL_CLASSIFICATION, 1);
         catch22Holding = new Holding(CATCH22_CLASSIFICATION, 1);
     }
@@ -35,7 +35,7 @@ public:
 
 TEST_F(PatronTest, PrintableRepresentation)
 {
-    Patron joe("Joe", 1);
+    Patron joe("Joe", "p1");
     stringstream stream;
 
     stream << joe;
@@ -43,45 +43,11 @@ TEST_F(PatronTest, PrintableRepresentation)
     ASSERT_THAT(stream.str(), StrEq("Joe (p1)"));
 }
 
-TEST_F(PatronTest, CanConstructWithPatronCardNumber)
-{
-    Patron zelda("", "p32");
-
-    ASSERT_THAT(zelda.id(), Eq(32));
-}
-
-TEST_F(PatronTest, CardNumberIsIdPreprendedWithPrefix)
-{
-    Patron mary("", 5);
-
-    ASSERT_THAT(mary.cardNumber(), StrEq("p5"));
-}
-
-TEST_F(PatronTest, CreateInitializesFields)
-{
-    Patron mary("Mary", 5);
-
-    ASSERT_THAT(mary.name(), StrEq("Mary"));
-    ASSERT_THAT(mary.id(), Eq(5));
-    ASSERT_THAT(mary.fineBalance(), Eq(0));
-}
-
 TEST_F(PatronTest, CreateDefaultsCardNumber)
 {
     Patron john("john");
 
-    ASSERT_THAT(john.name(), StrEq("john"));
-    ASSERT_THAT(john.id(), Eq(0));
-    ASSERT_THAT(john.fineBalance(), Eq(0));
-}
-
-TEST_F(PatronTest, CreateDefaultsAllFields)
-{
-    Patron nobody;
-
-    ASSERT_THAT(nobody.name(), StrEq(""));
-    ASSERT_THAT(nobody.id(), Eq(0));
-    ASSERT_THAT(nobody.fineBalance(), Eq(0));
+    ASSERT_THAT(john.cardNumber(), Eq("p0"));
 }
 
 TEST_F(PatronTest, AddFineUpdatesFineBalance)
@@ -127,8 +93,8 @@ TEST_F(PatronTest, HoldingsDoesNotContainReturnedBooks)
 
 TEST_F(PatronTest, Equality)
 {
-    Patron patron1("a", 1);
-    Patron patron1copy("a", 1);
+    Patron patron1("a", "p1");
+    Patron patron1copy("a", "p1");
 
     ASSERT_THAT(patron1 == patron1copy, Eq(true));
 }
