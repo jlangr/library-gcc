@@ -15,6 +15,7 @@ public:
     void add(const std::string& name, const std::string& cardNumber);
     void add(const Patron&);
     bool find(Patron&) const;
+    Patron findByCardNumber(const std::string& cardNumber) const;
     short patronCount() const;
     void update(const Patron&);
     std::vector<Patron> getAll() const; // bad!

@@ -88,6 +88,14 @@ TEST_F(PatronServiceTest, FindRetrieves) {
     ASSERT_THAT(retrieved.name(), StrEq(joe->name()));
 }
 
+TEST_F(PatronServiceTest, RetrievesPatronByCardNumber) {
+    service.add(*joe);
+
+    Patron retrieved = service.findByCardNumber(joe->cardNumber());
+
+    ASSERT_THAT(retrieved.name(), StrEq(joe->name()));
+}
+
 TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron) {
     joe->addFine(20);
     Holding theTrial(THE_TRIAL_CLASSIFICATION, 1);

@@ -37,6 +37,12 @@ bool PatronAccess::find(Patron& patron) const {
     return true;
 }
 
+Patron PatronAccess::findByCardNumber(const string& cardNumber) const {
+    auto it{find_if(PatronAccess::patrons()->begin(), PatronAccess::patrons()->end(), 
+        [&](const Patron& p) { return cardNumber == p.cardNumber(); })};
+    return Patron{*it};
+}
+
 struct PatronAccessFindByName : public binary_function<Patron, std::string, bool>
 {
     bool operator ()(Patron& patron, const string& name) const {

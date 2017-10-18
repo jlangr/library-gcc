@@ -47,13 +47,6 @@ public:
         BranchService::deleteAll();
     }
 
-    // TODO change to have patron service return object
-    Patron findPatronWithId(string id) {
-        Patron patron("", id);
-        patronService.find(patron);
-        return patron;
-    }
-
     void checkOut(HoldingBarcode& barcode, Branch* branch, string patronCardNumber = "p1000") {
         patronService.add(Patron{"", patronCardNumber});
         holdingService.addAtBranch(branch->id(), barcode.asString());
@@ -181,7 +174,7 @@ TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron) {
     holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString(), *arbitraryDate);
 
     Holding holding(HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
-    ASSERT_THAT(findPatronWithId("p1001").holdings(),
+    ASSERT_THAT(patronService.findByCardNumber("p1001").holdings(),
         Eq(set<Holding>{holding}));
 }
 
@@ -201,7 +194,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings) {
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
-    ASSERT_THAT(findPatronWithId(patronId).holdings().size(), Eq(0));
+    ASSERT_THAT(patronService.findByCardNumber(patronId).holdings().size(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance) {
@@ -211,7 +204,7 @@ TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance) {
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
 
-    ASSERT_THAT(findPatronWithId(patronCardNumber).fineBalance(), Eq(0));
+    ASSERT_THAT(patronService.findByCardNumber(patronCardNumber).fineBalance(), Eq(0));
 }
 
 TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance) {
@@ -222,5 +215,5 @@ TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance) {
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + oneDayLate, branch2->id());
 
-    ASSERT_THAT(findPatronWithId(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
+    ASSERT_THAT(patronService.findByCardNumber(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
 }
