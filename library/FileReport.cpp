@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <stdexcept>
 
 #include "ftplib.h"
 
