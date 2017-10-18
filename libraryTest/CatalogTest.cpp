@@ -56,18 +56,15 @@ TEST_F(CatalogTest, AddedHoldingCanBeRetrieved) {
     ASSERT_THAT(catalog.contains(barcode), Eq(true));
 }
 
-/*
 TEST_F(CatalogTest, FindByBarCodePopulatesMembers) {
     Branch west("1", "West");
-    theTrialHolding->Transfer(west);
+    theTrialHolding->transfer(west);
     catalog.add(*theTrialHolding);
-    Holding holding(THE_TRIAL_CLASSIFICATION, 1);
 
-    catalog.findByBarCode(holding);
+    catalog.findByBarCode(theTrialHolding->barcode());
 
-    ASSERT_THAT(holding.CurrentBranch(), Eq(west));
+    ASSERT_THAT(theTrialHolding->currentBranch(), Eq(west));
 }
-*/
 
 TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings) {
     catalog.add(*theTrialHolding);
@@ -79,3 +76,17 @@ TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings) {
 
     ASSERT_THAT(holdings, Eq(set<Holding>{ *catch22Holding, *catch22HoldingCopy2 }));
 }
+
+/*
+TEST_F(CatalogTest, UpdatesHolding) {
+    catalog.add(*theTrialHolding);
+    
+    Branch east{"1", "East"};
+    Holding anotherTrialInstance(THE_TRIAL_CLASSIFICATION, 1);
+    anotherTrialInstance.transfer(east);
+    catalog.update(anotherTrialInstance);
+
+    Holding holding{catalog.findByBarCode(THE_TRIAL_CLASSIFICATION)};
+    ASSERT_THAT(holding.currentBranch().name(), Eq("East"));
+}
+*/
