@@ -89,4 +89,6 @@ TEST_F(CatalogTest, UpdatesHolding) {
 }
 
 TEST_F(CatalogTest, ThrowsOnUpdateWhenHoldingNotFound) {
+    Holding changedHolding{theTrialHolding->classification(), 1};
+    ASSERT_THROW(catalog.update(changedHolding), runtime_error);
 }
