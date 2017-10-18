@@ -83,7 +83,7 @@ TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero) {
 }
 
 TEST_F(HoldingServiceTest, AddInitializesBranch) {
-    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString()};
+    auto barcode = HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString();
     holdingService.addAtBranch(branch1->id(), barcode);
 
     auto holding = holdingService.findByBarCode(barcode);
@@ -92,11 +92,11 @@ TEST_F(HoldingServiceTest, AddInitializesBranch) {
 }
 
 TEST_F(HoldingServiceTest, RetrievesAddedHolding) {
-    auto barcode{HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString()};
+    auto barcode = HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString();
 
     holdingService.addAtBranch(branch1->id(), barcode);
 
-    auto holding{holdingService.findByBarCode(barcode)};
+    auto holding = holdingService.findByBarCode(barcode);
     ASSERT_THAT(holding.barcode(), StrEq(barcode));
 }
 
@@ -105,19 +105,19 @@ TEST_F(HoldingServiceTest, ExistsReturnsFalseWhenNotFound) {
 }
 
 TEST_F(HoldingServiceTest, ExistsReturnsTrueWhenNotFound) {
-    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode = Holding::constructBarcode(CATCH22_CLASSIFICATION, 1);
     holdingService.addAtBranch(branch1->id(), barcode);
 
-    auto found{holdingService.existsWithBarcode(barcode)};
+    auto found = holdingService.existsWithBarcode(barcode);
 
     ASSERT_THAT(found, Eq(true));
 }
 
 TEST_F(HoldingServiceTest, IsAvailableReturnsTrueWhenHoldingAvailable) {
-    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode = Holding::constructBarcode(CATCH22_CLASSIFICATION, 1);
     holdingService.addAtBranch(branch1->id(), barcode);
 
-    auto isAvailable{holdingService.isAvailable(barcode)};
+    auto isAvailable = holdingService.isAvailable(barcode);
 
     ASSERT_THAT(isAvailable, Eq(true));
 }
@@ -127,7 +127,7 @@ TEST_F(HoldingServiceTest, IsAvailableReturnsFalseWhenHoldingCheckedOut) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     CheckOut(barcode, branch1);
 
-    auto isAvailable{holdingService.isAvailable(barcode.asString())};
+    auto isAvailable = holdingService.isAvailable(barcode.asString());
 
     ASSERT_THAT(isAvailable, Eq(false));
 }
@@ -154,7 +154,7 @@ TEST_F(HoldingServiceTest, FindByClassificationReturnsMultipleMatches) {
 }
 
 TEST_F(HoldingServiceTest, Transfer) {
-    auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
+    auto barcode = Holding::constructBarcode(CATCH22_CLASSIFICATION, 1);
     holdingService.addAtBranch(branch1->id(), barcode);
 
     holdingService.transfer(barcode, branch1->id());
@@ -163,19 +163,19 @@ TEST_F(HoldingServiceTest, Transfer) {
 }
 
 TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable) {
-    auto barcode{HoldingBarcode{CATCH22_CLASSIFICATION, 1}.asString()};
+    auto barcode = HoldingBarcode{CATCH22_CLASSIFICATION, 1}.asString();
     holdingService.addAtBranch(branch1->id(), barcode);
     patronService.add(Patron{"", "p1001"});
 
     holdingService.checkOut("p1001", barcode, *arbitraryDate);
 
-    auto retrieved{holdingService.findByBarCode(barcode)};
+    auto retrieved = holdingService.findByBarCode(barcode);
     ASSERT_THAT(retrieved.isAvailable(), Eq(false));
 }
 
 TEST_F(HoldingServiceTest, CheckedOutBooksAddedToPatron) {
     holdingService.addAtBranch(branch1->id(), HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString());
-    auto barcode{HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString()};
+    auto barcode = HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString();
     patronService.add(Patron{"", "p1001"});
 
     holdingService.checkOut("p1001", HoldingBarcode(CATCH22_CLASSIFICATION, 1).asString(), *arbitraryDate);

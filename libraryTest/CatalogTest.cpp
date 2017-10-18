@@ -50,8 +50,8 @@ TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound) {
 
 TEST_F(CatalogTest, AddedHoldingCanBeRetrieved) {
     catalog.add(*theTrialHolding);
-    auto barcode{Holding::constructBarcode(
-      theTrialHolding->classification(), theTrialHolding->copyNumber())};
+    auto barcode = Holding::constructBarcode(
+      theTrialHolding->classification(), theTrialHolding->copyNumber());
 
     ASSERT_THAT(catalog.contains(barcode), Eq(true));
 }

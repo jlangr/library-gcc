@@ -121,8 +121,8 @@ public:
 };
 
 bool hasShowFailuresOnlyOption(int argc, char **argv) {
-    auto showFailuresOnly{false};
-    for (unsigned int i{1}; i < argc; i++) {
+    auto showFailuresOnly = false;
+    for (unsigned int i = 1; i < argc; i++) {
         auto option = string{argv[i]};
         if (option == "--failed-only")
             showFailuresOnly = true;
@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
 
     ::testing::InitGoogleTest(&argc, argv);
 
-    auto showFailuresOnly{hasShowFailuresOnlyOption(argc, argv)};
+    auto showFailuresOnly = hasShowFailuresOnlyOption(argc, argv);
 
     // remove the default listener
     testing::TestEventListeners& listeners = testing::UnitTest::GetInstance()->listeners();

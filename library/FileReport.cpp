@@ -18,12 +18,12 @@ FileReport::FileReport(std::string filename): _filename{filename} {
 
 void FileReport::ftpGet() {
     ftplib ftp;
-    auto connect{ftp.Connect(FtpServer.c_str())};
+    auto connect = ftp.Connect(FtpServer.c_str());
     if (!connect) {
         throw runtime_error("unable to connect to " + FtpServer);
     }
     auto error{false};
-    auto loginSuccess{ftp.Login("ftp", "")};
+    auto loginSuccess = ftp.Login("ftp", "");
     if (!loginSuccess) {
         ftp.Quit();
         throw runtime_error("unable to log in");

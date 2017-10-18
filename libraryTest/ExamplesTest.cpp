@@ -152,7 +152,7 @@ void completeSale() {
     _total = 0.0;
     _totalOfDiscountedItems = 0.0;
     for (auto item : _purchases) {
-        auto itemTotal{0.0};
+        auto itemTotal = 0.0;
         stringstream message;
         if (item.isDiscountable()) {
             auto discounted = item.price() * (1 - _memberDiscount);
@@ -189,7 +189,7 @@ void completeSale() {
     _total = 0.0;
     _totalOfDiscountedItems = 0.0;
     for (auto item : _purchases) {
-        auto itemTotal{0.0};
+        auto itemTotal = 0.0;
         stringstream message;
         if (item.isDiscountable()) {
             _totalOfDiscountedItems += discountedPrice(item);
