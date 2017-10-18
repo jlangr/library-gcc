@@ -48,7 +48,7 @@ public:
 TEST_F(ScannerTest, IsInWaitingModeByDefault) {
     Scanner scanner(NULL, NULL);
 
-    ASSERT_CURRENT_STATE<ScannerStateWaiting>(&scanner);
+    ASSERT_CURRENT_STATE<ScannerStateWaiting>(scanner);
 }
 
 TEST_F(ScannerTest, PressDoneDelegatesToAppropriateState) {

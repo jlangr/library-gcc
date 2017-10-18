@@ -76,5 +76,5 @@ TEST_F(ScannerStateInventoryTest, DisplayMessageWhenPatronScanned) {
 TEST_F(ScannerStateInventoryTest, ChangesStateToCheckinWhenDonePressed) {
     state->pressDone();
     
-    ASSERT_CURRENT_STATE<ScannerStateCheckin>(scanner);
+    ASSERT_CURRENT_STATE<ScannerStateCheckin>(*scanner);
 }

@@ -39,13 +39,13 @@ TEST_F(ScannerStateCheckinTest, DisplaysWarningMessageWhenCompletePressed) {
 TEST_F(ScannerStateCheckinTest, ChangesStateToInventoryWhenInventoryCardScanned) {
     state->scanInventoryCard("");
 
-    ASSERT_CURRENT_STATE<ScannerStateInventory>(scanner);
+    ASSERT_CURRENT_STATE<ScannerStateInventory>(*scanner);
 }
 
 TEST_F(ScannerStateCheckinTest, ChangesStateToCheckoutWhenPatronCardScanned) {
     state->scanPatronCard(ScannerTestData::PATRON_JOE_CARD);
 
-    ASSERT_CURRENT_STATE<ScannerStateCheckout>(scanner);
+    ASSERT_CURRENT_STATE<ScannerStateCheckout>(*scanner);
 }
 
 TEST_F(ScannerStateCheckinTest, StoresPatronIdWhenScanned) {

@@ -17,9 +17,7 @@ public:
     {
         ostringstream output;
         output << text << endl;
-        // TODO condense
-        unique_ptr<istream> input(new istringstream(output.str()));
-        return input;
+        return unique_ptr<istream>{new istringstream(output.str())};
     }
 };
 
