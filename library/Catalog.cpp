@@ -44,13 +44,12 @@ void Catalog::findByClassification(
 bool Catalog::contains(const string& barcode) const {
     return find(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
         Holding{barcode}) != Catalog::holdings()->end();
-
 }
 
 Holding Catalog::findByBarCode(const string& barcode) const {
-    return *find_if(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
-        [&](const Holding& h) { return barcode == h.barcode(); });
-
+    auto it{find_if(Catalog::holdings()->begin(), Catalog::holdings()->end(), 
+        [&](const Holding& h) { return barcode == h.barcode(); })};
+    return Holding{*it};
 }
 
 void Catalog::deleteAll() {

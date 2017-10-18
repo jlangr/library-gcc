@@ -72,21 +72,21 @@ TEST_F(CatalogTest, FindByClassificationAnswersMatchingHoldings) {
     catalog.add(*catch22HoldingCopy2);
 
     set<Holding> holdings;
-    catalog.findByClassification(CATCH22_CLASSIFICATION, holdings);
+    catalog.findByClassification(catch22Holding->classification(), holdings);
 
     ASSERT_THAT(holdings, Eq(set<Holding>{ *catch22Holding, *catch22HoldingCopy2 }));
 }
 
-/*
 TEST_F(CatalogTest, UpdatesHolding) {
     catalog.add(*theTrialHolding);
     
-    Branch east{"1", "East"};
-    Holding anotherTrialInstance(THE_TRIAL_CLASSIFICATION, 1);
-    anotherTrialInstance.transfer(east);
-    catalog.update(anotherTrialInstance);
+    Holding changedHolding{theTrialHolding->classification(), 1};
+    changedHolding.updateCondition(Condition::Damaged);
+    catalog.update(changedHolding);
 
-    Holding holding{catalog.findByBarCode(THE_TRIAL_CLASSIFICATION)};
-    ASSERT_THAT(holding.currentBranch().name(), Eq("East"));
+    Holding holding{catalog.findByBarCode(theTrialHolding->barcode())};
+    ASSERT_THAT(holding.condition(), Eq(Condition::Damaged));
 }
-*/
+
+TEST_F(CatalogTest, ThrowsOnUpdateWhenHoldingNotFound) {
+}

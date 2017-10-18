@@ -157,9 +157,9 @@ TEST_F(HoldingServiceTest, Transfer) {
     auto barcode{Holding::constructBarcode(CATCH22_CLASSIFICATION, 1)};
     holdingService.addAtBranch(branch1->id(), barcode);
 
-    holdingService.transfer(barcode, branch1->id());
+    holdingService.transfer(barcode, branch2->id());
 
-    ASSERT_THAT(holdingService.findByBarCode(barcode).currentBranch(), Eq(*branch1));
+    ASSERT_THAT(holdingService.findByBarCode(barcode).currentBranch(), Eq(*branch2));
 }
 
 TEST_F(HoldingServiceTest, CheckedOutHoldingUnavailable) {
