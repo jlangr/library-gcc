@@ -22,8 +22,7 @@ public:
     virtual Branch* clone() const;
     std::string id() const;
     std::string name() const;
-    // TODO: change to 'changeAddress'
-    void setAddress(const std::string&);
+    void changeAddress(const std::string&);
     std::string address() const;
     bool operator==(const Branch& other) const;
     bool operator!=(const Branch& other) const;

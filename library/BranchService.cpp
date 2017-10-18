@@ -28,7 +28,7 @@ string BranchService::add(const string& name, const string& address) {
     string id(out.str());
 
     Branch branch(id, name);
-    branch.setAddress(address);
+    branch.changeAddress(address);
     mBranchAccess.save(branch);
     return id;
 }
