@@ -17,7 +17,7 @@ TEST(BranchTest, CreateInitializesMembers) {
 
 TEST(BranchTest, CloneCopiesAllMembers) {
     Branch branch("17", "north");
-    branch.setAddress("123 B Street");
+    branch.changeAddress("123 B Street");
 
     unique_ptr<Branch>clone(branch.clone());
 
@@ -48,7 +48,7 @@ TEST(BranchTest, InequalityAnswersFalseOnIdMismatch) {
 
 TEST(BranchTest, CanLoadFromSerialized) {
     Branch branch("20", "xyz");
-    branch.setAddress("101 Main St, Laurel, MD");
+    branch.changeAddress("101 Main St, Laurel, MD");
     unique_ptr<ostringstream> o(new ostringstream(ios::out | ios::binary));
     branch.writeOn(*o);
     unique_ptr<istream> i(new istringstream(o->str(), ios::in | ios::binary));

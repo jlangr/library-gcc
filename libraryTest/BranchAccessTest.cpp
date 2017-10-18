@@ -52,7 +52,7 @@ TEST_F(BranchAccessTest, SaveIncrementsSize) {
 
 TEST_F(BranchAccessTest, PersistsBranch) {
     Branch branch("55", "WEST");
-    branch.setAddress("address");
+    branch.changeAddress("address");
     access.save(branch);
     Branch retrieve("55");
 

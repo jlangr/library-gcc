@@ -22,7 +22,7 @@ Branch::~Branch() {}
 
 Branch* Branch::clone() const {
     Branch* branch = new Branch(mId, mName);
-    branch->setAddress(mAddress);
+    branch->changeAddress(mAddress);
     return branch;
 }
 
@@ -52,7 +52,7 @@ std::string Branch::address() const {
     return mAddress;
 }
 
-void Branch::setAddress(const std::string& address) {
+void Branch::changeAddress(const std::string& address) {
     mAddress = address;
 }
 
