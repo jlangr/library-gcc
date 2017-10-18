@@ -9,8 +9,7 @@
 
 class Patron {
 public:
-    Patron(const std::string& name = "");
-    Patron(const std::string& name, const std::string& cardNumber);
+    Patron(const std::string& name="", const std::string& cardNumber="p0");
 
     std::set<Holding> holdings() const;
     std::string name() const;
@@ -27,8 +26,7 @@ public:
 private:
     std::set<Holding> mHoldings;
     std::string mName;
-    std::string mCreditCardNumber;
-    int mId;
+    std::string mCardNumber;
     int mBalance;
 };
 
