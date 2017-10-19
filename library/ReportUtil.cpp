@@ -9,20 +9,19 @@ using namespace std;
 string ReportUtil::transform(const string& x, int count, int spacing, StringOp op) {
     stringstream buffer;
     stringstream buffer1;
-    auto w{count + spacing};
+    auto w = count + spacing;
     string pads;
     switch (op) {
         case StringOp::under:
             {
-                auto i{0};
-                for (; i < w - spacing; i++) {
+                for (auto i = 0; i < w - spacing; i++) {
                     buffer << '-';
                 }
                 string ptext{buffer.str()};
                 pads = "";
                 buffer1 << ptext;
-                auto l{w - ptext.length()};
-                for (auto j{0}; j < l; j++) {
+                auto l = w - ptext.length();
+                for (auto j = 0; j < l; j++) {
                     pads += " ";
                 }
                 buffer1 << pads;
@@ -31,7 +30,7 @@ string ReportUtil::transform(const string& x, int count, int spacing, StringOp o
         case StringOp::pad:
             {
                 pads = " ";
-                auto l{spacing};
+                auto l = spacing;
                 while (l > 1) {
                     pads = pads + " ";
                     l = l - 1;

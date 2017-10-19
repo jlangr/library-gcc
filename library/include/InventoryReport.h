@@ -10,6 +10,7 @@
 #include <string>
 #include <exception>
 #include <sstream>
+#include <stdexcept>
 
 class LibraryOfCongressAPI {
 public:

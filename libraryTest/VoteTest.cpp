@@ -73,8 +73,8 @@ TEST_F(AVoteEngine, DISABLED_IgnoresMultipleUpvotesOnSameMessage) {
 */
 
 TEST_F(AVoteEngine, DISABLED_SupportsConcurrency) {
-    auto its{10000};
-    auto concurrentThreadPairs{1};
+    auto its = 10000;
+    auto concurrentThreadPairs = 1;
     vector<thread> threads;
     for (int i = 0; i < concurrentThreadPairs; i++) {
         threads.push_back(thread([&]() { downvote(its); }));
@@ -82,7 +82,7 @@ TEST_F(AVoteEngine, DISABLED_SupportsConcurrency) {
     }
     for (auto& t: threads) t.join();
 
-    auto count{engine.count(AMessageId)};
+    auto count = engine.count(AMessageId);
 
     ASSERT_THAT(count, Eq(0));
 }
