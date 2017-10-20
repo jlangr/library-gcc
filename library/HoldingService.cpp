@@ -56,6 +56,10 @@ void HoldingService::transfer(Holding& holding, Branch& branch) {
     mCatalog.update(holding);
 }
 
+void HoldingService::update(Holding& holding) {
+    mCatalog.update(holding);
+}
+
 void HoldingService::transfer(const string& barcode, const string& branchId) {
     Branch branch(branchId);
     mBranchService.find(branch);

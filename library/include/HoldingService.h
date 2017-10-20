@@ -27,6 +27,7 @@ namespace service {
         virtual void checkOut(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date);
         void transfer(Holding&, Branch&);
         void transfer(const std::string& barCode, const std::string& branchId);
+        void update(Holding&);
 
         unsigned int inventorySize() const;
         virtual bool existsWithBarcode(const std::string& barCode) const;

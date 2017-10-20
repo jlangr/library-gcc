@@ -217,3 +217,15 @@ TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance) {
 
     ASSERT_THAT(patronService.findByCardNumber(patronCardNumber).fineBalance(), Eq(Book::BOOK_DAILY_FINE));
 }
+
+TEST_F(HoldingServiceTest, UpdatesCondition) {
+    auto barcode = HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString();
+    holdingService.addAtBranch(branch1->id(), barcode);
+
+    Holding damagedHolding(barcode);
+    damagedHolding.updateCondition(Condition::Damaged);
+    holdingService.update(damagedHolding);
+
+    Holding retrieved = holdingService.findByBarCode(barcode);
+    ASSERT_THAT(retrieved.condition(), Eq(Condition::Damaged));
+}
