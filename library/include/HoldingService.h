@@ -26,11 +26,11 @@ namespace service {
         virtual void checkIn(const std::string& barCode, boost::gregorian::date, const std::string& branchId);
         virtual void checkOut(const std::string& patronCardNumber, const std::string& barCode, boost::gregorian::date);
         void transfer(Holding&, Branch&);
-        void transfer(const std::string& barCode, const std::string& branchId);
-        void update(Holding&);
+        void transfer(const std::string& barcode, const std::string& branchId);
+        void markDamaged(const std::string& barcode);
 
         unsigned int inventorySize() const;
-        virtual bool existsWithBarcode(const std::string& barCode) const;
+        virtual bool existsWithBarcode(const std::string&) const;
         virtual bool isAvailable(const std::string& barCode) const;
         Holding findByBarCode(const std::string&) const;
         void findByClassification(const std::string& classification, std::set<Holding>& holdings) const;

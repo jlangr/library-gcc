@@ -81,11 +81,11 @@ TEST_F(CatalogTest, UpdatesHolding) {
     catalog.add(*theTrialHolding);
     
     Holding changedHolding{theTrialHolding->classification(), 1};
-    changedHolding.updateCondition(Condition::Damaged);
+    changedHolding.updateCondition("Damaged");
     catalog.update(changedHolding);
 
     Holding holding{catalog.findByBarCode(theTrialHolding->barcode())};
-    ASSERT_THAT(holding.condition(), Eq(Condition::Damaged));
+    ASSERT_THAT(holding.condition(), Eq("Damaged"));
 }
 
 TEST_F(CatalogTest, ThrowsOnUpdateWhenHoldingNotFound) {

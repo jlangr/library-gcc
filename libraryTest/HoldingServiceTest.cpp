@@ -222,10 +222,8 @@ TEST_F(HoldingServiceTest, UpdatesCondition) {
     auto barcode = HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString();
     holdingService.addAtBranch(branch1->id(), barcode);
 
-    Holding damagedHolding(barcode);
-    damagedHolding.updateCondition(Condition::Damaged);
-    holdingService.update(damagedHolding);
+    holdingService.markDamaged(barcode);
 
     Holding retrieved = holdingService.findByBarCode(barcode);
-    ASSERT_THAT(retrieved.condition(), Eq(Condition::Damaged));
+    ASSERT_THAT(retrieved.condition(), Eq("Damaged"));
 }

@@ -56,7 +56,9 @@ void HoldingService::transfer(Holding& holding, Branch& branch) {
     mCatalog.update(holding);
 }
 
-void HoldingService::update(Holding& holding) {
+void HoldingService::markDamaged(const std::string& barcode) {
+    auto holding = findByBarCode(barcode);
+    holding.updateCondition("Damaged");
     mCatalog.update(holding);
 }
 

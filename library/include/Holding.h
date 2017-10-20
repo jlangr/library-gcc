@@ -8,8 +8,6 @@
 
 #include "boost/date_time/gregorian/gregorian_types.hpp"
 
-enum class Condition : int { New = 0, Read = 1, Damaged = 2 };
-
 class Holding {
 public:
     Holding();
@@ -31,19 +29,19 @@ public:
     boost::gregorian::date dueDate() const;
     bool isAvailable() const;
     std::string classification() const;
-    Condition condition() const;
+    std::string condition() const;
 
     void transfer(Branch&);
     void checkOut(boost::gregorian::date);
     void checkIn(boost::gregorian::date, const Branch&);
-    void updateCondition(Condition);
+    void updateCondition(const std::string&);
 
 private:
     std::string mClassification;
     unsigned short mCopyNumber;
     Branch mBranch;
     boost::gregorian::date mLastCheckedOutOn;
-    Condition mCondition{Condition::New};
+    std::string mCondition{"New"};
 };
 
 typedef std::vector<Holding>::iterator HoldingIterator;

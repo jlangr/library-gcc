@@ -121,10 +121,10 @@ bool Holding::isAvailable() const {
     return Branch::CHECKED_OUT != mBranch;
 }
 
-void Holding::updateCondition(Condition newCondition) {
+void Holding::updateCondition(const string& newCondition) {
     mCondition = newCondition;
 }
 
-Condition Holding::condition() const {
+string Holding::condition() const {
     return mCondition;
 }
