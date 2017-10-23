@@ -42,4 +42,6 @@ set(sources
    )
 add_library(library ${sources})
 target_link_libraries(library pthread)
-target_link_libraries(library rt)
+if(NOT APPLE)
+   target_link_libraries(library rt)
+endif()
