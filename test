@@ -1,17 +1,8 @@
 #!/bin/bash
 
-#rm library/liblibrary.a 
-#rm libraryTest/libraryTest 
-pushd library
+pushd build
 if [[ ! -e "Makefile" ]]; then
-  cmake .
+  cmake ..
 fi
-make
-popd
-pushd libraryTest
-if [[ ! -e "Makefile" ]]; then
-  cmake .
-fi
-make
-./libraryTest "$@"
+make && libraryTest/libraryTest --failed-only
 popd
