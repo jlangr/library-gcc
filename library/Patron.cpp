@@ -9,8 +9,8 @@ using namespace std;
 
 Patron::Patron(const string& name, const string& cardNumber)
     : mName(name)
-    , mBalance(0) 
-    , mCardNumber(cardNumber) {}
+    , mCardNumber(cardNumber) 
+    , mBalance(0) {}
 
 string Patron::cardNumber() const {
     return mCardNumber;

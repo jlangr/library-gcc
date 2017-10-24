@@ -22,7 +22,7 @@ void FileReport::ftpGet() {
     if (!connect) {
         throw runtime_error("unable to connect to " + FtpServer);
     }
-    auto error{false};
+//    auto error{false};
     auto loginSuccess = ftp.Login("ftp", "");
     if (!loginSuccess) {
         ftp.Quit();

@@ -122,7 +122,7 @@ public:
 
 bool hasShowFailuresOnlyOption(int argc, char **argv) {
     auto showFailuresOnly = false;
-    for (unsigned int i = 1; i < argc; i++) {
+    for (int i = 1; i < argc; i++) {
         auto option = string{argv[i]};
         if (option == "--failed-only")
             showFailuresOnly = true;
