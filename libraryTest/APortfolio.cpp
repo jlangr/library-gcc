@@ -3,12 +3,25 @@
 #include <stdexcept>
 
 #include "Portfolio.h"
+#include "StockService.h"
 
 using namespace testing;
 
+const unsigned int IbmCurrentValue{200};
+const unsigned int AaplCurrentValue{250};
+
+class StubStockService: public StockService {
+    unsigned int currentPrice(const std::string& symbol) {
+        if ("IBM" == symbol) return IbmCurrentValue;
+        if ("AAPL" == symbol) return AaplCurrentValue;
+        throw 1;
+    }
+};
+
 class APortfolio: public Test {
 public:
-    Portfolio portfolio;
+    StubStockService stubStockService;
+    Portfolio portfolio{&stubStockService};
 };
 
 TEST_F(APortfolio, IsEmptyWhenCreated) {
@@ -65,4 +78,30 @@ TEST_F(APortfolio, SumsSharesBySymbol) {
 
 TEST_F(APortfolio, ThrowsOnPurchaseOfZeroShares) {
     ASSERT_THROW(portfolio.purchase("AAPL", 0), std::runtime_error);
+}
+
+TEST_F(APortfolio, IsWorthlessWhenCreated) {
+    ASSERT_THAT(portfolio.value(), Eq(0));
+}
+
+// does this test retain value?
+TEST_F(APortfolio, IsWorthSharePriceForSingleSharePurchase) {
+    portfolio.purchase("IBM", 1);
+
+    ASSERT_THAT(portfolio.value(), Eq(IbmCurrentValue));
+}
+
+TEST_F(APortfolio, ValueMultipliesSharePriceByShares) {
+    portfolio.purchase("IBM", 10);
+
+    // uh oh, implicit expectations!
+    ASSERT_THAT(portfolio.value(), Eq(IbmCurrentValue * 10));
+}
+
+TEST_F(APortfolio, ValueSumsValuesBySymbol) {
+    portfolio.purchase("IBM", 10);
+    portfolio.purchase("AAPL", 20);
+
+    ASSERT_THAT(portfolio.value(), Eq(IbmCurrentValue * 10 +
+                                      AaplCurrentValue * 20));
 }

@@ -18,13 +18,24 @@ vector<Patron> PatronService::getAll() const {
     return mPatronAccess.getAll();
 }
 
-void PatronService::add(const string& name, const string& cardNumber) {
+void PatronService::add(const string& name, const string& cardNumber, const string& creditCardNumber) {
     Patron patron(name, cardNumber);
     add(patron);
 }
 
 void PatronService::add(const Patron& patron) {
-    mPatronAccess.save(patron);
+    if (hasGoodCredit(patron))
+        mPatronAccess.save(patron);
+}
+
+void PatronService::setCreditVerifier(CreditVerifier* verifier) {
+    mCreditVerifier = verifier;
+}
+
+bool PatronService::hasGoodCredit(const Patron& patron) const {
+    if (mCreditVerifier == nullptr) return true;
+    return mCreditVerifier->creditScore(patron.creditCardNumber()) 
+        >= CreditVerifier::MinimumForGoodCredit;
 }
 
 void PatronService::update(const Patron& patron) {

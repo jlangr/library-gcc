@@ -5,6 +5,7 @@
 
 class CreditVerifier {
 public:
+    static const unsigned int MinimumForGoodCredit{650};
     virtual unsigned int creditScore(const std::string& cardNumber) = 0;
 };
 

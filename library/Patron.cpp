@@ -7,12 +7,17 @@
 
 using namespace std;
 
-Patron::Patron(const string& name, const string& cardNumber)
+Patron::Patron(const string& name, const string& cardNumber, const string& creditCardNumber)
     : mName(name)
     , mBalance(0) 
-    , mCardNumber(cardNumber) {}
+    , mCardNumber(cardNumber)
+    , mCreditCardNumber(creditCardNumber) {}
 
 string Patron::cardNumber() const {
+    return mCardNumber;
+}
+
+string Patron::creditCardNumber() const {
     return mCardNumber;
 }
 

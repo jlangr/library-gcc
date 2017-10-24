@@ -5,13 +5,20 @@
 #include <set>
 #include <unordered_map>
 
+#include "StockService.h"
+
+using namespace std;
+
 class Portfolio {
 public:
+    Portfolio(StockService* service)
+        : _service{service} {}
+
     bool empty() {
         return 0 == uniqueSymbolCount();
     }
 
-    void purchase(const std::string& symbol, unsigned int someShares) {
+    void purchase(const string& symbol, unsigned int someShares) {
         throwsOnNonPositiveShares(someShares);
         _holdings[symbol] = shares(symbol) + someShares;
     }
@@ -20,18 +27,31 @@ public:
         return _holdings.size();
     }
 
-    unsigned int shares(const std::string& symbol) const {
+    unsigned int shares(const string& symbol) const {
         if (0 == _holdings.count(symbol))
             return 0;
         return _holdings.at(symbol);
     }
 
+    unsigned int value() const {
+        auto total{0};
+        for_each(_holdings.begin(), _holdings.end(),
+                [&](pair<string, unsigned int> holding) {
+                    auto symbol{holding.first};
+                    auto shares{holding.second};
+                    total += _service->currentPrice(symbol) * shares;
+                });
+        return total;
+    }
+
 private:
-    std::unordered_map<std::string, unsigned int> _holdings;
+    unordered_map<string, unsigned int> _holdings;
+    StockService* _service{nullptr};
 
     void throwsOnNonPositiveShares(unsigned int shares) const {
-        if (0 == shares) throw std::runtime_error("zeroshares");
+        if (0 == shares) throw runtime_error("zeroshares");
     }
+
 };
 
 #endif

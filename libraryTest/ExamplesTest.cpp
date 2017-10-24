@@ -335,3 +335,13 @@ TEST(V, X) {
     };
     Verifier v{10, new StubVerificationService};
 }
+
+//bool yes() {return true;}
+
+bool hey(unsigned int v, const std::string& s) {
+}
+
+TEST(Dumb, Cpp) {
+//    yes();
+    ASSERT_THAT(hey(1, "x"), Eq(true));
+}

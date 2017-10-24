@@ -2,6 +2,7 @@
 #include "Patron.h"
 #include "Holding.h"
 #include "ClassificationData.h"
+#include "CreditVerifier.h"
 
 #include "gmock/gmock.h"
 
@@ -34,7 +35,7 @@ TEST_F(PatronServiceTest, CountInitiallyZero) {
 }
 
 TEST_F(PatronServiceTest, AddUsingAttributes) {
-    service.add("Suresh", "p20");
+    service.add("Suresh", "p20", "CC123");
 
     Patron retrieved("", "p20");
     service.find(retrieved);
@@ -47,6 +48,20 @@ TEST_F(PatronServiceTest, AddIncrementsCount) {
 
     service.add(*jane);
     ASSERT_THAT(service.patronCount(), Eq(2));
+}
+
+TEST_F(PatronServiceTest, DoesNotAddWithInvalidCredit) {
+    class StubCreditVerifier: public CreditVerifier {
+    public:
+        unsigned int creditScore(const std::string& cardNumber) {
+            return CreditVerifier::MinimumForGoodCredit - 1;
+        }
+    };
+    StubCreditVerifier verifier;
+    service.setCreditVerifier(&verifier);
+    service.add("Suresh", "p20", "CC123");
+
+    ASSERT_THAT(service.patronCount(), Eq(0));
 }
 
 TEST_F(PatronServiceTest, DeleteAllSetsCountToZero) {
