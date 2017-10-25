@@ -19,7 +19,7 @@ public:
     void depressBrake() {}
     void pressStartButton() {}
     unsigned int RPM() {
-        return 1000;
+        return 1000u;
     }
 };
 
@@ -27,7 +27,7 @@ TEST(Example, Assertions) {
 
   bool condition{false};
   string text{"something"};
-  unsigned int idleSpeed{1001};
+  unsigned int idleSpeed{1001u};
   string otherText{"something else"};
 
 
@@ -63,12 +63,12 @@ ASSERT_THAT(allAlpha, Each(Eq("alpha")));
   ASSERT_THAT(pointer1, IsNull());
   ASSERT_THAT(pointer2, NotNull());
 
+  cout << value;
+
   //unique_ptr<Shape> shape{new Circle()};
 //  Shape* shape = new Circle();
 //  ASSERT_THAT(*shape, A<Shape>());
 //  ASSERT_THAT(value2, A<std::string>());
-//
-  cout << value;
 }
 
 
@@ -230,7 +230,7 @@ class Result {};
 
 class GreenerGrass {
 public:
-    Result doStuff(int n) { /* ... */ return Result(); }
+    Result doStuff(int n) { return Result{}; }
     void doMoreStuff(Result& r) {}
     int answer() { return 1; }
 
@@ -247,13 +247,13 @@ public:
         GreenerGrass grass;
         auto x{grass.comfortableMemberFunction(someValue())};
         // ...
-        cout << x; // avoid compiler warning
+        cout << x;
     }
 
     void Client() {
         auto x{enviousMemberFunction()};
         // ...
-        cout << x; // avoid compiler warning
+        cout << x;
     }
 
     int enviousMemberFunction() {
