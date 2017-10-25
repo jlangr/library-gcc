@@ -32,10 +32,10 @@ public:
 
 private:
     DisplayListener* mDisplay;
-    ScannerState* mCurrentState;
-    service::HoldingService* mHoldingService;
     std::string mBranchId;
+    ScannerState* mCurrentState;
     std::string mPatronId;
+    service::HoldingService* mHoldingService;
 };
 
 #endif

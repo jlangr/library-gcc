@@ -24,7 +24,7 @@ string Patron::name() const {
     return mName;
 }
 
-int Patron::fineBalance() const {
+unsigned int Patron::fineBalance() const {
     return mBalance;
 }
 

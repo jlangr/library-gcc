@@ -2,18 +2,14 @@
 
 using std::string;
 
-const int Book::BOOK_CHECKOUT_PERIOD(21);
-const int Book::MOVIE_CHECKOUT_PERIOD(7);
-const int Book::NEW_RELEASE_CHECKOUT_PERIOD(3);
-
 Book::Book() : mYear(0) {}
 
 Book::Book(
     const string& title,
     const string& author,
-    const unsigned short year,
+    const unsigned int year,
     const string& classification,
-    unsigned short type)
+    unsigned int type)
     : mTitle(title)
     , mAuthor(author)
     , mClassification(classification)
@@ -50,7 +46,7 @@ bool Book::operator<(const Book& rhs) const {
     return mClassification < rhs.mClassification;
 }
 
-unsigned short Book::year() const {
+unsigned int Book::year() const {
     return mYear;
 }
 
@@ -66,6 +62,6 @@ string Book::author() const {
     return mAuthor;
 }
 
-unsigned short Book::type() const {
+unsigned int Book::type() const {
     return mType;
 }

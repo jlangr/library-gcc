@@ -64,14 +64,14 @@ TEST_F(CustomerTest, PerformanceOfStatement) {
 TEST_F(CustomerTest, Create) {
 	ASSERT_THAT(customer->name(), Eq("Jane Doe"));
 	vector<Rental> rentals = customer->rentals();
-	ASSERT_THAT(rentals.size(), Eq(0));
+	ASSERT_THAT(rentals.size(), Eq(0u));
 }
 
 TEST_F(CustomerTest, AddRental) {
 	Rental rental(*shane, 3);
 	customer->add(rental);
 	vector<Rental> rentals = customer->rentals();
-	ASSERT_THAT(rentals.size(), Eq(1));
+	ASSERT_THAT(rentals.size(), Eq(1u));
 	Rental retrieved = rentals[0];
 	ASSERT_THAT(retrieved.daysRented(), Eq(rental.daysRented()));
 	ASSERT_THAT(retrieved.movie().title(), StrEq(shane->title()));

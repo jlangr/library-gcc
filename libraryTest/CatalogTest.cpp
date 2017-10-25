@@ -35,13 +35,13 @@ public:
 };
 
 TEST_F(CatalogTest, IsEmptyOnCreation) {
-    ASSERT_THAT(catalog.size(), Eq(0));
+    ASSERT_THAT(catalog.size(), Eq(0u));
 }
 
 TEST_F(CatalogTest, AddIncrementsCount) {
     catalog.add(*theTrialHolding);
 
-    ASSERT_THAT(catalog.size(), Eq(1));
+    ASSERT_THAT(catalog.size(), Eq(1u));
 }
 
 TEST_F(CatalogTest, ContainsAnswersFalseWhenNotFound) {

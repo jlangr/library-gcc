@@ -105,6 +105,6 @@ TEST_F(PatronServiceTest, MembersFullyPopulatedInFoundPatron) {
 
     service.find(retrieved);
 
-    ASSERT_THAT(retrieved.fineBalance(), Eq(20));
+    ASSERT_THAT(retrieved.fineBalance(), Eq(20u));
     ASSERT_THAT(retrieved.holdings(), Eq(set<Holding>{ theTrial }));
 }

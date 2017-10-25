@@ -87,7 +87,7 @@ TEST_F(PatronAccessTest, UpdatePersistsChanges) {
     auto cardNumber{"p10"};
     Patron patron1("x", cardNumber);
     access.save(patron1);
-    int fine = 100;
+    unsigned int fine = 100;
     patron1.addFine(fine);
 
     access.update(patron1);

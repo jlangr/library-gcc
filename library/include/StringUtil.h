@@ -21,7 +21,7 @@ namespace stringutil {
 
     // See http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
     inline std::string trim(const std::string &s) {
-        auto isSpace = [](int i){ return std::isspace(i); };
+//        auto isSpace = [](int i){ return std::isspace(i); };
         auto frontOfWhitespace = std::find_if_not(s.begin(), s.end(), isspace);
         return std::string(
             frontOfWhitespace,

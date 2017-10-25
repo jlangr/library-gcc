@@ -18,5 +18,5 @@ TEST(AHoldingBarcode, BarcodeParseReturnsClassification) {
 }
 
 TEST(AHoldingBarcode, CanExtractCopyNumberWhenCreatedWithBarcode) {
-    ASSERT_THAT(HoldingBarcode("A234:42").copyNumber(), Eq(42));
+    ASSERT_THAT(HoldingBarcode("A234:42").copyNumber(), Eq(42u));
 }

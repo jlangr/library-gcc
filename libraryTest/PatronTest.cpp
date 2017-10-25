@@ -53,7 +53,7 @@ TEST_F(PatronTest, CreateDefaultsCardNumber)
 TEST_F(PatronTest, AddFineUpdatesFineBalance)
 {
     jane->addFine(10);
-    ASSERT_THAT(jane->fineBalance(), Eq(10));
+    ASSERT_THAT(jane->fineBalance(), Eq(10u));
 }
 
 TEST_F(PatronTest, AddFineAccumulatesIntoBalance)
@@ -61,7 +61,7 @@ TEST_F(PatronTest, AddFineAccumulatesIntoBalance)
     jane->addFine(10);
     jane->addFine(30);
 
-    ASSERT_THAT(jane->fineBalance(), Eq(40));
+    ASSERT_THAT(jane->fineBalance(), Eq(40u));
 }
 
 TEST_F(PatronTest, RemitFineSubtractsFromBalance)
@@ -70,7 +70,7 @@ TEST_F(PatronTest, RemitFineSubtractsFromBalance)
 
     jane->remit(15);
 
-    ASSERT_THAT(jane->fineBalance(), Eq(25));
+    ASSERT_THAT(jane->fineBalance(), Eq(25u));
 }
 
 TEST_F(PatronTest, HoldingsContainsBorrowedBooks)

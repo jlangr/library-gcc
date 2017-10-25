@@ -55,15 +55,15 @@ public:
 };
 
 TEST_F(HoldingServiceTest, SizeInitiallyZero) {
-    ASSERT_THAT(holdingService.inventorySize(), Eq(0));
+    ASSERT_THAT(holdingService.inventorySize(), Eq(0u));
 }
 
 TEST_F(HoldingServiceTest, SizeIncrementedOnAddRegardlessOfBranch) {
     holdingService.addAtBranch(branch1->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 1).asString());
-    ASSERT_THAT(holdingService.inventorySize(), Eq(1));
+    ASSERT_THAT(holdingService.inventorySize(), Eq(1u));
 
     holdingService.addAtBranch(branch2->id(), HoldingBarcode(THE_TRIAL_CLASSIFICATION, 2).asString());
-    ASSERT_THAT(holdingService.inventorySize(), Eq(2));
+    ASSERT_THAT(holdingService.inventorySize(), Eq(2u));
 }
 
 TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero) {
@@ -72,7 +72,7 @@ TEST_F(HoldingServiceTest, DeleteAllSetsSizeToZero) {
 
     HoldingService::deleteAll();
 
-    ASSERT_THAT(holdingService.inventorySize(), Eq(0));
+    ASSERT_THAT(holdingService.inventorySize(), Eq(0u));
 }
 
 TEST_F(HoldingServiceTest, AddInitializesBranch) {
@@ -182,7 +182,7 @@ TEST_F(HoldingServiceTest, CheckInUpdatesHoldingBranch) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     checkOut(barcode, branch1);
 
-    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1u), branch2->id());
 
     ASSERT_THAT(holdingService.findByBarCode(barcode.asString()).currentBranch(), Eq(*branch2));
 }
@@ -192,9 +192,9 @@ TEST_F(HoldingServiceTest, CheckInUpdatesPatronHoldings) {
     string patronId("p5");
     checkOut(barcode, branch1, patronId);
 
-    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1u), branch2->id());
 
-    ASSERT_THAT(patronService.findByCardNumber(patronId).holdings().size(), Eq(0));
+    ASSERT_THAT(patronService.findByCardNumber(patronId).holdings().size(), Eq(0u));
 }
 
 TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance) {
@@ -202,16 +202,16 @@ TEST_F(HoldingServiceTest, CheckInEarlyDoesNotUpdatePatronFineBalance) {
     string patronCardNumber("p5");
     checkOut(barcode, branch1, patronCardNumber);
 
-    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1), branch2->id());
+    holdingService.checkIn(barcode.asString(), *arbitraryDate + date_duration(1u), branch2->id());
 
-    ASSERT_THAT(patronService.findByCardNumber(patronCardNumber).fineBalance(), Eq(0));
+    ASSERT_THAT(patronService.findByCardNumber(patronCardNumber).fineBalance(), Eq(0u));
 }
 
 TEST_F(HoldingServiceTest, CheckInLateUpdatesPatronFineBalance) {
     HoldingBarcode barcode(THE_TRIAL_CLASSIFICATION, 1);
     string patronCardNumber("p5");
     checkOut(barcode, branch1, patronCardNumber);
-    date_duration oneDayLate(Book::BOOK_CHECKOUT_PERIOD + 1);
+    date_duration oneDayLate(Book::BOOK_CHECKOUT_PERIOD + 1u);
 
     holdingService.checkIn(barcode.asString(), *arbitraryDate + oneDayLate, branch2->id());
 

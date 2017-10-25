@@ -10,20 +10,20 @@ using namespace std;
 using namespace testing;
 
 TEST_P(PersistenceTest, IsEmptyOnCreation) {
-    ASSERT_THAT(persister->size(), Eq(0));
+    ASSERT_THAT(persister->size(), Eq(0u));
 }
 
 TEST_P(PersistenceTest, SizeSetToOneOnFirstAdd) {
     persister->add(*objectWithId1);
 
-    ASSERT_THAT(persister->size(), Eq(1));
+    ASSERT_THAT(persister->size(), Eq(1u));
 }
 
 TEST_P(PersistenceTest, SizeIncrementsWithEachAdd) {
     persister->add(*objectWithId1);
     persister->add(*objectWithId2);
 
-    ASSERT_THAT(persister->size(), Eq(2));
+    ASSERT_THAT(persister->size(), Eq(2u));
 }
 
 TEST_P(PersistenceTest, ReturnsNullPointerWhenItemNotFound) {
@@ -89,5 +89,5 @@ TEST_P(PersistenceTest, FindAllMatching)  {
     vector<Serializable*> matches;
     persister->findAllMatching(NameMatcher, "Jeff", matches);
 
-    ASSERT_THAT(matches.size(), Eq(2));
+    ASSERT_THAT(matches.size(), Eq(2u));
 };

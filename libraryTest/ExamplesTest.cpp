@@ -35,7 +35,7 @@ vector<string> newCollection;
 ASSERT_THAT(newCollection, IsEmpty());
 
 vector<int> items{0, 1, 2, 3};
-ASSERT_THAT(items, SizeIs(4));
+ASSERT_THAT(items, SizeIs(4u));
 ASSERT_THAT(items, Contains(2));
 ASSERT_THAT(items, ElementsAre(0, Gt(0), Ne(1), _));
 
@@ -48,15 +48,15 @@ ASSERT_THAT(allAlpha, Each(Eq("alpha")));
 
 
 
-  long value;
+  long value{0};
   int value2;
   int* pointer2{&value2};
   int* pointer1{nullptr};
 
   ASSERT_THAT(condition, Eq(false));
   ASSERT_THAT(text, Eq("something"));
-  ASSERT_THAT(idleSpeed, Not(Eq(1000)));
-  ASSERT_THAT(idleSpeed, AllOf(Ge(950), Le(1100)));
+  ASSERT_THAT(idleSpeed, Not(Eq(1000u)));
+  ASSERT_THAT(idleSpeed, AllOf(Ge(950u), Le(1100u)));
   ASSERT_THAT(otherText, Ne("something"));
 
 
@@ -67,6 +67,8 @@ ASSERT_THAT(allAlpha, Each(Eq("alpha")));
 //  Shape* shape = new Circle();
 //  ASSERT_THAT(*shape, A<Shape>());
 //  ASSERT_THAT(value2, A<std::string>());
+//
+  cout << value;
 }
 
 
@@ -76,7 +78,7 @@ TEST(AnAutomobile, IdlesItsEngineWhenStarted) {
 
     automobile.pressStartButton();
 
-    ASSERT_THAT(automobile.RPM(), AllOf(Gt(950), Lt(1100)));
+    ASSERT_THAT(automobile.RPM(), AllOf(Gt(950u), Lt(1100u)));
 }
 
 void loadData() {
@@ -141,8 +143,8 @@ public:
     void completeSale() { }
 
 private:
-    double _price;
     string _description;
+    double _price;
 };
 
 class POS {
@@ -228,7 +230,7 @@ class Result {};
 
 class GreenerGrass {
 public:
-    Result doStuff(int n) {}
+    Result doStuff(int n) { /* ... */ return Result(); }
     void doMoreStuff(Result& r) {}
     int answer() { return 1; }
 
@@ -245,11 +247,13 @@ public:
         GreenerGrass grass;
         auto x{grass.comfortableMemberFunction(someValue())};
         // ...
+        cout << x; // avoid compiler warning
     }
 
     void Client() {
         auto x{enviousMemberFunction()};
         // ...
+        cout << x; // avoid compiler warning
     }
 
     int enviousMemberFunction() {
@@ -324,8 +328,8 @@ public:
     }
 
 private:
-    VerificationService* _verificationService;
     int _timeout;
+    VerificationService* _verificationService;
 };
 
 

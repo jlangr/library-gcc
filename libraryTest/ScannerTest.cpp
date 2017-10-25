@@ -11,7 +11,6 @@
 #include "TestScanner.h"
 #include "DisplayListener.h"
 #include "HoldingService.h"
-#include "TestScanner.h"
 
 using namespace std;
 using namespace testing;
@@ -32,14 +31,14 @@ public:
     MockState* state;
     MockDisplayListener* display;
 
-    virtual void SetUp() {
+    void SetUp() {
         display = new MockDisplayListener();
         scanner = new Scanner(display, NULL);
         state = new MockState();
         scanner->setCurrentState(state);
     }
 
-    virtual void TearDown() {
+    void TearDown() {
         delete scanner;
         delete display;
     }

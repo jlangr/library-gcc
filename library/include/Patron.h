@@ -14,7 +14,7 @@ public:
     std::set<Holding> holdings() const;
     std::string name() const;
     std::string cardNumber() const;
-    int fineBalance() const;
+    unsigned int fineBalance() const;
     void addFine(int amount);
     void remit(int amount);
     void borrow(const Holding&);
